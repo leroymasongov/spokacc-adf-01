@@ -12,7 +12,7 @@
 				"referenceName": "rablobservice",
 				"type": "LinkedServiceReference"
 			},
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlJBLURGLTAxXzg4OGE3MWIyLTkwNjktNDJlMy1iNGQzLTI2NGU4ZWU1NWUyNCINCn0="
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlJBLURGLTAxXzA3ZGQ3ZDgwLWE5ZDctNDE4OS1iNjE4LTNiODZkMmE2N2FmYiINCn0="
 		}
 	}
 }
