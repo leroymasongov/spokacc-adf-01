@@ -1,0 +1,357 @@
+{
+	"name": "NMSFiles2Cosmos_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy-header-to-radb",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "RaPipelineId",
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "NmsFile",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "NmsDocumentType",
+								"value": {
+									"value": "@concat('header')",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*_header.json",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "CosmosDbSqlApiSink",
+						"writeBehavior": "insert"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "NMSMeasurementJSON",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "radb",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": {
+								"value": "@pipeline().parameters.radbContainer",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Copy-summary-to-radb",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy-header-to-radb",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "RaPipelineId",
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "NmsFile",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "NmsDocumentType",
+								"value": {
+									"value": "@concat('summary')",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*_summary.json",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "CosmosDbSqlApiSink",
+						"writeBehavior": "insert"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "NMSMeasurementJSON",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "radb",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": {
+								"value": "@pipeline().parameters.radbContainer",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Copy-gps-csv-to-radb",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy-summary-to-radb",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "RaPipelineId",
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "NmsFile",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "NmsDocumentType",
+								"value": {
+									"value": "@concat('gps')",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*_gps.csv",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "CosmosDbSqlApiSink",
+						"writeBehavior": "insert"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "nmsMeasCSV2",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "radb",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": {
+								"value": "@pipeline().parameters.radbContainer",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Copy-error",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Df-load-record-csv",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "RaPipelineId",
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "NmsFile",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "NmsDocumentType",
+								"value": {
+									"value": "@concat('error')",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*_error.json",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "CosmosDbSqlApiSink",
+						"writeBehavior": "insert"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "NMSMeasurementJSON",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "radb",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": {
+								"value": "@pipeline().parameters.radbContainer",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Df-load-record-csv",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dfLoadRecordsCSV",
+						"type": "DataFlowReference",
+						"parameters": {
+							"RaPipelineIdParam": {
+								"value": "'@{pipeline().RunId}'",
+								"type": "Expression"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"parameters": {
+			"radbContainer": {
+				"type": "string",
+				"defaultValue": "nms-data-test-9"
+			},
+			"blobContainerName": {
+				"type": "string",
+				"defaultValue": "input-svl-files-small"
+			}
+		},
+		"variables": {
+			"RowNo": {
+				"type": "String",
+				"defaultValue": "0"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-08-24T05:45:32Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

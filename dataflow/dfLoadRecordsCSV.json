@@ -1,0 +1,35 @@
+{
+	"name": "dfLoadRecordsCSV",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "nmsMeasCSV2",
+						"type": "DatasetReference"
+					},
+					"name": "sourceNmsFiles"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "radbRecordsForDF",
+						"type": "DatasetReference"
+					},
+					"name": "sinkRadb"
+				}
+			],
+			"transformations": [
+				{
+					"name": "AddDerivedCols"
+				},
+				{
+					"name": "SetRowNumber"
+				}
+			],
+			"script": "parameters{\n\tRaPipelineIdParam as string ('not-set')\n}\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\trowUrlColumn: 'NmsFile',\n\twildcardPaths:['*/*_records.csv']) ~> sourceNmsFiles\nsourceNmsFiles derive(RowNumber = 1,\n\t\tRaPipelineId = $RaPipelineIdParam,\n\t\tNmsDocumentType = 'records') ~> AddDerivedCols\nAddDerivedCols keyGenerate(output(RowNumber as long),\n\tstartAt: 1L) ~> SetRowNumber\nSetRowNumber sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\trecreate:true,\n\tformat: 'document',\n\tpartitionKey: ['/RaPipelineId'],\n\tthroughput: 500,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sinkRadb"
+		}
+	}
+}

@@ -1,0 +1,29 @@
+{
+	"name": "nmsMeasurementsJSON_old",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "rablobservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "L84858_header.json",
+				"folderPath": "SV_200A_65123",
+				"container": "input-svl-files-small"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

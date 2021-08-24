@@ -1,0 +1,250 @@
+{
+	"name": "NMSMeasurementJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "rablobservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "input-svl-files-small"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"unit_spec": {
+					"type": "object",
+					"properties": {
+						"class_name": {
+							"type": "string"
+						},
+						"unit_number": {
+							"type": "integer"
+						},
+						"unit_type": {
+							"type": "integer"
+						},
+						"software_version": {
+							"type": "integer"
+						},
+						"software_issue_date": {
+							"type": "string"
+						},
+						"device_mode": {
+							"type": "integer"
+						},
+						"unit_subtype": {
+							"type": "integer"
+						},
+						"file_system_version": {
+							"type": "integer"
+						},
+						"level_meter_version": {
+							"type": "integer"
+						},
+						"software_subversion": {
+							"type": "integer"
+						}
+					}
+				},
+				"params_global_settings": {
+					"type": "object",
+					"properties": {
+						"class_name": {
+							"type": "string"
+						},
+						"measure_start_datetime": {
+							"type": "string"
+						},
+						"measure_input": {
+							"type": "integer"
+						},
+						"range": {
+							"type": "integer"
+						},
+						"unit_flags": {
+							"type": "integer"
+						},
+						"rep_cycle": {
+							"type": "integer"
+						},
+						"num_profiles": {
+							"type": "integer"
+						},
+						"start_delay": {
+							"type": "string"
+						},
+						"integration_time": {
+							"type": "integer"
+						},
+						"stat_detector": {
+							"type": "integer"
+						},
+						"leq_function": {
+							"type": "integer"
+						},
+						"spectrum_filter": {
+							"type": "string"
+						},
+						"spectrum_buffer": {
+							"type": "integer"
+						},
+						"spectrum_detector": {
+							"type": "integer"
+						},
+						"start_sync": {
+							"type": "integer"
+						},
+						"spectrum_band": {
+							"type": "integer"
+						},
+						"mic_compensation": {
+							"type": "integer"
+						},
+						"calibration_type": {
+							"type": "integer"
+						},
+						"calibration_datetime": {
+							"type": "string"
+						},
+						"outdoor_filter": {
+							"type": "integer"
+						},
+						"outdoor_type": {
+							"type": "integer"
+						},
+						"main_results_buffer": {
+							"type": "integer"
+						},
+						"split_mode": {
+							"type": "integer"
+						},
+						"split_times": {
+							"type": "null"
+						},
+						"gps_last_sync_time": {
+							"type": "integer"
+						},
+						"statistics_cycle": {
+							"type": "integer"
+						},
+						"measure_start_datetime_ms": {
+							"type": "string"
+						},
+						"num_dir_dist_elements_xy": {
+							"type": "integer"
+						},
+						"num_dir_dist_elements_z": {
+							"type": "integer"
+						},
+						"dir_results_buffer": {
+							"type": "integer"
+						},
+						"logger_main_profiles": {
+							"type": "array",
+							"items": {
+								"type": "integer"
+							}
+						},
+						"logger_main_common": {
+							"type": "integer"
+						},
+						"logger_stat_profiles": {
+							"type": "array",
+							"items": {
+								"type": "integer"
+							}
+						},
+						"segment_masks": {
+							"type": "array",
+							"items": {
+								"type": "integer"
+							}
+						}
+					}
+				},
+				"summary_main_results": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"class_name": {
+								"type": "string"
+							},
+							"lxpeak_value": {
+								"type": "number"
+							},
+							"lxye_value": {
+								"type": "number"
+							},
+							"lxymax_value": {
+								"type": "number"
+							},
+							"lxymin_value": {
+								"type": "number"
+							},
+							"lxy_value": {
+								"type": "number"
+							},
+							"lxyeq_value": {
+								"type": "number"
+							},
+							"lden_value": {
+								"type": "number"
+							},
+							"ltm3_value": {
+								"type": "number"
+							},
+							"ltm5_value": {
+								"type": "number"
+							},
+							"lr1_value": {
+								"type": "number"
+							},
+							"lr2_value": {
+								"type": "number"
+							},
+							"le1_value": {
+								"type": "number"
+							},
+							"le2_value": {
+								"type": "number"
+							}
+						}
+					}
+				},
+				"summary_octave_analysis_results": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"class_name": {
+								"type": "string"
+							},
+							"lowest_frequency": {
+								"type": "number"
+							},
+							"num_octave_values": {
+								"type": "integer"
+							},
+							"num_total_values": {
+								"type": "integer"
+							},
+							"octaves": {
+								"type": "array",
+								"items": {
+									"type": "number"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

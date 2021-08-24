@@ -1,0 +1,9 @@
+{
+	"name": "ra-df-01",
+	"location": "australiaeast",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "52d96dda-bf79-4b79-b177-3ba6a544b718",
+		"tenantId": "6221599b-dfb1-44fa-8c9e-7a5279841384"
+	}
+}

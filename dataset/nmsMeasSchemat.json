@@ -1,0 +1,24 @@
+{
+	"name": "nmsMeasSchemat",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "rablobservice",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "input-svl-files"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
