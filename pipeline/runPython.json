@@ -15,6 +15,11 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"command": "xxx",
+					"resourceLinkedService": {
+						"referenceName": "rablobservice",
+						"type": "LinkedServiceReference"
+					},
 					"referenceObjects": {
 						"linkedServices": [],
 						"datasets": []
