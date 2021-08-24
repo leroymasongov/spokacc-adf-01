@@ -337,11 +337,11 @@
 		"parameters": {
 			"radbContainer": {
 				"type": "string",
-				"defaultValue": "nms-data-test-9"
+				"defaultValue": "nms-items"
 			},
 			"blobContainerName": {
 				"type": "string",
-				"defaultValue": "input-svl-files-small"
+				"defaultValue": "nms-files-input"
 			}
 		},
 		"variables": {
