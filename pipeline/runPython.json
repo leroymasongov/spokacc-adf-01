@@ -15,10 +15,18 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"resourceLinkedService": {
+						"referenceName": "rablobservice",
+						"type": "LinkedServiceReference"
+					},
 					"referenceObjects": {
 						"linkedServices": [],
 						"datasets": []
 					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureBatch1",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
