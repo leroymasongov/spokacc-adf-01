@@ -1,5 +1,5 @@
 {
-	"name": "NmsRecordCsvToRaDb",
+	"name": "Nms-Record-to-RaDb",
 	"properties": {
 		"activities": [
 			{
