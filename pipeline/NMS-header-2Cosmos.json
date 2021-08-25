@@ -1,0 +1,96 @@
+{
+	"name": "NMS-header-2Cosmos",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy-header-to-radb",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "RaPipelineId",
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "NmsFile",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "NmsDocumentType",
+								"value": {
+									"value": "@concat('header')",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*_header.json",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "CosmosDbSqlApiSink",
+						"writeBehavior": "insert"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "NMSMeasurementJSON",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "radb",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": {
+								"value": "@pipeline().parameters.radbContainer",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"radbContainer": {
+				"type": "string",
+				"defaultValue": "nms-items"
+			},
+			"blobContainerName": {
+				"type": "string",
+				"defaultValue": "nms-files-input"
+			}
+		},
+		"variables": {
+			"RowNo": {
+				"type": "String",
+				"defaultValue": "0"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-08-24T05:45:32Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
