@@ -4,7 +4,7 @@
 		"globalParameters": {
 			"blobContainterNmsInput": {
 				"type": "string",
-				"value": "not-set"
+				"value": "nms-files-input"
 			},
 			"radbContainer": {
 				"type": "string",
