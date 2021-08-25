@@ -1,0 +1,26 @@
+{
+	"name": "nms-process-input-files",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "NmsDocumentType",
+					"value": ""
+				}
+			}
+		],
+		"variables": {
+			"NmsDocumentType": {
+				"type": "String"
+			},
+			"TriggerFileName": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
