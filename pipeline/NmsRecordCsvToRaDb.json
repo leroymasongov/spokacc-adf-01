@@ -43,8 +43,7 @@
 				"defaultValue": "nms-files-input"
 			},
 			"RaPipelineId": {
-				"type": "string",
-				"defaultValue": "not-set"
+				"type": "string"
 			}
 		},
 		"variables": {

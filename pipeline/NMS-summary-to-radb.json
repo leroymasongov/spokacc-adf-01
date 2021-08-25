@@ -1,9 +1,9 @@
 {
-	"name": "NMS-header-to-radb",
+	"name": "NMS-summary-to-radb",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy-header-to-radb",
+				"name": "Copy-summary-to-radb",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -32,7 +32,7 @@
 							{
 								"name": "NmsDocumentType",
 								"value": {
-									"value": "@concat('header')",
+									"value": "@concat('summary')",
 									"type": "Expression"
 								}
 							}
@@ -40,7 +40,7 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*_header.json",
+							"wildcardFileName": "*_summary.json",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
