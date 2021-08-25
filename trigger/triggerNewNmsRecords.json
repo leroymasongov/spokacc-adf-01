@@ -1,0 +1,29 @@
+{
+	"name": "triggerNewNmsRecords",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ingest-new-nms-files-to-radb",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"radbContainer": "nms-items",
+					"blobContainerName": "nms-files-input"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/nms-files-input/blobs/",
+			"blobPathEndsWith": "_records.csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
