@@ -9,7 +9,7 @@
 		"type": "CosmosDbSqlApiCollection",
 		"schema": {},
 		"typeProperties": {
-			"collectionName": "nms-data-test-9"
+			"collectionName": "nms-items"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
