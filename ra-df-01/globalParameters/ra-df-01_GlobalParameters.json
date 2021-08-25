@@ -1,0 +1,14 @@
+{
+	"blobContainterNmsInput": {
+		"type": "string",
+		"value": "nms-files-input"
+	},
+	"radbContainer": {
+		"type": "string",
+		"value": "nms-items"
+	},
+	"RaPipelineId": {
+		"type": "string",
+		"value": "guid"
+	}
+}

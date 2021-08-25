@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ra-df-01"
+		},
+		"CosmosDb1_connectionString": {
+			"value": ""
+		},
+		"rablobservice_connectionString": {
+			"value": ""
+		},
+		"AzureBatch1_properties_typeProperties_batchUri": {
+			"value": "https://rabatchacc01.australiacentral.batch.azure.com"
+		},
+		"AzureBatch1_properties_typeProperties_poolName": {
+			"value": "python-01"
+		},
+		"AzureBatch1_properties_typeProperties_accountName": {
+			"value": "rabatchacc01 "
+		},
+		"triggerNewNmsRecords_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
+			"value": "nms-items"
+		},
+		"triggerNewNmsRecords_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
+			"value": "nms-files-input"
+		},
+		"triggerNewNmsRecords_properties_typeProperties_scope": {
+			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
