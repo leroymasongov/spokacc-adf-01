@@ -225,6 +225,26 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "exec-dataflow-for-source-csv",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Copy-gps-csv-to-radb",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "NmsRecordCsvToRaDb",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"parameters": {
