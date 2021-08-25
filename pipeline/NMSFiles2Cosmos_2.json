@@ -243,7 +243,17 @@
 						"referenceName": "NmsRecordCsvToRaDb",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"radbContainer": {
+							"value": "@pipeline().parameters.radbContainer",
+							"type": "Expression"
+						},
+						"blobContainerName": {
+							"value": "@pipeline().parameters.blobContainerName",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
