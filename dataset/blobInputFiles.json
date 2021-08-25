@@ -1,0 +1,17 @@
+{
+	"name": "blobInputFiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "rablobservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "nms-files-input"
+			}
+		}
+	}
+}
