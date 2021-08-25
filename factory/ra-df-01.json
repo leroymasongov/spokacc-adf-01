@@ -5,6 +5,10 @@
 			"blobContainterNmsInput": {
 				"type": "string",
 				"value": "not-set"
+			},
+			"radbContainer": {
+				"type": "string",
+				"value": "nms-items"
 			}
 		}
 	},
