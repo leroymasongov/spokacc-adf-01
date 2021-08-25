@@ -27,15 +27,15 @@
 			"type": "string",
 			"defaultValue": "rabatchacc01 "
 		},
-		"triggerNewNmsRecords_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
+		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
 			"type": "string",
 			"defaultValue": "nms-items"
 		},
-		"triggerNewNmsRecords_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
+		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
 			"type": "string",
 			"defaultValue": "nms-files-input"
 		},
-		"triggerNewNmsRecords_properties_typeProperties_scope": {
+		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
@@ -99,14 +99,14 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"triggerNewNmsRecords_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
-						"value": "[parameters('triggerNewNmsRecords_properties_ingest-new-nms-files-to-radb_parameters_radbContainer')]"
+					"trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
+						"value": "[parameters('trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer')]"
 					},
-					"triggerNewNmsRecords_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
-						"value": "[parameters('triggerNewNmsRecords_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName')]"
+					"trigger1_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
+						"value": "[parameters('trigger1_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName')]"
 					},
-					"triggerNewNmsRecords_properties_typeProperties_scope": {
-						"value": "[parameters('triggerNewNmsRecords_properties_typeProperties_scope')]"
+					"trigger1_properties_typeProperties_scope": {
+						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
 					}
 				}
 			},

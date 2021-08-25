@@ -6,18 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "ra-df-01"
-		},
-		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
-			"type": "string",
-			"defaultValue": "nms-items"
-		},
-		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
-			"type": "string",
-			"defaultValue": "nms-files-input"
-		},
-		"trigger1_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		}
 	},
 	"variables": {
@@ -38,8 +26,8 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"radbContainer": "[parameters('trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer')]",
-							"blobContainerName": "[parameters('trigger1_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName')]"
+							"radbContainer": "nms-items",
+							"blobContainerName": "nms-files-input"
 						}
 					}
 				],
@@ -48,7 +36,7 @@
 					"blobPathBeginsWith": "/nms-files-input/blobs/",
 					"blobPathEndsWith": "_records.csv",
 					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('trigger1_properties_typeProperties_scope')]",
+					"scope": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]

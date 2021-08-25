@@ -27,15 +27,15 @@
 			"type": "string",
 			"defaultValue": "rabatchacc01 "
 		},
-		"triggerNewNmsRecords_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
+		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
 			"type": "string",
 			"defaultValue": "nms-items"
 		},
-		"triggerNewNmsRecords_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
+		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
 			"type": "string",
 			"defaultValue": "nms-files-input"
 		},
-		"triggerNewNmsRecords_properties_typeProperties_scope": {
+		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		}
@@ -2761,40 +2761,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/triggerNewNmsRecords')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "ingest-new-nms-files-to-radb",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"radbContainer": "[parameters('triggerNewNmsRecords_properties_ingest-new-nms-files-to-radb_parameters_radbContainer')]",
-							"blobContainerName": "[parameters('triggerNewNmsRecords_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName')]"
-						}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/nms-files-input/blobs/",
-					"blobPathEndsWith": "_records.csv",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('triggerNewNmsRecords_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/ingest-new-nms-files-to-radb')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/blobInputFiles')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -2814,6 +2780,40 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/rablobservice')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger1')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ingest-new-nms-files-to-radb",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"radbContainer": "[parameters('trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer')]",
+							"blobContainerName": "[parameters('trigger1_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName')]"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-input/blobs/",
+					"blobPathEndsWith": "_records.csv",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('trigger1_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/ingest-new-nms-files-to-radb')]"
 			]
 		}
 	]
