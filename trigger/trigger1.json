@@ -3,7 +3,18 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [],
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ingest-new-nms-files-to-radb",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"radbContainer": "nms-items",
+					"blobContainerName": "nms-files-input"
+				}
+			}
+		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
 			"blobPathBeginsWith": "/nms-files-input/blobs/",
