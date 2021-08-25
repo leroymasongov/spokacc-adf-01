@@ -41,6 +41,10 @@
 			"blobContainerName": {
 				"type": "string",
 				"defaultValue": "nms-files-input"
+			},
+			"RaPipelineId": {
+				"type": "string",
+				"defaultValue": "not-set"
 			}
 		},
 		"variables": {
