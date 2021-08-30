@@ -2727,6 +2727,49 @@
 				"[concat(variables('factoryId'), '/datasets/nmsMeasCSV2')]",
 				"[concat(variables('factoryId'), '/datasets/radbRecordsForDF')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline-python-test')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Custom1",
+						"type": "Custom",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": "python main.py",
+							"resourceLinkedService": {
+								"referenceName": "rablobservice",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "ra-function-input",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatch1",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatch1')]",
+				"[concat(variables('factoryId'), '/linkedServices/rablobservice')]"
+			]
 		}
 	]
 }
