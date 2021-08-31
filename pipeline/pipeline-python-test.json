@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "python test-ppl.py",
+					"command": "python test-py.py",
 					"resourceLinkedService": {
 						"referenceName": "rablobservice",
 						"type": "LinkedServiceReference"
