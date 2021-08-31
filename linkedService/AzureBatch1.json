@@ -5,7 +5,7 @@
 		"type": "AzureBatch",
 		"typeProperties": {
 			"batchUri": "https://rabatchacc01.australiacentral.batch.azure.com",
-			"poolName": "python-01",
+			"poolName": "python-datasci-01",
 			"accountName": "rabatchacc01 ",
 			"linkedServiceName": {
 				"referenceName": "rablobservice",
