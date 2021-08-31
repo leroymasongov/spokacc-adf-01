@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "ra-df-01"
 		},
+		"AzureBatch2_accessKey": {
+			"value": ""
+		},
 		"CosmosDb1_connectionString": {
 			"value": ""
 		},
@@ -15,10 +18,19 @@
 			"value": "https://rabatchacc01.australiacentral.batch.azure.com"
 		},
 		"AzureBatch1_properties_typeProperties_poolName": {
-			"value": "python-01"
+			"value": "python-datasci-01"
 		},
 		"AzureBatch1_properties_typeProperties_accountName": {
 			"value": "rabatchacc01 "
+		},
+		"AzureBatch2_properties_typeProperties_batchUri": {
+			"value": "https://rabatchacc01.australiacentral.batch.azure.com"
+		},
+		"AzureBatch2_properties_typeProperties_poolName": {
+			"value": "python-datasci-01"
+		},
+		"AzureBatch2_properties_typeProperties_accountName": {
+			"value": "rabatchacc01"
 		},
 		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
 			"value": "nms-items"

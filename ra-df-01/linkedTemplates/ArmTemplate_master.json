@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "ra-df-01"
 		},
+		"AzureBatch2_accessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessKey' of 'AzureBatch2'"
+		},
 		"CosmosDb1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
@@ -21,11 +25,23 @@
 		},
 		"AzureBatch1_properties_typeProperties_poolName": {
 			"type": "string",
-			"defaultValue": "python-01"
+			"defaultValue": "python-datasci-01"
 		},
 		"AzureBatch1_properties_typeProperties_accountName": {
 			"type": "string",
 			"defaultValue": "rabatchacc01 "
+		},
+		"AzureBatch2_properties_typeProperties_batchUri": {
+			"type": "string",
+			"defaultValue": "https://rabatchacc01.australiacentral.batch.azure.com"
+		},
+		"AzureBatch2_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "python-datasci-01"
+		},
+		"AzureBatch2_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "rabatchacc01"
 		},
 		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
 			"type": "string",
@@ -72,6 +88,9 @@
 					"rablobservice_connectionString": {
 						"value": "[parameters('rablobservice_connectionString')]"
 					},
+					"AzureBatch2_accessKey": {
+						"value": "[parameters('AzureBatch2_accessKey')]"
+					},
 					"AzureBatch1_properties_typeProperties_batchUri": {
 						"value": "[parameters('AzureBatch1_properties_typeProperties_batchUri')]"
 					},
@@ -80,6 +99,15 @@
 					},
 					"AzureBatch1_properties_typeProperties_accountName": {
 						"value": "[parameters('AzureBatch1_properties_typeProperties_accountName')]"
+					},
+					"AzureBatch2_properties_typeProperties_batchUri": {
+						"value": "[parameters('AzureBatch2_properties_typeProperties_batchUri')]"
+					},
+					"AzureBatch2_properties_typeProperties_poolName": {
+						"value": "[parameters('AzureBatch2_properties_typeProperties_poolName')]"
+					},
+					"AzureBatch2_properties_typeProperties_accountName": {
+						"value": "[parameters('AzureBatch2_properties_typeProperties_accountName')]"
 					}
 				}
 			},
