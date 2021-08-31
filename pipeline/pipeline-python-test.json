@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "pip install numpy\npython preprologger.py",
+					"command": "python test-ppl.py",
 					"resourceLinkedService": {
 						"referenceName": "rablobservice",
 						"type": "LinkedServiceReference"
