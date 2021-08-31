@@ -27,7 +27,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureBatch1",
+					"referenceName": "AzureBatch2",
 					"type": "LinkedServiceReference"
 				}
 			}
