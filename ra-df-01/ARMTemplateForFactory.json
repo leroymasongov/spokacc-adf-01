@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'rablobservice'"
 		},
+		"AzureBatch3_accessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessKey' of 'AzureBatch3'"
+		},
 		"AzureBatch1_properties_typeProperties_batchUri": {
 			"type": "string",
 			"defaultValue": "https://rabatchacc01.australiacentral.batch.azure.com"
@@ -54,6 +58,18 @@
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"AzureBatch3_properties_typeProperties_batchUri": {
+			"type": "string",
+			"defaultValue": "https://rabatchacc01.australiacentral.batch.azure.com"
+		},
+		"AzureBatch3_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "ra-func-02"
+		},
+		"AzureBatch3_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "rabatchacc01"
 		}
 	},
 	"variables": {
@@ -1322,7 +1338,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"command": "pip install numpy\npython preprologger.py",
+							"command": "python test-py.py",
 							"resourceLinkedService": {
 								"referenceName": "rablobservice",
 								"type": "LinkedServiceReference"
@@ -2810,6 +2826,31 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/nmsMeasCSV2')]",
 				"[concat(variables('factoryId'), '/datasets/radbRecordsForDF')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBatch3')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBatch",
+				"typeProperties": {
+					"batchUri": "[parameters('AzureBatch3_properties_typeProperties_batchUri')]",
+					"poolName": "[parameters('AzureBatch3_properties_typeProperties_poolName')]",
+					"accountName": "[parameters('AzureBatch3_properties_typeProperties_accountName')]",
+					"linkedServiceName": {
+						"referenceName": "rablobservice",
+						"type": "LinkedServiceReference"
+					},
+					"accessKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureBatch3_accessKey')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/rablobservice')]"
 			]
 		}
 	]

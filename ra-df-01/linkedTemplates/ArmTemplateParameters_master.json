@@ -14,6 +14,9 @@
 		"rablobservice_connectionString": {
 			"value": ""
 		},
+		"AzureBatch3_accessKey": {
+			"value": ""
+		},
 		"AzureBatch1_properties_typeProperties_batchUri": {
 			"value": "https://rabatchacc01.australiacentral.batch.azure.com"
 		},
@@ -40,6 +43,15 @@
 		},
 		"trigger1_properties_typeProperties_scope": {
 			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"AzureBatch3_properties_typeProperties_batchUri": {
+			"value": "https://rabatchacc01.australiacentral.batch.azure.com"
+		},
+		"AzureBatch3_properties_typeProperties_poolName": {
+			"value": "ra-func-02"
+		},
+		"AzureBatch3_properties_typeProperties_accountName": {
+			"value": "rabatchacc01"
 		},
 		"containerUri": {
 			"value": ""
