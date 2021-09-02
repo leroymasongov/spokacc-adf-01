@@ -41,7 +41,7 @@
 		},
 		"AzureBatch2_properties_typeProperties_poolName": {
 			"type": "string",
-			"defaultValue": "python-datasci-01"
+			"defaultValue": "ra-func-02"
 		},
 		"AzureBatch2_properties_typeProperties_accountName": {
 			"type": "string",

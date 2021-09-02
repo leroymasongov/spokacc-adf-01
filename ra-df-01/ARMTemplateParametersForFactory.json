@@ -30,7 +30,7 @@
 			"value": "https://rabatchacc01.australiacentral.batch.azure.com"
 		},
 		"AzureBatch2_properties_typeProperties_poolName": {
-			"value": "python-datasci-01"
+			"value": "ra-func-02"
 		},
 		"AzureBatch2_properties_typeProperties_accountName": {
 			"value": "rabatchacc01"

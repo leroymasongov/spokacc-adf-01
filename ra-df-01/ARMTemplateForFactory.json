@@ -41,7 +41,7 @@
 		},
 		"AzureBatch2_properties_typeProperties_poolName": {
 			"type": "string",
-			"defaultValue": "python-datasci-01"
+			"defaultValue": "ra-func-02"
 		},
 		"AzureBatch2_properties_typeProperties_accountName": {
 			"type": "string",
@@ -1343,7 +1343,7 @@
 								"referenceName": "rablobservice",
 								"type": "LinkedServiceReference"
 							},
-							"folderPath": "ra-function-input",
+							"folderPath": "ra-func-02",
 							"referenceObjects": {
 								"linkedServices": [],
 								"datasets": []
