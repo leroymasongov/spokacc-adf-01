@@ -20,7 +20,7 @@
 						"referenceName": "rablobservice",
 						"type": "LinkedServiceReference"
 					},
-					"folderPath": "ra-function-input",
+					"folderPath": "ra-func-02",
 					"referenceObjects": {
 						"linkedServices": [],
 						"datasets": []
