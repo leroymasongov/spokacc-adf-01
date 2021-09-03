@@ -1,0 +1,25 @@
+{
+	"name": "pipeline-test-web-acty",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "http://localhost:7071/api/ra-nms-measurements?RaPipelineId=8649b4ba-fb4e-4e99-a17e-51d5ffc9be69",
+					"method": "GET"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
