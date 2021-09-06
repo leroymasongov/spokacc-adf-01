@@ -1,0 +1,16 @@
+{
+	"name": "AzureBatch4",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBatch",
+		"typeProperties": {
+			"batchUri": "https://rasebatchacc05.australiasoutheast.batch.azure.com",
+			"poolName": "pool-python-data-sci",
+			"accountName": "rasebatchacc05 ",
+			"linkedServiceName": {
+				"referenceName": "batchStorage",
+				"type": "LinkedServiceReference"
+			}
+		}
+	}
+}
