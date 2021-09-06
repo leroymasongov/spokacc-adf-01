@@ -8,13 +8,13 @@
 		"AzureBatch2_accessKey": {
 			"value": ""
 		},
+		"AzureBatch3_accessKey": {
+			"value": ""
+		},
 		"CosmosDb1_connectionString": {
 			"value": ""
 		},
 		"rablobservice_connectionString": {
-			"value": ""
-		},
-		"AzureBatch3_accessKey": {
 			"value": ""
 		},
 		"AzureBatch1_properties_typeProperties_batchUri": {
@@ -30,9 +30,18 @@
 			"value": "https://rabatchacc01.australiacentral.batch.azure.com"
 		},
 		"AzureBatch2_properties_typeProperties_poolName": {
-			"value": "ra-func-02"
+			"value": "pool2"
 		},
 		"AzureBatch2_properties_typeProperties_accountName": {
+			"value": "rabatchacc01"
+		},
+		"AzureBatch3_properties_typeProperties_batchUri": {
+			"value": "https://rabatchacc01.australiacentral.batch.azure.com"
+		},
+		"AzureBatch3_properties_typeProperties_poolName": {
+			"value": "ra-func-02"
+		},
+		"AzureBatch3_properties_typeProperties_accountName": {
 			"value": "rabatchacc01"
 		},
 		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
@@ -43,15 +52,6 @@
 		},
 		"trigger1_properties_typeProperties_scope": {
 			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
-		},
-		"AzureBatch3_properties_typeProperties_batchUri": {
-			"value": "https://rabatchacc01.australiacentral.batch.azure.com"
-		},
-		"AzureBatch3_properties_typeProperties_poolName": {
-			"value": "ra-func-02"
-		},
-		"AzureBatch3_properties_typeProperties_accountName": {
-			"value": "rabatchacc01"
 		},
 		"containerUri": {
 			"value": ""

@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessKey' of 'AzureBatch2'"
 		},
+		"AzureBatch3_accessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessKey' of 'AzureBatch3'"
+		},
 		"CosmosDb1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
@@ -18,10 +22,6 @@
 		"rablobservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'rablobservice'"
-		},
-		"AzureBatch3_accessKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessKey' of 'AzureBatch3'"
 		},
 		"AzureBatch1_properties_typeProperties_batchUri": {
 			"type": "string",
@@ -41,9 +41,21 @@
 		},
 		"AzureBatch2_properties_typeProperties_poolName": {
 			"type": "string",
-			"defaultValue": "ra-func-02"
+			"defaultValue": "pool2"
 		},
 		"AzureBatch2_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "rabatchacc01"
+		},
+		"AzureBatch3_properties_typeProperties_batchUri": {
+			"type": "string",
+			"defaultValue": "https://rabatchacc01.australiacentral.batch.azure.com"
+		},
+		"AzureBatch3_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "ra-func-02"
+		},
+		"AzureBatch3_properties_typeProperties_accountName": {
 			"type": "string",
 			"defaultValue": "rabatchacc01"
 		},
@@ -58,18 +70,6 @@
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
-		},
-		"AzureBatch3_properties_typeProperties_batchUri": {
-			"type": "string",
-			"defaultValue": "https://rabatchacc01.australiacentral.batch.azure.com"
-		},
-		"AzureBatch3_properties_typeProperties_poolName": {
-			"type": "string",
-			"defaultValue": "ra-func-02"
-		},
-		"AzureBatch3_properties_typeProperties_accountName": {
-			"type": "string",
-			"defaultValue": "rabatchacc01"
 		},
 		"containerUri": {
 			"type": "string",
