@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "python test-py.py",
+					"command": "python radb-batch.py",
 					"resourceLinkedService": {
 						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
