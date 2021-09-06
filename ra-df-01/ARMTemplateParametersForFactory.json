@@ -14,6 +14,9 @@
 		"CosmosDb1_connectionString": {
 			"value": ""
 		},
+		"batchStorage_connectionString": {
+			"value": ""
+		},
 		"rablobservice_connectionString": {
 			"value": ""
 		},
@@ -43,6 +46,15 @@
 		},
 		"AzureBatch3_properties_typeProperties_accountName": {
 			"value": "rabatchacc01"
+		},
+		"AzureBatch4_properties_typeProperties_batchUri": {
+			"value": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
+		},
+		"AzureBatch4_properties_typeProperties_poolName": {
+			"value": "pool-python-data-sci"
+		},
+		"AzureBatch4_properties_typeProperties_accountName": {
+			"value": "rasebatchacc05 "
 		},
 		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
 			"value": "nms-items"

@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
 		},
+		"batchStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'batchStorage'"
+		},
 		"rablobservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'rablobservice'"
@@ -58,6 +62,18 @@
 		"AzureBatch3_properties_typeProperties_accountName": {
 			"type": "string",
 			"defaultValue": "rabatchacc01"
+		},
+		"AzureBatch4_properties_typeProperties_batchUri": {
+			"type": "string",
+			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
+		},
+		"AzureBatch4_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "pool-python-data-sci"
+		},
+		"AzureBatch4_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "rasebatchacc05 "
 		},
 		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
 			"type": "string",
@@ -1338,9 +1354,9 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"command": "python test-py.py",
+							"command": "ls",
 							"resourceLinkedService": {
-								"referenceName": "rablobservice",
+								"referenceName": "batchStorage",
 								"type": "LinkedServiceReference"
 							},
 							"folderPath": "ra-function-input",
@@ -1350,7 +1366,7 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "AzureBatch2",
+							"referenceName": "AzureBatch4",
 							"type": "LinkedServiceReference"
 						}
 					}
@@ -1358,8 +1374,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/rablobservice')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureBatch2')]"
+				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]"
 			]
 		},
 		{
@@ -2782,6 +2798,27 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureBatch4')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBatch",
+				"typeProperties": {
+					"batchUri": "[parameters('AzureBatch4_properties_typeProperties_batchUri')]",
+					"poolName": "[parameters('AzureBatch4_properties_typeProperties_poolName')]",
+					"accountName": "[parameters('AzureBatch4_properties_typeProperties_accountName')]",
+					"linkedServiceName": {
+						"referenceName": "batchStorage",
+						"type": "LinkedServiceReference"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/CosmosDb1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -2790,6 +2827,19 @@
 				"type": "CosmosDb",
 				"typeProperties": {
 					"connectionString": "[parameters('CosmosDb1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/batchStorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('batchStorage_connectionString')]"
 				}
 			},
 			"dependsOn": []
