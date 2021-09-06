@@ -69,7 +69,7 @@
 		},
 		"AzureBatch4_properties_typeProperties_poolName": {
 			"type": "string",
-			"defaultValue": "pool-python-data-sci"
+			"defaultValue": "pool-9-1"
 		},
 		"AzureBatch4_properties_typeProperties_accountName": {
 			"type": "string",

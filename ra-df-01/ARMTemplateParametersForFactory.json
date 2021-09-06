@@ -51,7 +51,7 @@
 			"value": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
 		},
 		"AzureBatch4_properties_typeProperties_poolName": {
-			"value": "pool-python-data-sci"
+			"value": "pool-9-1"
 		},
 		"AzureBatch4_properties_typeProperties_accountName": {
 			"value": "rasebatchacc05 "

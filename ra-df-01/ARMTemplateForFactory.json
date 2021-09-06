@@ -69,7 +69,7 @@
 		},
 		"AzureBatch4_properties_typeProperties_poolName": {
 			"type": "string",
-			"defaultValue": "pool-python-data-sci"
+			"defaultValue": "pool-9-1"
 		},
 		"AzureBatch4_properties_typeProperties_accountName": {
 			"type": "string",
@@ -1354,7 +1354,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"command": "/bin/bash -c \"python test-py.py\"",
+							"command": "python test-py.py",
 							"resourceLinkedService": {
 								"referenceName": "batchStorage",
 								"type": "LinkedServiceReference"
