@@ -15,9 +15,9 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "dir > dir.txt",
+					"command": "ls",
 					"resourceLinkedService": {
-						"referenceName": "rablobservice",
+						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
 					},
 					"folderPath": "ra-function-input",
@@ -27,7 +27,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureBatch2",
+					"referenceName": "AzureBatch4",
 					"type": "LinkedServiceReference"
 				}
 			}
