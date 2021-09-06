@@ -6,13 +6,13 @@
 		"type": "AzureBatch",
 		"typeProperties": {
 			"batchUri": "https://rabatchacc01.australiacentral.batch.azure.com",
-			"poolName": "ra-func-02",
+			"poolName": "pool2",
 			"accountName": "rabatchacc01",
 			"linkedServiceName": {
 				"referenceName": "rablobservice",
 				"type": "LinkedServiceReference"
 			},
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlJBLURGLTAxXzQzZWM4YzM3LTEzZGQtNDg3NS05YmZmLTUxNmRjOTFjMDMzZSINCn0="
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlJBLURGLTAxXzk2NTBjZDE1LTVjMGQtNGU4Yy1hODZlLWY5YjhjY2ZmYzQzZCINCn0="
 		}
 	}
 }
