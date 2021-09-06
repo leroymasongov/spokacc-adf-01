@@ -1354,7 +1354,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"command": "python test.py",
+							"command": "/bin/bash -c \"python test-py.py\"",
 							"resourceLinkedService": {
 								"referenceName": "batchStorage",
 								"type": "LinkedServiceReference"
