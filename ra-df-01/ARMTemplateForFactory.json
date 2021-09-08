@@ -2931,6 +2931,49 @@
 				"[concat(variables('factoryId'), '/datasets/nmsMeasCSV2')]",
 				"[concat(variables('factoryId'), '/datasets/radbRecordsForDF')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/python-test_chunkid-w-params')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "call py func with params",
+						"type": "Custom",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": "python ChunkId_cmd.py \"L90353_records.csv\"",
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "ra-function-input",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatch4",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]"
+			]
 		}
 	]
 }
