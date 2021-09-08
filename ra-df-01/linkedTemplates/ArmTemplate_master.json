@@ -75,15 +75,19 @@
 			"type": "string",
 			"defaultValue": "rasebatchacc05 "
 		},
-		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
+		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
 			"type": "string",
 			"defaultValue": "nms-items"
 		},
-		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
+		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
 			"type": "string",
 			"defaultValue": "nms-files-input"
 		},
-		"trigger1_properties_typeProperties_scope": {
+		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFilePath": {
+			"type": "string",
+			"defaultValue": "xxx"
+		},
+		"triggerNewSourceFile_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
@@ -183,14 +187,17 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
-						"value": "[parameters('trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer')]"
+					"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
+						"value": "[parameters('triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_radbContainer')]"
 					},
-					"trigger1_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
-						"value": "[parameters('trigger1_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName')]"
+					"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
+						"value": "[parameters('triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName')]"
 					},
-					"trigger1_properties_typeProperties_scope": {
-						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
+					"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFilePath": {
+						"value": "[parameters('triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFilePath')]"
+					},
+					"triggerNewSourceFile_properties_typeProperties_scope": {
+						"value": "[parameters('triggerNewSourceFile_properties_typeProperties_scope')]"
 					}
 				}
 			},

@@ -56,13 +56,16 @@
 		"AzureBatch4_properties_typeProperties_accountName": {
 			"value": "rasebatchacc05 "
 		},
-		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
+		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
 			"value": "nms-items"
 		},
-		"trigger1_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
+		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName": {
 			"value": "nms-files-input"
 		},
-		"trigger1_properties_typeProperties_scope": {
+		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFilePath": {
+			"value": "xxx"
+		},
+		"triggerNewSourceFile_properties_typeProperties_scope": {
 			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		}
 	}
