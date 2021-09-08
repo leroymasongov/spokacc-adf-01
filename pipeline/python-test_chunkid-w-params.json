@@ -46,7 +46,7 @@
 				"typeProperties": {
 					"variableName": "chunkid",
 					"value": {
-						"value": "@activity('call py func with params').output.CustomOutput.chunkid",
+						"value": "@activity('call py func with params').output.CustomOutput.ChunkId",
 						"type": "Expression"
 					}
 				}
