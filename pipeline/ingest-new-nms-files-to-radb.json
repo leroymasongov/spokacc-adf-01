@@ -313,7 +313,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "triggerFileName",
-					"value": ""
+					"value": {
+						"value": "@pipeline().parameters.triggerFilePath",
+						"type": "Expression"
+					}
 				}
 			}
 		],
