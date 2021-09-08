@@ -12,7 +12,7 @@
 				"parameters": {
 					"radbContainer": "nms-items",
 					"blobContainerName": "nms-files-input",
-					"triggerFilePath": "xxx"
+					"triggerFilePath": "@trigger().outputs.body.fileName"
 				}
 			}
 		],
