@@ -136,8 +136,33 @@
 							"referenceName": "AzureBatch4",
 							"type": "LinkedServiceReference"
 						}
+					},
+					{
+						"name": "Set variable1",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "call py func with params",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "chunkid",
+							"value": {
+								"value": "@activity('call py func with params').output.CustomOutput.ChunkId",
+								"type": "Expression"
+							}
+						}
 					}
 				],
+				"variables": {
+					"chunkid": {
+						"type": "String"
+					}
+				},
 				"annotations": []
 			},
 			"dependsOn": []
