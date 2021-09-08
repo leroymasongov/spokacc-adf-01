@@ -1,5 +1,5 @@
 {
-	"name": "trigger1",
+	"name": "triggerNewSourceFile",
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
@@ -11,7 +11,8 @@
 				},
 				"parameters": {
 					"radbContainer": "nms-items",
-					"blobContainerName": "nms-files-input"
+					"blobContainerName": "nms-files-input",
+					"triggerFilePath": "xxx"
 				}
 			}
 		],

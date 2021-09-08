@@ -5,7 +5,14 @@
 			{
 				"name": "Copy-header-to-radb",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Copy-gps-csv-to-radb",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -75,7 +82,14 @@
 			{
 				"name": "Copy-summary-to-radb",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Copy-header-to-radb",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -145,7 +159,14 @@
 			{
 				"name": "Df-load-record-csv",
 				"type": "ExecuteDataFlow",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "call py func with params",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "1.00:00:00",
 					"retry": 0,
@@ -175,7 +196,14 @@
 			{
 				"name": "Copy-gps-csv-to-radb",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "call py func with params",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -241,6 +269,52 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "call py func with params",
+				"type": "Custom",
+				"dependsOn": [
+					{
+						"activity": "Set-incoming-file-name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"command": "python ChunkId_cmd.py \"L90353_records.csv\"",
+					"resourceLinkedService": {
+						"referenceName": "batchStorage",
+						"type": "LinkedServiceReference"
+					},
+					"folderPath": "ra-function-input",
+					"referenceObjects": {
+						"linkedServices": [],
+						"datasets": []
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureBatch4",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Set-incoming-file-name",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "triggerFileName",
+					"value": ""
+				}
 			}
 		],
 		"parameters": {
@@ -251,12 +325,18 @@
 			"blobContainerName": {
 				"type": "string",
 				"defaultValue": "nms-files-input"
+			},
+			"triggerFilePath": {
+				"type": "string"
 			}
 		},
 		"variables": {
 			"RowNo": {
 				"type": "String",
 				"defaultValue": "0"
+			},
+			"triggerFileName": {
+				"type": "String"
 			}
 		},
 		"annotations": [],
