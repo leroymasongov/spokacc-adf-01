@@ -63,7 +63,7 @@
 			"value": "nms-files-input"
 		},
 		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFilePath": {
-			"value": "xxx"
+			"value": "@trigger().outputs.body.fileName"
 		},
 		"triggerNewSourceFile_properties_typeProperties_scope": {
 			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"

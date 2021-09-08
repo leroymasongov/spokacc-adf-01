@@ -17,7 +17,7 @@
 		},
 		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFilePath": {
 			"type": "string",
-			"defaultValue": "xxx"
+			"defaultValue": "@trigger().outputs.body.fileName"
 		},
 		"triggerNewSourceFile_properties_typeProperties_scope": {
 			"type": "string",
