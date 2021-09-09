@@ -464,7 +464,7 @@
 						"type": "ExecuteDataFlow",
 						"dependsOn": [
 							{
-								"activity": "call py func with params",
+								"activity": "check-chunk-acquire-success",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -506,7 +506,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "call py func with params",
+								"activity": "check-chunk-acquire-success",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -580,7 +580,7 @@
 						]
 					},
 					{
-						"name": "call py func with params",
+						"name": "validate-incoming-chunk",
 						"type": "Custom",
 						"dependsOn": [
 							{
@@ -599,7 +599,10 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"command": "python ChunkId_cmd.py \"L90353_records.csv\"",
+							"command": {
+								"value": "python ChunkId_cmd.py \"@{pipeline().parameters.triggerFilePath}\"",
+								"type": "Expression"
+							},
 							"resourceLinkedService": {
 								"referenceName": "batchStorage",
 								"type": "LinkedServiceReference"
@@ -627,6 +630,68 @@
 								"type": "Expression"
 							}
 						}
+					},
+					{
+						"name": "check-chunk-acquire-success",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "validate-incoming-chunk",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "chunkId",
+							"value": {
+								"value": "@string(int(activity('validate-incoming-chunk').output.customOutput.ChunkId))",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Invoke-preprologger-function",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "Df-load-record-csv",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy-summary-to-radb",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": "python cmd_PreProLogger.py \"L90353_records.csv\"",
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "ra-function-input",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatch4",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"parameters": {
@@ -639,7 +704,8 @@
 						"defaultValue": "nms-files-input"
 					},
 					"triggerFilePath": {
-						"type": "string"
+						"type": "string",
+						"defaultValue": "L88981_records.csv"
 					}
 				},
 				"variables": {
@@ -648,6 +714,9 @@
 						"defaultValue": "0"
 					},
 					"triggerFileName": {
+						"type": "String"
+					},
+					"chunkId": {
 						"type": "String"
 					}
 				},
