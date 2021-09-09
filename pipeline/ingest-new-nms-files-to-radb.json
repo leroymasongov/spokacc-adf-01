@@ -161,7 +161,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "set-chunk-id",
+						"activity": "check-chunk-acquire-success",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -198,7 +198,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "set-chunk-id",
+						"activity": "check-chunk-acquire-success",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -320,7 +320,7 @@
 				}
 			},
 			{
-				"name": "set-chunk-id",
+				"name": "check-chunk-acquire-success",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
