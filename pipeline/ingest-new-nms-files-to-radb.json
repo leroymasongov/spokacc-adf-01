@@ -386,6 +386,19 @@
 					"referenceName": "AzureBatch4",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "query-results",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Invoke-preprologger-function",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
 			}
 		],
 		"parameters": {
