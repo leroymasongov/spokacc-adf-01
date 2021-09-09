@@ -290,7 +290,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "python ChunkId_cmd.py \"L90353_records.csv\"",
+					"command": {
+						"value": "python ChunkId_cmd.py \"@{pipeline().parameters.triggerFilePath}\"",
+						"type": "Expression"
+					},
 					"resourceLinkedService": {
 						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
@@ -392,7 +395,8 @@
 				"defaultValue": "nms-files-input"
 			},
 			"triggerFilePath": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "L88981_records.csv"
 			}
 		},
 		"variables": {
