@@ -161,7 +161,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "check-chunk-acquire-success",
+						"activity": "assert-chunk-acquire-success",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -198,7 +198,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "check-chunk-acquire-success",
+						"activity": "assert-chunk-acquire-success",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -323,7 +323,7 @@
 				}
 			},
 			{
-				"name": "check-chunk-acquire-success",
+				"name": "assert-chunk-acquire-success",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -368,7 +368,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "python cmd_PreProLogger.py \"L90353_records.csv\"",
+					"command": {
+						"value": "python cmd_PreProLogger.py \"@{pipeline().RunId}\", \"@{variables('chunkId')}\", \"1\"",
+						"type": "Expression"
+					},
 					"resourceLinkedService": {
 						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
