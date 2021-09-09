@@ -161,7 +161,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "call py func with params",
+						"activity": "set-chunk-id",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -198,7 +198,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "call py func with params",
+						"activity": "set-chunk-id",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -271,7 +271,7 @@
 				]
 			},
 			{
-				"name": "call py func with params",
+				"name": "validate-incoming-chunk",
 				"type": "Custom",
 				"dependsOn": [
 					{
@@ -318,6 +318,26 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "set-chunk-id",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "validate-incoming-chunk",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "chunkId",
+					"value": {
+						"value": "@string(int(activity('validate-incoming-chunk').output.customOutput.ChunkId))",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -339,6 +359,9 @@
 				"defaultValue": "0"
 			},
 			"triggerFileName": {
+				"type": "String"
+			},
+			"chunkId": {
 				"type": "String"
 			}
 		},
