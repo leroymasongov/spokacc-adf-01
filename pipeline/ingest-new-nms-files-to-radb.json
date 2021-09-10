@@ -398,7 +398,11 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "queryResult",
+					"value": "'ok'"
+				}
 			}
 		],
 		"parameters": {
@@ -424,6 +428,9 @@
 				"type": "String"
 			},
 			"chunkId": {
+				"type": "String"
+			},
+			"queryResult": {
 				"type": "String"
 			}
 		},
