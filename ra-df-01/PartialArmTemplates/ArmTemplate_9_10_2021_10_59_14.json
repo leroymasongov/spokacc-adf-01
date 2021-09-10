@@ -1,0 +1,459 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ra-df-01"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ingest-new-nms-files-to-radb')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy-header-to-radb",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Copy-gps-csv-to-radb",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"additionalColumns": [
+									{
+										"name": "RaPipelineId",
+										"value": {
+											"value": "@pipeline().RunId",
+											"type": "Expression"
+										}
+									},
+									{
+										"name": "NmsFile",
+										"value": "$$FILEPATH"
+									},
+									{
+										"name": "NmsDocumentType",
+										"value": {
+											"value": "@concat('header')",
+											"type": "Expression"
+										}
+									}
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*_header.json",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "CosmosDbSqlApiSink",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "NMSMeasurementJSON",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "radb",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": {
+										"value": "@pipeline().parameters.radbContainer",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					},
+					{
+						"name": "Copy-summary-to-radb",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Copy-header-to-radb",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"additionalColumns": [
+									{
+										"name": "RaPipelineId",
+										"value": {
+											"value": "@pipeline().RunId",
+											"type": "Expression"
+										}
+									},
+									{
+										"name": "NmsFile",
+										"value": "$$FILEPATH"
+									},
+									{
+										"name": "NmsDocumentType",
+										"value": {
+											"value": "@concat('summary')",
+											"type": "Expression"
+										}
+									}
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*_summary.json",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "CosmosDbSqlApiSink",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "NMSMeasurementJSON",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "radb",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": {
+										"value": "@pipeline().parameters.radbContainer",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					},
+					{
+						"name": "Df-load-record-csv",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "assert-chunk-acquire-success",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "1.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dfLoadRecordsCSV",
+								"type": "DataFlowReference",
+								"parameters": {
+									"RaPipelineIdParam": {
+										"value": "'@{pipeline().RunId}'",
+										"type": "Expression"
+									}
+								}
+							},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					},
+					{
+						"name": "Copy-gps-csv-to-radb",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "assert-chunk-acquire-success",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"additionalColumns": [
+									{
+										"name": "RaPipelineId",
+										"value": {
+											"value": "@pipeline().RunId",
+											"type": "Expression"
+										}
+									},
+									{
+										"name": "NmsFile",
+										"value": "$$FILEPATH"
+									},
+									{
+										"name": "NmsDocumentType",
+										"value": {
+											"value": "@concat('gps')",
+											"type": "Expression"
+										}
+									}
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*_gps.csv",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "CosmosDbSqlApiSink",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "nmsMeasCSV2",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "radb",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": {
+										"value": "@pipeline().parameters.radbContainer",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					},
+					{
+						"name": "validate-incoming-chunk",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "Set-incoming-file-name",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": {
+								"value": "python ChunkId_cmd.py \"@{pipeline().parameters.triggerFilePath}\"",
+								"type": "Expression"
+							},
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "ra-function-input",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatch4",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Set-incoming-file-name",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "triggerFileName",
+							"value": {
+								"value": "@pipeline().parameters.triggerFilePath",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "assert-chunk-acquire-success",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "validate-incoming-chunk",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "chunkId",
+							"value": {
+								"value": "@string(int(activity('validate-incoming-chunk').output.customOutput.ChunkId))",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Invoke-preprologger-function",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "Df-load-record-csv",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy-summary-to-radb",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": {
+								"value": "python cmd_PreProLogger.py \"@{pipeline().RunId}\", \"@{variables('chunkId')}\", \"1\"",
+								"type": "Expression"
+							},
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "ra-function-input",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatch4",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "query-results",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Invoke-preprologger-function",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "queryResult",
+							"value": "'ok'"
+						}
+					}
+				],
+				"parameters": {
+					"radbContainer": {
+						"type": "string",
+						"defaultValue": "nms-items"
+					},
+					"blobContainerName": {
+						"type": "string",
+						"defaultValue": "nms-files-input"
+					},
+					"triggerFilePath": {
+						"type": "string",
+						"defaultValue": "L88981_records.csv"
+					}
+				},
+				"variables": {
+					"RowNo": {
+						"type": "String",
+						"defaultValue": "0"
+					},
+					"triggerFileName": {
+						"type": "String"
+					},
+					"chunkId": {
+						"type": "String"
+					},
+					"queryResult": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-08-24T05:45:33Z"
+			},
+			"dependsOn": []
+		}
+	]
+}
