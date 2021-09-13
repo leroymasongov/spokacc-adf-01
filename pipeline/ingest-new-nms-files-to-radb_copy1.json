@@ -1,5 +1,5 @@
 {
-	"name": "ingest-new-nms-files-to-radb",
+	"name": "ingest-new-nms-files-to-radb_copy1",
 	"properties": {
 		"activities": [
 			{
@@ -157,6 +157,43 @@
 				]
 			},
 			{
+				"name": "Df-load-record-csv",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "derive-nms-measurement-timestamp",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dfLoadRecordsCSV",
+						"type": "DataFlowReference",
+						"parameters": {
+							"RaPipelineIdParam": {
+								"value": "'@{pipeline().RunId}'",
+								"type": "Expression"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
 				"name": "Copy-gps-csv-to-radb",
 				"type": "Copy",
 				"dependsOn": [
@@ -310,6 +347,12 @@
 				"type": "Custom",
 				"dependsOn": [
 					{
+						"activity": "Df-load-record-csv",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
 						"activity": "Copy-summary-to-radb",
 						"dependencyConditions": [
 							"Succeeded"
@@ -451,7 +494,6 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*_records_with_derived_timestamp.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -462,7 +504,152 @@
 						"type": "CosmosDbSqlApiSink",
 						"writeBehavior": "insert"
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"sink": {
+									"path": "$['summary_main_results'][0]"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['summary_octave_analysis_results'][0]"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['RaPipelineId']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['NmsFile']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['NmsDocumentType']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['id']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['_rid']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['_self']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['_etag']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['_attachments']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['_ts']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['quality']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['datetime']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['latitude_0']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['latitude_1']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['latitude_2']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['latitude_3']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['latitude_4']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['longitude_0']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['longitude_1']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['longitude_2']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['longitude_3']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['longitude_4']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['altitude_0']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['altitude_1']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['speed']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['heading']"
+								}
+							},
+							{
+								"sink": {
+									"path": "$['hdop']"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
