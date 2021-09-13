@@ -66,10 +66,12 @@
 				"defaultValue": "L88981_records.csv"
 			},
 			"ChunkID": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "88981"
 			},
 			"raPipelineId": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "cf7e4711-798c-4831-b629-be28dff53b4f"
 			}
 		},
 		"variables": {
