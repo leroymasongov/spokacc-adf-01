@@ -1,5 +1,5 @@
 {
-	"name": "ingest-new-nms-files-to-radb-v2",
+	"name": "ingest-new-nms-files-to-radb-wreck",
 	"properties": {
 		"activities": [
 			{
