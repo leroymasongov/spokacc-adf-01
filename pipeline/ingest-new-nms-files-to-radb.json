@@ -341,7 +341,7 @@
 						]
 					},
 					{
-						"activity": "Lookup-header-timestamp",
+						"activity": "set-nms-records-start-time",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -357,7 +357,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "python raNmsRecords_Derive_Timestamp.py --ifile @{pipeline().parameters.triggerFilePath} --chunkid @{variables('chunkId')} --starttime @{activity('Lookup-header-timestamp').output}",
+						"value": "python raNmsRecords_Derive_Timestamp.py --ifile @{pipeline().parameters.triggerFilePath} --chunkid @{variables('chunkId')} --starttime @{variables('NmsRecordsStartTime')}",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
@@ -501,7 +501,7 @@
 							"containerName": "nms-items"
 						}
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			},
 			{
@@ -550,14 +550,14 @@
 							"type": "Expression"
 						},
 						"nmsHeaderStartTime": {
-							"value": "@{activity('Lookup-header-timestamp').output}",
+							"value": "@{variables('NmsRecordsStartTime')}",
 							"type": "Expression"
 						}
 					}
 				}
 			},
 			{
-				"name": "Set variable1",
+				"name": "set-nms-records-start-time",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -571,7 +571,7 @@
 				"typeProperties": {
 					"variableName": "NmsRecordsStartTime",
 					"value": {
-						"value": "@{activity('Lookup-header-timestamp').output.value.measure_start_datetime}",
+						"value": "@{activity('Lookup-header-timestamp').output.firstRow.measure_start_datetime}",
 						"type": "Expression"
 					}
 				}
