@@ -1,5 +1,5 @@
 {
-	"name": "ingest-new-nms-files-to-radb_copy1",
+	"name": "ingest-new-nms-files-to-radb-v2",
 	"properties": {
 		"activities": [
 			{
@@ -168,43 +168,6 @@
 				]
 			},
 			{
-				"name": "Df-load-record-csv",
-				"type": "ExecuteDataFlow",
-				"dependsOn": [
-					{
-						"activity": "derive-nms-measurement-timestamp",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "1.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataflow": {
-						"referenceName": "dfLoadRecordsCSV",
-						"type": "DataFlowReference",
-						"parameters": {
-							"RaPipelineIdParam": {
-								"value": "'@{pipeline().RunId}'",
-								"type": "Expression"
-							}
-						}
-					},
-					"compute": {
-						"coreCount": 8,
-						"computeType": "General"
-					},
-					"traceLevel": "Fine"
-				}
-			},
-			{
 				"name": "Copy-gps-csv-to-radb",
 				"type": "Copy",
 				"dependsOn": [
@@ -362,12 +325,6 @@
 				"name": "Invoke-preprologger-function",
 				"type": "Custom",
 				"dependsOn": [
-					{
-						"activity": "Df-load-record-csv",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
 					{
 						"activity": "Copy-summary-to-radb",
 						"dependencyConditions": [
