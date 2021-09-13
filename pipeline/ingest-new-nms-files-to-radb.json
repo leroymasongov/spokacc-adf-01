@@ -467,7 +467,13 @@
 				"inputs": [
 					{
 						"referenceName": "nmsRecordsCsv",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"chunkid": {
+								"value": "@variables('chunkId')",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
