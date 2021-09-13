@@ -2925,7 +2925,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "python cmd_PreProLogger.py @{pipeline().RunId}, @{variables('chunkId')}, \"@{concat('')}\"",
+								"value": "@python cmd_PreProLogger.py pipeline().parameters.raPipelineId, pipeline().parameters.ChunkID, pipeline().parameters.nmsHeaderStartTime",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
@@ -2983,7 +2983,8 @@
 						"defaultValue": "cf7e4711-798c-4831-b629-be28dff53b4f"
 					},
 					"nmsHeaderStartTime": {
-						"type": "string"
+						"type": "string",
+						"defaultValue": "2021-08-16T18:01:56"
 					}
 				},
 				"variables": {
