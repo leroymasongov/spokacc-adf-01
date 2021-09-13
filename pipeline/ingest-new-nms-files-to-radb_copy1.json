@@ -47,7 +47,6 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*_header.json",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -146,7 +145,13 @@
 				"inputs": [
 					{
 						"referenceName": "NMSMeasurementJSON",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"chunkid": {
+								"value": "@variables('chunkId')",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
@@ -244,7 +249,6 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*_gps.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
