@@ -63,7 +63,13 @@
 				"inputs": [
 					{
 						"referenceName": "NMSMeasurementJSON",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"chunkid": {
+								"value": "@variables('chunkId')",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
@@ -254,7 +260,13 @@
 				"inputs": [
 					{
 						"referenceName": "nmsMeasCSV2",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"chunkid": {
+								"value": "@variables('chunkId')",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
@@ -654,7 +666,13 @@
 				"inputs": [
 					{
 						"referenceName": "nmsRecordsCsv",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"chunkid": {
+								"value": "@variables('chunkId')",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [

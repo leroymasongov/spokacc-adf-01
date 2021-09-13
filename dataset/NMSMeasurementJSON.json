@@ -5,11 +5,20 @@
 			"referenceName": "rablobservice",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"chunkid": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "L@{dataset().chunkid}_header.json",
+					"type": "Expression"
+				},
 				"container": "nms-files-input"
 			}
 		},

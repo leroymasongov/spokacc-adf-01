@@ -5,11 +5,20 @@
 			"referenceName": "rablobservice",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"chunkid": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "L@{dataset().chunkid}_records.csv",
+					"type": "Expression"
+				},
 				"container": "nms-files-input"
 			},
 			"columnDelimiter": ",",
