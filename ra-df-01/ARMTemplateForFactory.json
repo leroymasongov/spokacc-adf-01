@@ -642,6 +642,10 @@
 								"raPipelineId": {
 									"value": "@pipeline().RunId",
 									"type": "Expression"
+								},
+								"nmsHeaderStartTime": {
+									"value": "@{activity('Lookup-header-timestamp').output}",
+									"type": "Expression"
 								}
 							}
 						}
@@ -2921,7 +2925,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "python cmd_PreProLogger.py \"@{pipeline().RunId}\", \"@{variables('chunkId')}\", \"1\"",
+								"value": "python cmd_PreProLogger.py @{pipeline().RunId}, @{variables('chunkId')}, \"@{concat('')}\"",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
@@ -2971,9 +2975,14 @@
 						"defaultValue": "L88981_records.csv"
 					},
 					"ChunkID": {
-						"type": "string"
+						"type": "string",
+						"defaultValue": "88981"
 					},
 					"raPipelineId": {
+						"type": "string",
+						"defaultValue": "cf7e4711-798c-4831-b629-be28dff53b4f"
+					},
+					"nmsHeaderStartTime": {
 						"type": "string"
 					}
 				},
