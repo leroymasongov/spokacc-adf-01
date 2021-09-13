@@ -541,6 +541,10 @@
 						"raPipelineId": {
 							"value": "@pipeline().RunId",
 							"type": "Expression"
+						},
+						"nmsHeaderStartTime": {
+							"value": "@{activity('Lookup-header-timestamp').output}",
+							"type": "Expression"
 						}
 					}
 				}
