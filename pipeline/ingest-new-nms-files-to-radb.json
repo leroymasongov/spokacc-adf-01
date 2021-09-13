@@ -548,6 +548,26 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup-header-timestamp",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "NmsRecordsStartTime",
+					"value": {
+						"value": "@{activity('Lookup-header-timestamp').output.value.measure_start_datetime}",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -576,6 +596,9 @@
 				"type": "String"
 			},
 			"queryResult": {
+				"type": "String"
+			},
+			"NmsRecordsStartTime": {
 				"type": "String"
 			}
 		},
