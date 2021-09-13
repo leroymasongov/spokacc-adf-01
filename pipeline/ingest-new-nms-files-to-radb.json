@@ -412,7 +412,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "python raNmsRecords_Derive_Timestamp.py --ifile @{pipeline().parameters.triggerFilePath} --chunkid @{variables('chunkId')} --starttime @{activity('Lookup-header-timestamp').value.measure_start_datetime}",
+						"value": "python raNmsRecords_Derive_Timestamp.py --ifile @{pipeline().parameters.triggerFilePath} --chunkid @{variables('chunkId')} --starttime @{activity('Lookup-header-timestamp').output}",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {

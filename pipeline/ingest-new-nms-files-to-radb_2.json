@@ -1,0 +1,94 @@
+{
+	"name": "ingest-new-nms-files-to-radb_2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Invoke-preprologger-function",
+				"type": "Custom",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"command": {
+						"value": "python cmd_PreProLogger.py \"@{pipeline().RunId}\", \"@{variables('chunkId')}\", \"1\"",
+						"type": "Expression"
+					},
+					"resourceLinkedService": {
+						"referenceName": "batchStorage",
+						"type": "LinkedServiceReference"
+					},
+					"folderPath": "ra-function-input",
+					"referenceObjects": {
+						"linkedServices": [],
+						"datasets": []
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureBatch4",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "query-results",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Invoke-preprologger-function",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "queryResult",
+					"value": "'ok'"
+				}
+			}
+		],
+		"parameters": {
+			"radbContainer": {
+				"type": "string",
+				"defaultValue": "nms-items"
+			},
+			"blobContainerName": {
+				"type": "string",
+				"defaultValue": "nms-files-input"
+			},
+			"triggerFilePath": {
+				"type": "string",
+				"defaultValue": "L88981_records.csv"
+			},
+			"ChunkID": {
+				"type": "string"
+			},
+			"raPipelineId": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"RowNo": {
+				"type": "String",
+				"defaultValue": "0"
+			},
+			"triggerFileName": {
+				"type": "String"
+			},
+			"chunkId": {
+				"type": "String"
+			},
+			"queryResult": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-08-24T05:45:33Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
