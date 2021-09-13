@@ -1,0 +1,456 @@
+{
+	"name": "nmsRecordsCsv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "rablobservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "L88981_records_rownumbered.csv",
+				"container": "nms-files-input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "RowNumber",
+				"type": "String"
+			},
+			{
+				"name": " flag",
+				"type": "String"
+			},
+			{
+				"name": "measurements_0",
+				"type": "String"
+			},
+			{
+				"name": "measurements_1",
+				"type": "String"
+			},
+			{
+				"name": "measurements_2",
+				"type": "String"
+			},
+			{
+				"name": "measurements_3",
+				"type": "String"
+			},
+			{
+				"name": "measurements_4",
+				"type": "String"
+			},
+			{
+				"name": "measurements_5",
+				"type": "String"
+			},
+			{
+				"name": "measurements_6",
+				"type": "String"
+			},
+			{
+				"name": "measurements_7",
+				"type": "String"
+			},
+			{
+				"name": "measurements_8",
+				"type": "String"
+			},
+			{
+				"name": "measurements_9",
+				"type": "String"
+			},
+			{
+				"name": "measurements_10",
+				"type": "String"
+			},
+			{
+				"name": "measurements_11",
+				"type": "String"
+			},
+			{
+				"name": "measurements_12",
+				"type": "String"
+			},
+			{
+				"name": "measurements_13",
+				"type": "String"
+			},
+			{
+				"name": "measurements_14",
+				"type": "String"
+			},
+			{
+				"name": "measurements_15",
+				"type": "String"
+			},
+			{
+				"name": "measurements_16",
+				"type": "String"
+			},
+			{
+				"name": "measurements_17",
+				"type": "String"
+			},
+			{
+				"name": "octaves_0",
+				"type": "String"
+			},
+			{
+				"name": "octaves_1",
+				"type": "String"
+			},
+			{
+				"name": "octaves_2",
+				"type": "String"
+			},
+			{
+				"name": "octaves_3",
+				"type": "String"
+			},
+			{
+				"name": "octaves_4",
+				"type": "String"
+			},
+			{
+				"name": "octaves_5",
+				"type": "String"
+			},
+			{
+				"name": "octaves_6",
+				"type": "String"
+			},
+			{
+				"name": "octaves_7",
+				"type": "String"
+			},
+			{
+				"name": "octaves_8",
+				"type": "String"
+			},
+			{
+				"name": "octaves_9",
+				"type": "String"
+			},
+			{
+				"name": "octaves_10",
+				"type": "String"
+			},
+			{
+				"name": "octaves_11",
+				"type": "String"
+			},
+			{
+				"name": "octaves_12",
+				"type": "String"
+			},
+			{
+				"name": "octaves_13",
+				"type": "String"
+			},
+			{
+				"name": "octaves_14",
+				"type": "String"
+			},
+			{
+				"name": "octaves_15",
+				"type": "String"
+			},
+			{
+				"name": "octaves_16",
+				"type": "String"
+			},
+			{
+				"name": "octaves_17",
+				"type": "String"
+			},
+			{
+				"name": "octaves_18",
+				"type": "String"
+			},
+			{
+				"name": "octaves_19",
+				"type": "String"
+			},
+			{
+				"name": "octaves_20",
+				"type": "String"
+			},
+			{
+				"name": "octaves_21",
+				"type": "String"
+			},
+			{
+				"name": "octaves_22",
+				"type": "String"
+			},
+			{
+				"name": "octaves_23",
+				"type": "String"
+			},
+			{
+				"name": "octaves_24",
+				"type": "String"
+			},
+			{
+				"name": "octaves_25",
+				"type": "String"
+			},
+			{
+				"name": "octaves_26",
+				"type": "String"
+			},
+			{
+				"name": "octaves_27",
+				"type": "String"
+			},
+			{
+				"name": "octaves_28",
+				"type": "String"
+			},
+			{
+				"name": "octaves_29",
+				"type": "String"
+			},
+			{
+				"name": "octaves_30",
+				"type": "String"
+			},
+			{
+				"name": "octaves_31",
+				"type": "String"
+			},
+			{
+				"name": "octaves_32",
+				"type": "String"
+			},
+			{
+				"name": "octaves_33",
+				"type": "String"
+			},
+			{
+				"name": "e_compass_correction",
+				"type": "String"
+			},
+			{
+				"name": "direction_xy",
+				"type": "String"
+			},
+			{
+				"name": "energy_xy",
+				"type": "String"
+			},
+			{
+				"name": "direction_z",
+				"type": "String"
+			},
+			{
+				"name": "energy_z",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_0",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_1",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_2",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_3",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_4",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_5",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_6",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_7",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_8",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_9",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_10",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_11",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_12",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_13",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_14",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_15",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_16",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_17",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_18",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_19",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_20",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_21",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_22",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_23",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_24",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_25",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_26",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_27",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_28",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_29",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_30",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_xy_31",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_0",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_1",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_2",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_3",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_4",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_5",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_6",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_7",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_8",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_9",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_10",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_11",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_12",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_13",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_14",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_15",
+				"type": "String"
+			},
+			{
+				"name": "energy_dist_z_16",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -157,43 +157,6 @@
 				]
 			},
 			{
-				"name": "Df-load-record-csv",
-				"type": "ExecuteDataFlow",
-				"dependsOn": [
-					{
-						"activity": "derive-nms-measurement-timestamp",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "1.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataflow": {
-						"referenceName": "dfLoadRecordsCSV",
-						"type": "DataFlowReference",
-						"parameters": {
-							"RaPipelineIdParam": {
-								"value": "'@{pipeline().RunId}'",
-								"type": "Expression"
-							}
-						}
-					},
-					"compute": {
-						"coreCount": 8,
-						"computeType": "General"
-					},
-					"traceLevel": "Fine"
-				}
-			},
-			{
 				"name": "Copy-gps-csv-to-radb",
 				"type": "Copy",
 				"dependsOn": [
@@ -347,13 +310,13 @@
 				"type": "Custom",
 				"dependsOn": [
 					{
-						"activity": "Df-load-record-csv",
+						"activity": "Copy-summary-to-radb",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					},
 					{
-						"activity": "Copy-summary-to-radb",
+						"activity": "Copy-records-csv-to-radb",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -442,6 +405,76 @@
 					"referenceName": "AzureBatch4",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "Copy-records-csv-to-radb",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "derive-nms-measurement-timestamp",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "RaPipelineId",
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "NmsFile",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "NmsDocumentType",
+								"value": {
+									"value": "@concat('records')",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "CosmosDbSqlApiSink",
+						"writeBehavior": "insert"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "nmsRecordsCsv",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "radbRecords",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"parameters": {
