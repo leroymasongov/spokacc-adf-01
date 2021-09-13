@@ -512,7 +512,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "python raNmsRecords_Derive_Timestamp.py --ifile @{pipeline().parameters.triggerFilePath} --chunkid @{variables('chunkId')}",
+								"value": "python raNmsRecords_Derive_Timestamp.py --ifile @{pipeline().parameters.triggerFilePath} --chunkid @{variables('chunkId')} --starttime @{activity('Lookup-header-timestamp').output.measure_start_datetime}",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
@@ -643,7 +643,12 @@
 						"typeProperties": {
 							"source": {
 								"type": "CosmosDbSqlApiSource",
-								"preferredRegions": []
+								"query": {
+									"value": "SELECT c.params_global_settings.measure_start_datetime FROM c \nwhere \n    c.RaPipelineId = '@{pipeline().Pipeline}'\n    and c.NmsDocumentType = 'header' \n    ",
+									"type": "Expression"
+								},
+								"preferredRegions": [],
+								"detectDatetime": true
 							},
 							"dataset": {
 								"referenceName": "radb",
