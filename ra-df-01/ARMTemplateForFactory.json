@@ -107,7 +107,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy-gps-csv-to-radb",
+								"activity": "assert-chunk-acquire-success",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -140,6 +140,13 @@
 										"name": "NmsDocumentType",
 										"value": {
 											"value": "@concat('header')",
+											"type": "Expression"
+										}
+									},
+									{
+										"name": "ChunkId",
+										"value": {
+											"value": "@variables('chunkId')",
 											"type": "Expression"
 										}
 									}
@@ -188,14 +195,7 @@
 					{
 						"name": "Copy-summary-to-radb",
 						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Copy-header-to-radb",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -273,7 +273,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "derive-nms-measurement-timestamp",
+								"activity": "assert-chunk-acquire-success",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -490,7 +490,13 @@
 						"type": "Custom",
 						"dependsOn": [
 							{
-								"activity": "assert-chunk-acquire-success",
+								"activity": "Copy-gps-csv-to-radb",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Lookup-header-timestamp",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -564,6 +570,13 @@
 											"value": "@concat('records')",
 											"type": "Expression"
 										}
+									},
+									{
+										"name": "ChunkId",
+										"value": {
+											"value": "@variables('chunkId')",
+											"type": "Expression"
+										}
 									}
 								],
 								"storeSettings": {
@@ -601,6 +614,45 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Lookup-header-timestamp",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Copy-header-to-radb",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy-gps-csv-to-radb",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "CosmosDbSqlApiSource",
+								"preferredRegions": []
+							},
+							"dataset": {
+								"referenceName": "radb",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "nms-items"
+								}
+							}
+						}
 					}
 				],
 				"parameters": {
