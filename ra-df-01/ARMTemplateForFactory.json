@@ -678,6 +678,10 @@
 						}
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"parameters": {
 					"radbContainer": {
 						"type": "string",
@@ -789,6 +793,10 @@
 						}
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -821,6 +829,10 @@
 						}
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"annotations": []
 			},
 			"dependsOn": []
@@ -910,6 +922,10 @@
 						}
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"variables": {
 					"chunkid": {
 						"type": "String"
@@ -942,7 +958,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "python cmd_PreProLogger.py @{pipeline().parameters.raPipelineId}, @{pipeline().parameters.ChunkID}, @{pipeline().parameters.nmsHeaderStartTime}",
+								"value": "python cmd_PreProLogger.py @{pipeline().parameters.raPipelineId} @{pipeline().parameters.ChunkID} @{pipeline().parameters.nmsHeaderStartTime}",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
@@ -978,6 +994,10 @@
 						}
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"parameters": {
 					"radbContainer": {
 						"type": "string",
@@ -997,7 +1017,7 @@
 					},
 					"raPipelineId": {
 						"type": "string",
-						"defaultValue": "cf7e4711-798c-4831-b629-be28dff53b4f"
+						"defaultValue": "0233e136-530e-48e4-83f7-ad9723acf2a3"
 					},
 					"nmsHeaderStartTime": {
 						"type": "string",
