@@ -51,7 +51,10 @@
 						"referenceName": "reportcsv1",
 						"type": "DatasetReference",
 						"parameters": {
-							"filename": "pipeline1.csv"
+							"filename": {
+								"value": "contact('pipeline1.csv')",
+								"type": "Expression"
+							}
 						}
 					}
 				]
@@ -105,7 +108,10 @@
 						"referenceName": "reportcsv1",
 						"type": "DatasetReference",
 						"parameters": {
-							"filename": "pipeline2.csv"
+							"filename": {
+								"value": "concat('pipeline2.csv')",
+								"type": "Expression"
+							}
 						}
 					}
 				]
