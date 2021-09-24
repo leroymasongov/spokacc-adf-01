@@ -1,0 +1,69 @@
+{
+	"name": "check-logger-sync",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "CosmosDbSqlApiSource",
+						"query": {
+							"value": "select * from c \nwhere c.RaPipelineId\n-- = '@{pipeline().parameters.RaPId-1}'",
+							"type": "Expression"
+						},
+						"preferredRegions": [],
+						"detectDatetime": true
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "radb",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": "nms-items"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "reportcsv1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"parameters": {
+			"RaPId-1": {
+				"type": "string",
+				"defaultValue": "9a3f2550-7c26-4cf5-af43-a12a6ef29009"
+			},
+			"RaPId-2": {
+				"type": "string",
+				"defaultValue": "a764b2ec-1a4c-4a27-b6d3-60cf91f9368e"
+			}
+		},
+		"annotations": []
+	}
+}

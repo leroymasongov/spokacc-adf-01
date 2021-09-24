@@ -1,0 +1,21 @@
+{
+	"name": "reportcsv1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "rablobservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "utils"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
