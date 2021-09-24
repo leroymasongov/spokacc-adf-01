@@ -1901,7 +1901,8 @@
 				},
 				"parameters": {
 					"containerName": {
-						"type": "string"
+						"type": "string",
+						"defaultValue": "nms-items"
 					}
 				},
 				"annotations": [],
@@ -1956,6 +1957,41 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/CosmosDb1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/reportcsv1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "rablobservice",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().filename",
+							"type": "Expression"
+						},
+						"container": "utils"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/rablobservice')]"
 			]
 		},
 		{
@@ -2118,107 +2154,6 @@
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/python-test_chunkid-w-params')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "call py func with params",
-						"type": "Custom",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"command": "python ChunkId_cmd.py \"L90353_records.csv\"",
-							"resourceLinkedService": {
-								"referenceName": "batchStorage",
-								"type": "LinkedServiceReference"
-							},
-							"folderPath": "ra-function-input",
-							"referenceObjects": {
-								"linkedServices": [],
-								"datasets": []
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureBatch4",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "Set variable1",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "call py func with params",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "chunkid",
-							"value": {
-								"value": "@activity('call py func with params').output.CustomOutput.ChunkId",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "call py func with params_copy1",
-						"type": "Custom",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"command": "python ChunkId_cmd.py \"L90353_records.csv\"",
-							"resourceLinkedService": {
-								"referenceName": "batchStorage",
-								"type": "LinkedServiceReference"
-							},
-							"folderPath": "ra-function-input",
-							"referenceObjects": {
-								"linkedServices": [],
-								"datasets": []
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureBatch4",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"variables": {
-					"chunkid": {
-						"type": "String"
-					}
 				},
 				"annotations": []
 			},
