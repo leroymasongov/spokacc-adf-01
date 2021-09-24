@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "check-incoming-pipeline-sync-to-csv",
 	"properties": {
 		"activities": [
 			{
