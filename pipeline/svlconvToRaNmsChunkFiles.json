@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": ".\\cmd_svlconv.ps1\n\n",
+					"command": "powershell.exe -Command \".\\cmd_svlconv.ps1\"\n\n",
 					"referenceObjects": {
 						"linkedServices": [],
 						"datasets": []
