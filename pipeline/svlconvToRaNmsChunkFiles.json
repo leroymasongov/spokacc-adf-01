@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "# powershell ./cmd_svlconv.ps1\nls\n\n",
+					"command": "ls\n\n\n",
 					"referenceObjects": {
 						"linkedServices": [],
 						"datasets": []
