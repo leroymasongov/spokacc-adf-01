@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "aszcopy --help\n\nazcopy copy `\n        'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D' `\n        '.\\' `\n        --include-pattern 'L89155.SVL' `\n        --recursive\n\npython main.py ./nms-files-sync-aws/files/SV_200A_65170/L89158.SVL\n\nazcopy copy '.\\' `\n        'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D' `\n        --include-pattern 'L89155*.json;L89155_*.csv' `\n        --recursive\n\n\n",
+					"command": "azcopy --help\n\nazcopy copy `\n        'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D' `\n        '.\\' `\n        --include-pattern 'L89155.SVL' `\n        --recursive\n\npython main.py './nms-files-sync-aws/files/SV_200A_65170/L89158.SVL'\n\nazcopy copy '.\\' `\n        'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D' `\n        --include-pattern 'L89155*.json;L89155_*.csv' `\n        --recursive\n\n\n",
 					"referenceObjects": {
 						"linkedServices": [],
 						"datasets": []
