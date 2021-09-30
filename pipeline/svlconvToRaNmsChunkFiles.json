@@ -15,7 +15,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "powershell \"ls\"\n\npowershell \"Write-Host 'calling Expand-Archive'\"\n\n\npowershell \"Expand-Archive -Path svlconv.zip -Destination .\"\n\npowershell \"Write-Host 'running python svlconv' \"\n\n# download files from blob container \n\npowershell \" azcopy copy `\n        'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D' `\n        '.\\' `\n        --include-pattern 'L89155.SVL' `\n        --recursive \"\n\npowershell \"python ra-SvlConvToText\\main.py\"\n\npowershell \" azcopy copy '.\\' `\n        'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D' `\n        --include-pattern 'L89155*.json;L89155_*.csv' `\n        --recursive \"\n\n\n# upload results to blob container\n\n\npowershell \"ls\"\n\npowershell \"Get-CimInstance -ClassName Win32_LogicalDisk | Select-Object -Property DeviceID,FreeSpace\"\n\n\n\n\n\n",
+					"command": {
+						"value": "powershell \"ls\"\n\npowershell \"Write-Host 'calling Expand-Archive'\"\n\n\npowershell \"Expand-Archive -Path svlconv.zip -Destination .\"\n\npowershell \"Write-Host 'running python svlconv' \"\n\n# download files from blob container \n\npowershell \" azcopy copy  'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D'   '.\\L@{pipeline().parameters.ChunkId}.SVL' --include-pattern L@{pipeline().parameters.ChunkId}.SVL --recursive \"\n\npowershell \"python ra-SvlConvToText\\main.py 'L@{pipeline().parameters.ChunkId}.SVL \"\n\npowershell \" azcopy copy '.\\'         'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D'  --include-pattern 'L@{pipeline().parameters.ChunkId}*.json;@{pipeline().parameters.ChunkId}_*.csv'  --recursive \"\n\n\n# upload results to blob container",
+						"type": "Expression"
+					},
 					"resourceLinkedService": {
 						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
@@ -32,6 +35,12 @@
 				}
 			}
 		],
+		"parameters": {
+			"ChunkId": {
+				"type": "string",
+				"defaultValue": "89155"
+			}
+		},
 		"annotations": []
 	}
 }
