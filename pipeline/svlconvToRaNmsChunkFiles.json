@@ -47,7 +47,7 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "triggerFilePath",
+					"variableName": "vTriggerFilePAth",
 					"value": {
 						"value": "@{pipeline().parameters.triggerFilePath}",
 						"type": "Expression"
@@ -64,7 +64,7 @@
 			}
 		},
 		"variables": {
-			"vChunkId": {
+			"vTriggerFilePAth": {
 				"type": "String"
 			}
 		},
