@@ -3,7 +3,18 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [],
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"TriggerFilePath": "@trigger().outputs.body.fileName",
+					"TriggerFolderPath": "@trigger().outputs.body.folderPath"
+				}
+			}
+		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
 			"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65170/",
