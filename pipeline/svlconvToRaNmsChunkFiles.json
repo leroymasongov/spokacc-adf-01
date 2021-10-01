@@ -58,13 +58,13 @@
 		"parameters": {
 			"ChunkId": {
 				"type": "string"
+			},
+			"TriggerFilePath": {
+				"type": "string"
 			}
 		},
 		"variables": {
 			"vChunkId": {
-				"type": "String"
-			},
-			"triggerFilePath": {
 				"type": "String"
 			}
 		},
