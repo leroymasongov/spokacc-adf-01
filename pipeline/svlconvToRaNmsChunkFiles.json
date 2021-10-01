@@ -5,7 +5,14 @@
 			{
 				"name": "svl-conv",
 				"type": "Custom",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "SetTriggerFilePath",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -33,12 +40,32 @@
 					"referenceName": "AzureBatch4",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "SetTriggerFilePath",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "triggerFilePath",
+					"value": {
+						"value": "@{pipeline().parameters.triggerFilePath}",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
 			"ChunkId": {
-				"type": "string",
-				"defaultValue": "89155"
+				"type": "string"
+			}
+		},
+		"variables": {
+			"vChunkId": {
+				"type": "String"
+			},
+			"triggerFilePath": {
+				"type": "String"
 			}
 		},
 		"annotations": []
