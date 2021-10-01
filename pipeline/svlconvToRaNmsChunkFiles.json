@@ -56,7 +56,10 @@
 			}
 		],
 		"parameters": {
-			"TriggerFilePath": {
+			"TriggerFileName": {
+				"type": "string"
+			},
+			"TriggerFolderPath": {
 				"type": "string"
 			}
 		},
