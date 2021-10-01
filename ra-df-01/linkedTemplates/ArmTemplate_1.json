@@ -7,11 +7,11 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "ra-df-01"
 		},
-		"triggerNewSvlFile_properties_svlconvToRaNmsChunkFiles_parameters_TriggerFilePath": {
+		"triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.body.fileName"
 		},
-		"triggerNewSvlFile_properties_svlconvToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+		"triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.body.folderPath"
 		},
@@ -1203,12 +1203,12 @@
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "svlconvToRaNmsChunkFiles",
+							"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"TriggerFilePath": "[parameters('triggerNewSvlFile_properties_svlconvToRaNmsChunkFiles_parameters_TriggerFilePath')]",
-							"TriggerFolderPath": "[parameters('triggerNewSvlFile_properties_svlconvToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+							"TriggerFilePath": "[parameters('triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
+							"TriggerFolderPath": "[parameters('triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
 						}
 					}
 				],
@@ -1224,7 +1224,7 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/svlconvToRaNmsChunkFiles')]"
+				"[concat(variables('factoryId'), '/pipelines/svlconvLogrSvlToRaNmsChunkFiles')]"
 			]
 		},
 		{
