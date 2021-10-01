@@ -90,6 +90,10 @@
 		"triggerNewSourceFile_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"triggerNewSvlFile_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		}
 	},
 	"variables": {
@@ -1183,6 +1187,89 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2021-08-24T05:45:33Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/svlconvToRaNmsChunkFiles')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "svl-conv",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "SetTriggerFilePath",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": {
+								"value": "powershell \"ls\"\n\npowershell \"Write-Host 'calling Expand-Archive'\"\n\n\npowershell \"Expand-Archive -Path svlconv.zip -Destination .\"\n\npowershell \"Write-Host 'running python svlconv' \"\n\n# download files from blob container \n\npowershell \" azcopy copy  'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D'   '.\\L@{pipeline().parameters.ChunkId}.SVL' --include-pattern L@{pipeline().parameters.ChunkId}.SVL --recursive \"\n\npowershell \"python ra-SvlConvToText\\main.py 'L@{pipeline().parameters.ChunkId}.SVL \"\n\npowershell \" azcopy copy '.\\'         'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D'  --include-pattern 'L@{pipeline().parameters.ChunkId}*.json;@{pipeline().parameters.ChunkId}_*.csv'  --recursive \"\n\n\n# upload results to blob container",
+								"type": "Expression"
+							},
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "svlconv-function-input",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatch4",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "SetTriggerFilePath",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "vTriggerFilePAth",
+							"value": {
+								"value": "@{pipeline().parameters.triggerFilePath}",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"ChunkId": {
+						"type": "string"
+					},
+					"TriggerFilePath": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"vTriggerFilePAth": {
+						"type": "String"
+					}
+				},
+				"annotations": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]",
@@ -3198,6 +3285,37 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/triggerNewSvlFile')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "svlconvToRaNmsChunkFiles",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/",
+					"blobPathEndsWith": "*.SVL",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('triggerNewSvlFile_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/svlconvToRaNmsChunkFiles')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/dfLoadRecordsCSV')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -3236,47 +3354,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/nmsMeasCSV2')]",
 				"[concat(variables('factoryId'), '/datasets/radbRecordsForDF')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/svlconvToRaNmsChunkFiles')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "svl-conv",
-						"type": "Custom",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"command": "dir > dir.txt\ndir dir.txt\n\nazcopy --help\n",
-							"referenceObjects": {
-								"linkedServices": [],
-								"datasets": []
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureBatch4",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]"
 			]
 		}
 	]
