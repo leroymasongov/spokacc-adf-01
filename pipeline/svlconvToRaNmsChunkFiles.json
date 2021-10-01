@@ -56,9 +56,6 @@
 			}
 		],
 		"parameters": {
-			"ChunkId": {
-				"type": "string"
-			},
 			"TriggerFilePath": {
 				"type": "string"
 			}
