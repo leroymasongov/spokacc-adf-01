@@ -1077,8 +1077,8 @@
 				],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/",
-					"blobPathEndsWith": "*.SVL",
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65170/",
+					"blobPathEndsWith": ".SVL",
 					"ignoreEmptyBlobs": true,
 					"scope": "[parameters('triggerNewSvlFile_properties_typeProperties_scope')]",
 					"events": [
