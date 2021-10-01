@@ -1228,7 +1228,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "powershell \"Expand-Archive svlconv.zip -DestinationPath .; ls; .\\cmdSvlConv.ps1; ls\"",
+								"value": "powershell \"Expand-Archive svlconv.zip -DestinationPath  . ; ls; .\\cmdSvlConv.ps1 @{variables('FileFullPath')}; ls\"",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
@@ -1305,10 +1305,12 @@
 				},
 				"parameters": {
 					"TriggerFilePath": {
-						"type": "string"
+						"type": "string",
+						"defaultValue": "L88829.SVL"
 					},
 					"TriggerFolderPath": {
-						"type": "string"
+						"type": "string",
+						"defaultValue": "nms-files-sync-aws/files/SV_200A_65170"
 					}
 				},
 				"variables": {
