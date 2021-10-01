@@ -8,6 +8,9 @@
 				"pipelineReference": {
 					"referenceName": "svlconvToRaNmsChunkFiles",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"TriggerFilePath": "@trigger().outputs.body.fileName"
 				}
 			}
 		],
