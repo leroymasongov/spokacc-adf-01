@@ -47,7 +47,7 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "TriggerFileName",
+					"variableName": "vTriggerFilePAth",
 					"value": {
 						"value": "@{pipeline().parameters.triggerFilePath}",
 						"type": "Expression"
