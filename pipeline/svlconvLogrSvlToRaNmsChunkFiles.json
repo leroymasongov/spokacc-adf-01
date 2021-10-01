@@ -88,7 +88,7 @@
 				"typeProperties": {
 					"variableName": "FileFullPath",
 					"value": {
-						"value": "@concat(variables('TriggerFolderPath'),variables('TriggerFileName'))",
+						"value": "@concat(variables('TriggerFolderPath'),'/',variables('TriggerFileName'))",
 						"type": "Expression"
 					}
 				}
