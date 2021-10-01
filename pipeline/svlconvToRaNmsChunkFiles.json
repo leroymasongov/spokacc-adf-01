@@ -23,7 +23,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "powershell \"ls\"\n\npowershell \"Write-Host 'calling Expand-Archive'\"\n\n\npowershell \"Expand-Archive -Path svlconv.zip -Destination .\"\n\npowershell \"Write-Host 'running python svlconv' \"\n\n# download files from blob container \n\npowershell \" azcopy copy  'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D'   '.\\L@{pipeline().parameters.ChunkId}.SVL' --include-pattern L@{pipeline().parameters.ChunkId}.SVL --recursive \"\n\npowershell \"python ra-SvlConvToText\\main.py 'L@{pipeline().parameters.ChunkId}.SVL \"\n\npowershell \" azcopy copy '.\\'         'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D'  --include-pattern 'L@{pipeline().parameters.ChunkId}*.json;@{pipeline().parameters.ChunkId}_*.csv'  --recursive \"\n\n\n# upload results to blob container",
+						"value": "powershell \"ls\"\n\npowershell \"Write-Host 'calling Expand-Archive'\"\n\n\npowershell \"Expand-Archive -Path svlconv.zip -Destination .\"\n\npowershell \"Write-Host 'running python svlconv' \"\n\n# download files from blob container \n\npowershell \" azcopy copy  'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D'   '.\\L@{variables('ChunkId')}.SVL' --include-pattern L@{variables('ChunkId')}.SVL --recursive \"\n\npowershell \"python ra-SvlConvToText\\main.py 'L@{variables('ChunkId')}.SVL \"\n\npowershell \" azcopy copy '.\\'         'https://rastoracc02.blob.core.windows.net/nms-files-sync-aws?sv=2020-04-08&st=2021-09-30T05%3A36%3A23Z&se=2025-10-01T05%3A36%3A00Z&sr=c&sp=racwdxlt&sig=cpZ5cvnSypBK2MLh4%2B9buGQ%2FOizjqO6Dv8q2svJ4K5Y%3D'  --include-pattern 'L@{variables('ChunkId')}*.json;@{variables('ChunkId')}_*.csv'  --recursive \"\n\n\n# upload results to blob container",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
@@ -63,6 +63,10 @@
 		"variables": {
 			"vTriggerFilePAth": {
 				"type": "String"
+			},
+			"ChunkId": {
+				"type": "String",
+				"defaultValue": "89155"
 			}
 		},
 		"annotations": []
