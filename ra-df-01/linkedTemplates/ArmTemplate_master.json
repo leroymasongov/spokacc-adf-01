@@ -91,6 +91,10 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
+		"triggerNewSvlFile_properties_svlconvToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.body.fileName"
+		},
 		"triggerNewSvlFile_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
@@ -190,6 +194,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"triggerNewSvlFile_properties_svlconvToRaNmsChunkFiles_parameters_TriggerFilePath": {
+						"value": "[parameters('triggerNewSvlFile_properties_svlconvToRaNmsChunkFiles_parameters_TriggerFilePath')]"
 					},
 					"triggerNewSvlFile_properties_typeProperties_scope": {
 						"value": "[parameters('triggerNewSvlFile_properties_typeProperties_scope')]"
