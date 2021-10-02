@@ -87,6 +87,10 @@
 			"type": "string",
 			"defaultValue": "@trigger().outputs.body.fileName"
 		},
+		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFolderName": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.body.folderPath"
+		},
 		"triggerNewSourceFile_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
@@ -216,6 +220,9 @@
 					},
 					"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFilePath": {
 						"value": "[parameters('triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFilePath')]"
+					},
+					"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFolderName": {
+						"value": "[parameters('triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFolderName')]"
 					},
 					"triggerNewSourceFile_properties_typeProperties_scope": {
 						"value": "[parameters('triggerNewSourceFile_properties_typeProperties_scope')]"

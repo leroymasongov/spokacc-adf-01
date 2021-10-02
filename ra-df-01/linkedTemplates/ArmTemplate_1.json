@@ -31,6 +31,10 @@
 			"type": "string",
 			"defaultValue": "@trigger().outputs.body.fileName"
 		},
+		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFolderName": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.body.folderPath"
+		},
 		"triggerNewSourceFile_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
@@ -837,7 +841,13 @@
 						"type": "Custom",
 						"dependsOn": [
 							{
-								"activity": "Set-incoming-file-name",
+								"activity": "SetIncomingFile",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "SetIncomingFolder",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -872,7 +882,7 @@
 						}
 					},
 					{
-						"name": "Set-incoming-file-name",
+						"name": "SetIncomingFile",
 						"type": "SetVariable",
 						"dependsOn": [],
 						"userProperties": [],
@@ -1150,6 +1160,19 @@
 								"type": "Expression"
 							}
 						}
+					},
+					{
+						"name": "SetIncomingFolder",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "triggerFileFolderPath",
+							"value": {
+								"value": "@pipeline().parameters.triggerFilePath",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"policy": {
@@ -1166,8 +1189,10 @@
 						"defaultValue": "nms-files-input"
 					},
 					"triggerFilePath": {
-						"type": "string",
-						"defaultValue": "L88981_records.csv"
+						"type": "string"
+					},
+					"triggerFolderName": {
+						"type": "string"
 					}
 				},
 				"variables": {
@@ -1185,6 +1210,9 @@
 						"type": "String"
 					},
 					"NmsRecordsStartTime": {
+						"type": "String"
+					},
+					"triggerFileFolderPath": {
 						"type": "String"
 					}
 				},
@@ -1245,7 +1273,8 @@
 						"parameters": {
 							"radbContainer": "[parameters('triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_radbContainer')]",
 							"blobContainerName": "[parameters('triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_blobContainerName')]",
-							"triggerFilePath": "[parameters('triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFilePath')]"
+							"triggerFilePath": "[parameters('triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFilePath')]",
+							"triggerFolderName": "[parameters('triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_triggerFolderName')]"
 						}
 					}
 				],
