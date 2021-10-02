@@ -263,7 +263,13 @@
 				"type": "Custom",
 				"dependsOn": [
 					{
-						"activity": "Set-incoming-file-name",
+						"activity": "SetIncomingFile",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SetIncomingFolder",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -298,7 +304,7 @@
 				}
 			},
 			{
-				"name": "Set-incoming-file-name",
+				"name": "SetIncomingFile",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"userProperties": [],
@@ -575,6 +581,19 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "SetIncomingFolder",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "triggerFileFolderPath",
+					"value": {
+						"value": "@pipeline().parameters.triggerFilePath",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -587,8 +606,10 @@
 				"defaultValue": "nms-files-input"
 			},
 			"triggerFilePath": {
-				"type": "string",
-				"defaultValue": "L88981_records.csv"
+				"type": "string"
+			},
+			"triggerFolderName": {
+				"type": "string"
 			}
 		},
 		"variables": {
@@ -606,6 +627,9 @@
 				"type": "String"
 			},
 			"NmsRecordsStartTime": {
+				"type": "String"
+			},
+			"triggerFileFolderPath": {
 				"type": "String"
 			}
 		},
