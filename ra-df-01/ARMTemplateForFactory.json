@@ -1144,7 +1144,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "python cmd_PreProLogger.py @{pipeline().parameters.raPipelineId} @{pipeline().parameters.ChunkID} @{pipeline().parameters.nmsHeaderStartTime}",
+								"value": "powershell \"ls .; python cmd_PreProLogger.py @{pipeline().parameters.raPipelineId} @{pipeline().parameters.ChunkID} @{pipeline().parameters.nmsHeaderStartTime} \"",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
@@ -1195,19 +1195,19 @@
 					},
 					"triggerFilePath": {
 						"type": "string",
-						"defaultValue": "L88981_records.csv"
+						"defaultValue": "L89174_records.csv"
 					},
 					"ChunkID": {
 						"type": "string",
-						"defaultValue": "88981"
+						"defaultValue": "89174\t"
 					},
 					"raPipelineId": {
 						"type": "string",
-						"defaultValue": "0233e136-530e-48e4-83f7-ad9723acf2a3"
+						"defaultValue": "f97597f2-68e0-4cfc-b61c-c2de8bf4775e"
 					},
 					"nmsHeaderStartTime": {
 						"type": "string",
-						"defaultValue": "2021-08-16T18:01:56"
+						"defaultValue": "2021-10-03T04:00:00"
 					}
 				},
 				"variables": {
