@@ -265,7 +265,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "assert-chunk-acquire-success",
+								"activity": "SetChunkId",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -355,7 +355,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "assert-chunk-acquire-success",
+								"activity": "SetChunkId",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -438,7 +438,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "assert-chunk-acquire-success",
+								"activity": "SetChunkId",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -575,7 +575,7 @@
 						}
 					},
 					{
-						"name": "assert-chunk-acquire-success",
+						"name": "SetChunkId",
 						"type": "SetVariable",
 						"dependsOn": [
 							{
@@ -621,7 +621,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "python raNmsRecords_Derive_Timestamp.py --ifile @{pipeline().parameters.triggerFilePath} --chunkid @{variables('chunkId')} --starttime @{variables('NmsRecordsStartTime')}",
+								"value": "python raNmsRecords_Derive_Timestamp.py @{pipeline().parameters.triggerFilePath}  @{variables('chunkId')} @{variables('NmsRecordsStartTime')}",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
