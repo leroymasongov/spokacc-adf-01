@@ -2,7 +2,7 @@
 	"name": "triggerNewSvlFile",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
