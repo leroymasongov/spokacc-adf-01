@@ -1,0 +1,29 @@
+{
+	"name": "triggerSVLFilesGlobal",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"TriggerFilePath": "@trigger().outputs.body.fileName",
+					"TriggerFolderPath": "@trigger().outputs.body.folderPath"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/nms-files-sync-aws/blobs/",
+			"blobPathEndsWith": "SVL",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
