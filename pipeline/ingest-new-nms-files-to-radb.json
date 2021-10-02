@@ -54,7 +54,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*_header.json",
+							"wildcardFileName": {
+								"value": "L@{variables('chunkId')}_header.json",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
