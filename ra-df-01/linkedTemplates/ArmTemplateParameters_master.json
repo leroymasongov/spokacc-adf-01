@@ -80,6 +80,15 @@
 		"triggerNewSvlFile_properties_typeProperties_scope": {
 			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
+		"triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"value": "@trigger().outputs.body.fileName"
+		},
+		"triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"value": "@trigger().outputs.body.folderPath"
+		},
+		"triggerSVLFilesGlobal_properties_typeProperties_scope": {
+			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
 		"containerUri": {
 			"value": ""
 		},

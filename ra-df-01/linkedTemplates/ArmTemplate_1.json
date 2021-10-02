@@ -19,6 +19,18 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
+		"triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.body.fileName"
+		},
+		"triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.body.folderPath"
+		},
+		"triggerSVLFilesGlobal_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
 		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
 			"type": "string",
 			"defaultValue": "nms-items"
@@ -1252,6 +1264,40 @@
 					"blobPathEndsWith": ".SVL",
 					"ignoreEmptyBlobs": true,
 					"scope": "[parameters('triggerNewSvlFile_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/svlconvLogrSvlToRaNmsChunkFiles')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerSVLFilesGlobal')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"TriggerFilePath": "[parameters('triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
+							"TriggerFolderPath": "[parameters('triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/",
+					"blobPathEndsWith": "SVL",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('triggerSVLFilesGlobal_properties_typeProperties_scope')]",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]
