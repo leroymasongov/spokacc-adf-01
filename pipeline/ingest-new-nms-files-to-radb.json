@@ -363,7 +363,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "python raNmsRecords_Derive_Timestamp.py @{pipeline().parameters.triggerFilePath}  @{variables('chunkId')} @{variables('NmsRecordsStartTime')}",
+						"value": "python raNmsRecords_Derive_Timestamp.py @{pipeline().parameters.triggerFilePath}  @{variables('chunkId')} @{variables('NmsRecordsStartTime')}Z",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
@@ -498,7 +498,7 @@
 							"type": "Expression"
 						},
 						"preferredRegions": [],
-						"detectDatetime": true
+						"detectDatetime": false
 					},
 					"dataset": {
 						"referenceName": "radb",
@@ -606,7 +606,8 @@
 				"defaultValue": "nms-files-input"
 			},
 			"triggerFilePath": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "L88837_records.csv"
 			},
 			"triggerFolderName": {
 				"type": "string"
