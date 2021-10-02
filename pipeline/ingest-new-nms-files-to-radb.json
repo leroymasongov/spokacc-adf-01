@@ -7,7 +7,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "assert-chunk-acquire-success",
+						"activity": "SetChunkId",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -97,7 +97,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "assert-chunk-acquire-success",
+						"activity": "SetChunkId",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -180,7 +180,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "assert-chunk-acquire-success",
+						"activity": "SetChunkId",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -317,7 +317,7 @@
 				}
 			},
 			{
-				"name": "assert-chunk-acquire-success",
+				"name": "SetChunkId",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
