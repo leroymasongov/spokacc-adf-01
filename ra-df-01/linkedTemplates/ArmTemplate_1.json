@@ -1228,6 +1228,13 @@
 											"value": "@variables('chunkId')",
 											"type": "Expression"
 										}
+									},
+									{
+										"name": "LoggerSN",
+										"value": {
+											"value": "@variables('LoggerSN')",
+											"type": "Expression"
+										}
 									}
 								],
 								"storeSettings": {
@@ -1266,7 +1273,7 @@
 						]
 					},
 					{
-						"name": "Lookup-header-timestamp",
+						"name": "LookupChunkHeaderInfo",
 						"type": "Lookup",
 						"dependsOn": [
 							{
@@ -1367,7 +1374,7 @@
 						"type": "SetVariable",
 						"dependsOn": [
 							{
-								"activity": "Lookup-header-timestamp",
+								"activity": "LookupChunkHeaderInfo",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -1377,7 +1384,7 @@
 						"typeProperties": {
 							"variableName": "NmsRecordsStartTime",
 							"value": {
-								"value": "@{activity('Lookup-header-timestamp').output.firstRow.measure_start_datetime}",
+								"value": "@{activity('LookupChunkHeaderInfo').output.firstRow.measure_start_datetime}",
 								"type": "Expression"
 							}
 						}
@@ -1400,7 +1407,7 @@
 						"type": "SetVariable",
 						"dependsOn": [
 							{
-								"activity": "Lookup-header-timestamp",
+								"activity": "LookupChunkHeaderInfo",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -1410,7 +1417,7 @@
 						"typeProperties": {
 							"variableName": "LoggerSN",
 							"value": {
-								"value": "@{activity('Lookup-header-timestamp').output.firstRow.unit_number}",
+								"value": "@{activity('LookupChunkHeaderInfo').output.firstRow.unit_number}",
 								"type": "Expression"
 							}
 						}

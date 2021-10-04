@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessKey' of 'AzureBatch3'"
 		},
+		"AzureBatch5_accessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessKey' of 'AzureBatch5'"
+		},
 		"CosmosDb1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
@@ -26,10 +30,6 @@
 		"rablobservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'rablobservice'"
-		},
-		"AzureBatch5_accessKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessKey' of 'AzureBatch5'"
 		},
 		"AzureBatch1_properties_typeProperties_batchUri": {
 			"type": "string",
@@ -79,6 +79,18 @@
 			"type": "string",
 			"defaultValue": "rasebatchacc05 "
 		},
+		"AzureBatch5_properties_typeProperties_batchUri": {
+			"type": "string",
+			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
+		},
+		"AzureBatch5_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "pool-9-2"
+		},
+		"AzureBatch5_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "rasebatchacc05 "
+		},
 		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
 			"type": "string",
 			"defaultValue": "nms-items"
@@ -122,18 +134,6 @@
 		"triggerSVLFilesGlobal_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
-		},
-		"AzureBatch5_properties_typeProperties_batchUri": {
-			"type": "string",
-			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
-		},
-		"AzureBatch5_properties_typeProperties_poolName": {
-			"type": "string",
-			"defaultValue": "pool-9-2"
-		},
-		"AzureBatch5_properties_typeProperties_accountName": {
-			"type": "string",
-			"defaultValue": "rasebatchacc05 "
 		}
 	},
 	"variables": {
@@ -723,6 +723,13 @@
 											"value": "@variables('chunkId')",
 											"type": "Expression"
 										}
+									},
+									{
+										"name": "LoggerSN",
+										"value": {
+											"value": "@variables('LoggerSN')",
+											"type": "Expression"
+										}
 									}
 								],
 								"storeSettings": {
@@ -761,7 +768,7 @@
 						]
 					},
 					{
-						"name": "Lookup-header-timestamp",
+						"name": "LookupChunkHeaderInfo",
 						"type": "Lookup",
 						"dependsOn": [
 							{
@@ -862,7 +869,7 @@
 						"type": "SetVariable",
 						"dependsOn": [
 							{
-								"activity": "Lookup-header-timestamp",
+								"activity": "LookupChunkHeaderInfo",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -872,7 +879,7 @@
 						"typeProperties": {
 							"variableName": "NmsRecordsStartTime",
 							"value": {
-								"value": "@{activity('Lookup-header-timestamp').output.firstRow.measure_start_datetime}",
+								"value": "@{activity('LookupChunkHeaderInfo').output.firstRow.measure_start_datetime}",
 								"type": "Expression"
 							}
 						}
@@ -895,7 +902,7 @@
 						"type": "SetVariable",
 						"dependsOn": [
 							{
-								"activity": "Lookup-header-timestamp",
+								"activity": "LookupChunkHeaderInfo",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -905,7 +912,7 @@
 						"typeProperties": {
 							"variableName": "LoggerSN",
 							"value": {
-								"value": "@{activity('Lookup-header-timestamp').output.firstRow.unit_number}",
+								"value": "@{activity('LookupChunkHeaderInfo').output.firstRow.unit_number}",
 								"type": "Expression"
 							}
 						}
@@ -3507,6 +3514,31 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureBatch5')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBatch",
+				"typeProperties": {
+					"batchUri": "[parameters('AzureBatch5_properties_typeProperties_batchUri')]",
+					"poolName": "[parameters('AzureBatch5_properties_typeProperties_poolName')]",
+					"accountName": "[parameters('AzureBatch5_properties_typeProperties_accountName')]",
+					"linkedServiceName": {
+						"referenceName": "batchStorage",
+						"type": "LinkedServiceReference"
+					},
+					"accessKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureBatch5_accessKey')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/CosmosDb1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -3688,31 +3720,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/nmsMeasCSV2')]",
 				"[concat(variables('factoryId'), '/datasets/radbRecordsForDF')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureBatch5')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBatch",
-				"typeProperties": {
-					"batchUri": "[parameters('AzureBatch5_properties_typeProperties_batchUri')]",
-					"poolName": "[parameters('AzureBatch5_properties_typeProperties_poolName')]",
-					"accountName": "[parameters('AzureBatch5_properties_typeProperties_accountName')]",
-					"linkedServiceName": {
-						"referenceName": "batchStorage",
-						"type": "LinkedServiceReference"
-					},
-					"accessKey": {
-						"type": "SecureString",
-						"value": "[parameters('AzureBatch5_accessKey')]"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]"
 			]
 		}
 	]
