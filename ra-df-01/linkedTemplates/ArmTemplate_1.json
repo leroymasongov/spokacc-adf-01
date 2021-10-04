@@ -420,6 +420,68 @@
 							"variableName": "queryResult",
 							"value": "'ok'"
 						}
+					},
+					{
+						"name": "FindLocksSWLs",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "query-results",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": "powershell \"ls\"",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatch4",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "FindSPL",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "FindLocksSWLs",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": "powershell \"ls\"",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatch4",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"policy": {
@@ -1083,6 +1145,12 @@
 								"dependencyConditions": [
 									"Succeeded"
 								]
+							},
+							{
+								"activity": "setLoggerSN",
+								"dependencyConditions": [
+									"Succeeded"
+								]
 							}
 						],
 						"policy": {
@@ -1226,7 +1294,7 @@
 							"source": {
 								"type": "CosmosDbSqlApiSource",
 								"query": {
-									"value": "SELECT c.params_global_settings.measure_start_datetime FROM c \nwhere \n    c.RaPipelineId = '@{pipeline().RunId}'\n    and c.NmsDocumentType = 'header' \n    ",
+									"value": "SELECT \nc.unit_spec.unit_number, \nc.params_global_settings.measure_start_datetime FROM c \nwhere \n    c.RaPipelineId = '@{pipeline().RunId}'\n    and c.NmsDocumentType = 'header' \n    ",
 									"type": "Expression"
 								},
 								"preferredRegions": [],
@@ -1326,6 +1394,26 @@
 								"type": "Expression"
 							}
 						}
+					},
+					{
+						"name": "setLoggerSN",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Lookup-header-timestamp",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "LoggerSN",
+							"value": {
+								"value": "@{activity('Lookup-header-timestamp').output.firstRow.unit_number}",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"policy": {
@@ -1367,6 +1455,9 @@
 						"type": "String"
 					},
 					"triggerFileFolderPath": {
+						"type": "String"
+					},
+					"LoggerSN": {
 						"type": "String"
 					}
 				},
