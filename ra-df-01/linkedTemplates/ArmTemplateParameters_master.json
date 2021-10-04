@@ -20,6 +20,9 @@
 		"rablobservice_connectionString": {
 			"value": ""
 		},
+		"AzureBatch5_accessKey": {
+			"value": ""
+		},
 		"AzureBatch1_properties_typeProperties_batchUri": {
 			"value": "https://rabatchacc01.australiacentral.batch.azure.com"
 		},
@@ -88,6 +91,15 @@
 		},
 		"triggerSVLFilesGlobal_properties_typeProperties_scope": {
 			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"AzureBatch5_properties_typeProperties_batchUri": {
+			"value": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
+		},
+		"AzureBatch5_properties_typeProperties_poolName": {
+			"value": "pool-9-2"
+		},
+		"AzureBatch5_properties_typeProperties_accountName": {
+			"value": "rasebatchacc05 "
 		},
 		"containerUri": {
 			"value": ""

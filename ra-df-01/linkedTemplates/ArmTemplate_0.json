@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessKey' of 'AzureBatch3'"
 		},
+		"AzureBatch5_accessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessKey' of 'AzureBatch5'"
+		},
 		"AzureBatch1_properties_typeProperties_batchUri": {
 			"type": "string",
 			"defaultValue": "https://rabatchacc01.australiacentral.batch.azure.com"
@@ -72,6 +76,18 @@
 			"defaultValue": "pool-9-1"
 		},
 		"AzureBatch4_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "rasebatchacc05 "
+		},
+		"AzureBatch5_properties_typeProperties_batchUri": {
+			"type": "string",
+			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
+		},
+		"AzureBatch5_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "pool-9-2"
+		},
+		"AzureBatch5_properties_typeProperties_accountName": {
 			"type": "string",
 			"defaultValue": "rasebatchacc05 "
 		}
@@ -2087,145 +2103,28 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/check-incoming-pipeline-sync-to-csv')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
+			"name": "[concat(parameters('factoryName'), '/AzureBatch5')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "CosmosDbSqlApiSource",
-								"query": {
-									"value": "select c.RowNumber, c.CorrectedTimestamp, c.ChunkId\nfrom c \nwhere\nc.RaPipelineId = '@{pipeline().parameters.pipeguid1}'\nand c.NmsDocumentType = 'records'\n",
-									"type": "Expression"
-								},
-								"preferredRegions": [],
-								"detectDatetime": true
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "radb",
-								"type": "DatasetReference",
-								"parameters": {
-									"containerName": "nms-items"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "reportcsv1",
-								"type": "DatasetReference",
-								"parameters": {
-									"filename": {
-										"value": "contact('pipeline1.csv')",
-										"type": "Expression"
-									}
-								}
-							}
-						]
+				"annotations": [],
+				"type": "AzureBatch",
+				"typeProperties": {
+					"batchUri": "[parameters('AzureBatch5_properties_typeProperties_batchUri')]",
+					"poolName": "[parameters('AzureBatch5_properties_typeProperties_poolName')]",
+					"accountName": "[parameters('AzureBatch5_properties_typeProperties_accountName')]",
+					"linkedServiceName": {
+						"referenceName": "batchStorage",
+						"type": "LinkedServiceReference"
 					},
-					{
-						"name": "Copy data1_copy1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "CosmosDbSqlApiSource",
-								"query": {
-									"value": "select c.RowNumber, c.CorrectedTimestamp, c.ChunkId\nfrom c \nwhere\nc.RaPipelineId = '@{pipeline().parameters.pipeguid2}'\nand c.NmsDocumentType = 'records'\n",
-									"type": "Expression"
-								},
-								"preferredRegions": [],
-								"detectDatetime": true
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "radb",
-								"type": "DatasetReference",
-								"parameters": {
-									"containerName": "nms-items"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "reportcsv1",
-								"type": "DatasetReference",
-								"parameters": {
-									"filename": {
-										"value": "concat('pipeline2.csv')",
-										"type": "Expression"
-									}
-								}
-							}
-						]
+					"accessKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureBatch5_accessKey')]"
 					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"pipeguid1": {
-						"type": "string",
-						"defaultValue": "9a3f2550-7c26-4cf5-af43-a12a6ef29009"
-					},
-					"pipeguid2": {
-						"type": "string",
-						"defaultValue": "58a3fa39-05e3-432c-ae71-a0033c483303"
-					}
-				},
-				"annotations": []
+				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/radb')]",
-				"[concat(variables('factoryId'), '/datasets/reportcsv1')]"
+				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]"
 			]
 		}
 	]
