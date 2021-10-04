@@ -437,6 +437,13 @@
 									"value": "@variables('chunkId')",
 									"type": "Expression"
 								}
+							},
+							{
+								"name": "LoggerSN",
+								"value": {
+									"value": "@variables('LoggerSN')",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
