@@ -1441,7 +1441,7 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
-							"value": "L@{dataset().chunkid}_records_rownumbered.csv",
+							"value": "L@{dataset().chunkid}_records_with_derived_timestamp.csv",
 							"type": "Expression"
 						},
 						"container": "nms-files-input"
