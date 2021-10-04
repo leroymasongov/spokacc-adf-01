@@ -481,7 +481,7 @@
 				]
 			},
 			{
-				"name": "Lookup-header-timestamp",
+				"name": "LookupChunkHeaderInfo",
 				"type": "Lookup",
 				"dependsOn": [
 					{
@@ -582,7 +582,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "Lookup-header-timestamp",
+						"activity": "LookupChunkHeaderInfo",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -615,7 +615,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "Lookup-header-timestamp",
+						"activity": "LookupChunkHeaderInfo",
 						"dependencyConditions": [
 							"Succeeded"
 						]
