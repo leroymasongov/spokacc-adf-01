@@ -725,7 +725,7 @@
 										}
 									},
 									{
-										"name": "LoggerSN",
+										"name": "SN",
 										"value": {
 											"value": "@variables('LoggerSN')",
 											"type": "Expression"
