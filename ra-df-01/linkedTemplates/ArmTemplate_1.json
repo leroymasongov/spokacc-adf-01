@@ -1026,7 +1026,6 @@
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
-									"wildcardFileName": "*_records_with_derived_timestamp.csv",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
