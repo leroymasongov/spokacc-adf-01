@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Invoke-preprologger-function",
+				"name": "PreProLogger",
 				"type": "Custom",
 				"dependsOn": [],
 				"policy": {
@@ -35,11 +35,11 @@
 				}
 			},
 			{
-				"name": "query-results",
+				"name": "QueryPreProLogger",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "Invoke-preprologger-function",
+						"activity": "PreProLogger",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -56,7 +56,7 @@
 				"type": "Custom",
 				"dependsOn": [
 					{
-						"activity": "query-results",
+						"activity": "PreProLogger",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -111,6 +111,40 @@
 				"linkedServiceName": {
 					"referenceName": "AzureBatch4",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "QuerySWLs",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "FindLocksSWLs",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "queryResult",
+					"value": "'ok'"
+				}
+			},
+			{
+				"name": "QuerySPLs",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "FindSPL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "queryResult",
+					"value": "'ok'"
 				}
 			}
 		],
