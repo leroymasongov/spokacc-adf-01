@@ -32,7 +32,11 @@
 				"type": "String"
 			},
 			{
-				"name": " flag",
+				"name": "CorrectedTimestamp",
+				"type": "String"
+			},
+			{
+				"name": "flag",
 				"type": "String"
 			},
 			{
