@@ -1,0 +1,209 @@
+{
+	"name": "ra-func-compliance",
+	"properties": {
+		"activities": [
+			{
+				"name": "CheckForSensorFeedQuorum",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "CosmosDbSqlApiSource",
+						"preferredRegions": []
+					},
+					"dataset": {
+						"referenceName": "radb",
+						"type": "DatasetReference",
+						"parameters": {
+							"containerName": "nms-items"
+						}
+					}
+				}
+			},
+			{
+				"name": "Switch1",
+				"type": "Switch",
+				"dependsOn": [
+					{
+						"activity": "CheckForSensorFeedQuorum",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "1",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "Case1",
+							"activities": [
+								{
+									"name": "QueryPreProLogger_copy1",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "queryResult",
+										"value": "'ok'"
+									}
+								},
+								{
+									"name": "FindLocksSWLs_copy1",
+									"type": "Custom",
+									"dependsOn": [
+										{
+											"activity": "QueryPreProLogger_copy1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"command": "powershell \"ls\"",
+										"referenceObjects": {
+											"linkedServices": [],
+											"datasets": []
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "AzureBatch4",
+										"type": "LinkedServiceReference"
+									}
+								},
+								{
+									"name": "FindSPL_copy1",
+									"type": "Custom",
+									"dependsOn": [
+										{
+											"activity": "FindLocksSWLs_copy1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"command": "powershell \"python cmdFindSPL.py\"",
+										"referenceObjects": {
+											"linkedServices": [],
+											"datasets": []
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "AzureBatch4",
+										"type": "LinkedServiceReference"
+									}
+								},
+								{
+									"name": "QuerySWLs_copy1",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "FindLocksSWLs_copy1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "queryResult",
+										"value": "'ok'"
+									}
+								},
+								{
+									"name": "QuerySPLs_copy1",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "FindSPL_copy1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "queryResult",
+										"value": "'ok'"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"radbContainer": {
+				"type": "string",
+				"defaultValue": "nms-items"
+			},
+			"blobContainerName": {
+				"type": "string",
+				"defaultValue": "nms-files-input"
+			},
+			"triggerFilePath": {
+				"type": "string",
+				"defaultValue": "L89174_records.csv"
+			},
+			"ChunkID": {
+				"type": "string",
+				"defaultValue": "89174\t"
+			},
+			"raPipelineId": {
+				"type": "string",
+				"defaultValue": "f97597f2-68e0-4cfc-b61c-c2de8bf4775e"
+			},
+			"nmsHeaderStartTime": {
+				"type": "string",
+				"defaultValue": "2021-10-03T04:00:00"
+			}
+		},
+		"variables": {
+			"RowNo": {
+				"type": "String",
+				"defaultValue": "0"
+			},
+			"triggerFileName": {
+				"type": "String"
+			},
+			"chunkId": {
+				"type": "String"
+			},
+			"queryResult": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-08-24T05:45:33Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
