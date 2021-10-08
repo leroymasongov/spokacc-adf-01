@@ -29,7 +29,7 @@
 				}
 			},
 			{
-				"name": "Switch1",
+				"name": "SensorFeedQuorumExists",
 				"type": "Switch",
 				"dependsOn": [
 					{
@@ -42,7 +42,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"on": {
-						"value": "1",
+						"value": "@activity('CheckForSensorFeedQuorum').output.quorumExists",
 						"type": "Expression"
 					},
 					"cases": [
@@ -60,7 +60,7 @@
 									}
 								},
 								{
-									"name": "FindLocksSWLs_copy1",
+									"name": "FindLocksSWLs",
 									"type": "Custom",
 									"dependsOn": [
 										{
@@ -79,7 +79,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"command": "powershell \"ls\"",
+										"command": "powershell \"python cmdFindLocksSWLs.py\"",
 										"referenceObjects": {
 											"linkedServices": [],
 											"datasets": []
@@ -91,11 +91,11 @@
 									}
 								},
 								{
-									"name": "FindSPL_copy1",
+									"name": "FindSPL",
 									"type": "Custom",
 									"dependsOn": [
 										{
-											"activity": "FindLocksSWLs_copy1",
+											"activity": "FindLocksSWLs",
 											"dependencyConditions": [
 												"Succeeded"
 											]
@@ -126,7 +126,7 @@
 									"type": "SetVariable",
 									"dependsOn": [
 										{
-											"activity": "FindLocksSWLs_copy1",
+											"activity": "FindLocksSWLs",
 											"dependencyConditions": [
 												"Succeeded"
 											]
@@ -143,7 +143,7 @@
 									"type": "SetVariable",
 									"dependsOn": [
 										{
-											"activity": "FindSPL_copy1",
+											"activity": "FindSPL",
 											"dependencyConditions": [
 												"Succeeded"
 											]
