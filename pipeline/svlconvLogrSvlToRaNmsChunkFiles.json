@@ -95,11 +95,11 @@
 			}
 		],
 		"parameters": {
-			"TriggerFilePath": {
+			"triggerFilePath": {
 				"type": "string",
 				"defaultValue": "L88829.SVL"
 			},
-			"TriggerFolderPath": {
+			"triggerFolderPath": {
 				"type": "string",
 				"defaultValue": "nms-files-sync-aws/files/SV_200A_65170"
 			}
