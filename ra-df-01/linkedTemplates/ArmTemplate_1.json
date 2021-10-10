@@ -35,11 +35,11 @@
 			"type": "string",
 			"defaultValue": "rasebatchacc05 "
 		},
-		"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+		"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath": {
 			"type": "string",
 			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
 		},
-		"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+		"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath": {
 			"type": "string",
 			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
 		},
@@ -47,11 +47,11 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
-		"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+		"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath": {
 			"type": "string",
 			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
 		},
-		"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+		"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath": {
 			"type": "string",
 			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
 		},
@@ -59,11 +59,11 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
-		"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+		"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath": {
 			"type": "string",
 			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
 		},
-		"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+		"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath": {
 			"type": "string",
 			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
 		},
@@ -71,11 +71,11 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
-		"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+		"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath": {
 			"type": "string",
 			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
 		},
-		"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+		"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath": {
 			"type": "string",
 			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
 		},
@@ -83,11 +83,11 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
-		"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+		"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath": {
 			"type": "string",
 			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
 		},
-		"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+		"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath": {
 			"type": "string",
 			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
 		},
@@ -1000,11 +1000,11 @@
 					"cancelAfter": {}
 				},
 				"parameters": {
-					"TriggerFilePath": {
+					"triggerFilePath": {
 						"type": "string",
 						"defaultValue": "L88829.SVL"
 					},
-					"TriggerFolderPath": {
+					"triggerFolderPath": {
 						"type": "string",
 						"defaultValue": "nms-files-sync-aws/files/SV_200A_65170"
 					}
@@ -2552,8 +2552,8 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"TriggerFilePath": "[parameters('triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
-							"TriggerFolderPath": "[parameters('triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+							"triggerFilePath": "[parameters('triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath')]",
+							"triggerFolderPath": "[parameters('triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath')]"
 						}
 					}
 				],
@@ -2586,8 +2586,8 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"TriggerFilePath": "[parameters('triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
-							"TriggerFolderPath": "[parameters('triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+							"triggerFilePath": "[parameters('triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath')]",
+							"triggerFolderPath": "[parameters('triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath')]"
 						}
 					}
 				],
@@ -2620,8 +2620,8 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"TriggerFilePath": "[parameters('triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
-							"TriggerFolderPath": "[parameters('triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+							"triggerFilePath": "[parameters('triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath')]",
+							"triggerFolderPath": "[parameters('triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath')]"
 						}
 					}
 				],
@@ -2654,8 +2654,8 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"TriggerFilePath": "[parameters('triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
-							"TriggerFolderPath": "[parameters('triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+							"triggerFilePath": "[parameters('triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath')]",
+							"triggerFolderPath": "[parameters('triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath')]"
 						}
 					}
 				],
@@ -2688,8 +2688,8 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"TriggerFilePath": "[parameters('triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
-							"TriggerFolderPath": "[parameters('triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+							"triggerFilePath": "[parameters('triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath')]",
+							"triggerFolderPath": "[parameters('triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath')]"
 						}
 					}
 				],
