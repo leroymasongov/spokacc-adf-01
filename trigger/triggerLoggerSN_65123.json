@@ -11,7 +11,7 @@
 				},
 				"parameters": {
 					"TriggerFilePath": "@{pipeline().parameters.triggerFilePath}",
-					"TriggerFolderPath": "@{pipeline().parameters.TriggerFolderPath}"
+					"TriggerFolderPath": "@{pipeline().parameters.triggerFolderPath}"
 				}
 			}
 		],
