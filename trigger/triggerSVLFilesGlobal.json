@@ -3,18 +3,7 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"TriggerFilePath": "@trigger().outputs.body.fileName",
-					"TriggerFolderPath": "@trigger().outputs.body.folderPath"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
 			"blobPathBeginsWith": "/nms-files-sync-aws/blobs/",
