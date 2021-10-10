@@ -37,11 +37,11 @@
 		},
 		"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath": {
 			"type": "string",
-			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+			"defaultValue": "@trigger().outputs.body.fileName"
 		},
 		"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath": {
 			"type": "string",
-			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+			"defaultValue": "@trigger().outputs.body.folderPath"
 		},
 		"triggerLoggerSN_65123_properties_typeProperties_scope": {
 			"type": "string",
@@ -49,11 +49,11 @@
 		},
 		"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath": {
 			"type": "string",
-			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+			"defaultValue": "@trigger().outputs.body.fileName"
 		},
 		"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath": {
 			"type": "string",
-			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+			"defaultValue": "@trigger().outputs.body.folderPath"
 		},
 		"triggerLoggerSN_65169_properties_typeProperties_scope": {
 			"type": "string",
@@ -61,11 +61,11 @@
 		},
 		"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath": {
 			"type": "string",
-			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+			"defaultValue": "@trigger().outputs.body.fileName"
 		},
 		"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath": {
 			"type": "string",
-			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+			"defaultValue": "@trigger().outputs.body.folderPat"
 		},
 		"triggerLoggerSN_65170_properties_typeProperties_scope": {
 			"type": "string",
@@ -73,11 +73,11 @@
 		},
 		"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath": {
 			"type": "string",
-			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+			"defaultValue": "@trigger().outputs.body.fileName"
 		},
 		"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath": {
 			"type": "string",
-			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+			"defaultValue": "@trigger().outputs.body.folderPat"
 		},
 		"triggerLoggerSN_65173_properties_typeProperties_scope": {
 			"type": "string",
@@ -85,11 +85,11 @@
 		},
 		"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath": {
 			"type": "string",
-			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+			"defaultValue": "@trigger().outputs.body.fileName"
 		},
 		"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath": {
 			"type": "string",
-			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+			"defaultValue": "@trigger().outputs.body.folderPat"
 		},
 		"triggerLoggerSN_65186_properties_typeProperties_scope": {
 			"type": "string",

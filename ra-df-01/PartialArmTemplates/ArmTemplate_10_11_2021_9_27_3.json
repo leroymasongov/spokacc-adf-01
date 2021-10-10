@@ -1,0 +1,176 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ra-df-01"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerLoggerSN_65123')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"triggerFilePath": "@trigger().outputs.body.fileName",
+							"triggerFolderPath": "@trigger().outputs.body.folderPath"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65123/",
+					"blobPathEndsWith": "SVL",
+					"ignoreEmptyBlobs": true,
+					"scope": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerLoggerSN_65169')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"triggerFilePath": "@trigger().outputs.body.fileName",
+							"triggerFolderPath": "@trigger().outputs.body.folderPath"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65169/",
+					"blobPathEndsWith": "SVL",
+					"ignoreEmptyBlobs": true,
+					"scope": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerLoggerSN_65170')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"triggerFilePath": "@trigger().outputs.body.fileName",
+							"triggerFolderPath": "@trigger().outputs.body.folderPat"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65170/",
+					"blobPathEndsWith": "SVL",
+					"ignoreEmptyBlobs": true,
+					"scope": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerLoggerSN_65173')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"triggerFilePath": "@trigger().outputs.body.fileName",
+							"triggerFolderPath": "@trigger().outputs.body.folderPat"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65173/",
+					"blobPathEndsWith": "SVL",
+					"ignoreEmptyBlobs": true,
+					"scope": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerLoggerSN_65186')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"triggerFilePath": "@trigger().outputs.body.fileName",
+							"triggerFolderPath": "@trigger().outputs.body.folderPat"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65186/",
+					"blobPathEndsWith": "SVL",
+					"ignoreEmptyBlobs": true,
+					"scope": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
