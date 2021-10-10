@@ -2,7 +2,7 @@
 	"name": "triggerLoggerSN_65170",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
