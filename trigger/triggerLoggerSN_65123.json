@@ -8,6 +8,10 @@
 				"pipelineReference": {
 					"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"TriggerFilePath": "@{pipeline().parameters.triggerFilePath}",
+					"TriggerFolderPath": "@{pipeline().parameters.TriggerFolderPath}"
 				}
 			}
 		],
