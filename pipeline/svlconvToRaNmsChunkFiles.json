@@ -72,6 +72,9 @@
 				"defaultValue": "89155"
 			}
 		},
+		"folder": {
+			"name": "archive"
+		},
 		"annotations": []
 	}
 }

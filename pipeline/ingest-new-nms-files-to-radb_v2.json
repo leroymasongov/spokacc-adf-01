@@ -672,6 +672,9 @@
 				"type": "String"
 			}
 		},
+		"folder": {
+			"name": "archive"
+		},
 		"annotations": [],
 		"lastPublishTime": "2021-08-24T05:45:33Z"
 	},
