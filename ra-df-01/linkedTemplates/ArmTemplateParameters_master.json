@@ -90,7 +90,7 @@
 			"value": "@trigger().outputs.body.fileName"
 		},
 		"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath": {
-			"value": "@trigger().outputs.body.folderPat"
+			"value": "@trigger().outputs.body.folderPath"
 		},
 		"triggerLoggerSN_65170_properties_typeProperties_scope": {
 			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
@@ -99,7 +99,7 @@
 			"value": "@trigger().outputs.body.fileName"
 		},
 		"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath": {
-			"value": "@trigger().outputs.body.folderPat"
+			"value": "@trigger().outputs.body.folderPath"
 		},
 		"triggerLoggerSN_65173_properties_typeProperties_scope": {
 			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
@@ -108,7 +108,7 @@
 			"value": "@trigger().outputs.body.fileName"
 		},
 		"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFolderPath": {
-			"value": "@trigger().outputs.body.folderPat"
+			"value": "@trigger().outputs.body.folderPath"
 		},
 		"triggerLoggerSN_65186_properties_typeProperties_scope": {
 			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
