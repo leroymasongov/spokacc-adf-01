@@ -7,27 +7,91 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "ra-df-01"
 		},
-		"triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
-			"type": "string",
-			"defaultValue": "@trigger().outputs.body.fileName"
+		"AzureBatch5_accessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessKey' of 'AzureBatch5'"
 		},
-		"triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+		"AzureBatch4_properties_typeProperties_batchUri": {
 			"type": "string",
-			"defaultValue": "@trigger().outputs.body.folderPath"
+			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
 		},
-		"triggerNewSvlFile_properties_typeProperties_scope": {
+		"AzureBatch4_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "pool-9-1"
+		},
+		"AzureBatch4_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "rasebatchacc05 "
+		},
+		"AzureBatch5_properties_typeProperties_batchUri": {
+			"type": "string",
+			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
+		},
+		"AzureBatch5_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "pool-9-2"
+		},
+		"AzureBatch5_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "rasebatchacc05 "
+		},
+		"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65123_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
-		"triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+		"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
 			"type": "string",
-			"defaultValue": "@trigger().outputs.body.fileName"
+			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
 		},
-		"triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+		"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
 			"type": "string",
-			"defaultValue": "@trigger().outputs.body.folderPath"
+			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
 		},
-		"triggerSVLFilesGlobal_properties_typeProperties_scope": {
+		"triggerLoggerSN_65169_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65170_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65173_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65186_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
@@ -56,6 +120,48 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBatch4')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBatch",
+				"typeProperties": {
+					"batchUri": "[parameters('AzureBatch4_properties_typeProperties_batchUri')]",
+					"poolName": "[parameters('AzureBatch4_properties_typeProperties_poolName')]",
+					"accountName": "[parameters('AzureBatch4_properties_typeProperties_accountName')]",
+					"linkedServiceName": {
+						"referenceName": "batchStorage",
+						"type": "LinkedServiceReference"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBatch5')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBatch",
+				"typeProperties": {
+					"batchUri": "[parameters('AzureBatch5_properties_typeProperties_batchUri')]",
+					"poolName": "[parameters('AzureBatch5_properties_typeProperties_poolName')]",
+					"accountName": "[parameters('AzureBatch5_properties_typeProperties_accountName')]",
+					"linkedServiceName": {
+						"referenceName": "batchStorage",
+						"type": "LinkedServiceReference"
+					},
+					"accessKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureBatch5_accessKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/check-incoming-pipeline-sync-to-csv')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -266,7 +372,9 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/python-test_chunkid-w-params')]",
@@ -364,7 +472,226 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ra-func-compliance')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CheckForSensorFeedQuorum",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "CosmosDbSqlApiSource",
+								"preferredRegions": []
+							},
+							"dataset": {
+								"referenceName": "radb",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "nms-items"
+								}
+							}
+						}
+					},
+					{
+						"name": "SensorFeedQuorumExists",
+						"type": "Switch",
+						"dependsOn": [
+							{
+								"activity": "CheckForSensorFeedQuorum",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"on": {
+								"value": "@activity('CheckForSensorFeedQuorum').output.quorumExists",
+								"type": "Expression"
+							},
+							"cases": [
+								{
+									"value": "Case1",
+									"activities": [
+										{
+											"name": "QueryPreProLogger_copy1",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "queryResult",
+												"value": "'ok'"
+											}
+										},
+										{
+											"name": "FindLocksSWLs",
+											"type": "Custom",
+											"dependsOn": [
+												{
+													"activity": "QueryPreProLogger_copy1",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "7.00:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"command": "powershell \"python cmdFindLocksSWLs.py\"",
+												"referenceObjects": {
+													"linkedServices": [],
+													"datasets": []
+												}
+											},
+											"linkedServiceName": {
+												"referenceName": "AzureBatch4",
+												"type": "LinkedServiceReference"
+											}
+										},
+										{
+											"name": "FindSPL",
+											"type": "Custom",
+											"dependsOn": [
+												{
+													"activity": "FindLocksSWLs",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "7.00:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"command": "powershell \"python cmdFindSPL.py\"",
+												"referenceObjects": {
+													"linkedServices": [],
+													"datasets": []
+												}
+											},
+											"linkedServiceName": {
+												"referenceName": "AzureBatch4",
+												"type": "LinkedServiceReference"
+											}
+										},
+										{
+											"name": "QuerySWLs_copy1",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "FindLocksSWLs",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "queryResult",
+												"value": "'ok'"
+											}
+										},
+										{
+											"name": "QuerySPLs_copy1",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "FindSPL",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "queryResult",
+												"value": "'ok'"
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"radbContainer": {
+						"type": "string",
+						"defaultValue": "nms-items"
+					},
+					"blobContainerName": {
+						"type": "string",
+						"defaultValue": "nms-files-input"
+					},
+					"triggerFilePath": {
+						"type": "string",
+						"defaultValue": "L89174_records.csv"
+					},
+					"ChunkID": {
+						"type": "string",
+						"defaultValue": "89174\t"
+					},
+					"raPipelineId": {
+						"type": "string",
+						"defaultValue": "f97597f2-68e0-4cfc-b61c-c2de8bf4775e"
+					},
+					"nmsHeaderStartTime": {
+						"type": "string",
+						"defaultValue": "2021-10-03T04:00:00"
+					}
+				},
+				"variables": {
+					"RowNo": {
+						"type": "String",
+						"defaultValue": "0"
+					},
+					"triggerFileName": {
+						"type": "String"
+					},
+					"chunkId": {
+						"type": "String"
+					},
+					"queryResult": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-08-24T05:45:33Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ra-func-process-orch')]",
@@ -373,7 +700,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Invoke-preprologger-function",
+						"name": "PreProLogger",
 						"type": "Custom",
 						"dependsOn": [],
 						"policy": {
@@ -405,11 +732,11 @@
 						}
 					},
 					{
-						"name": "query-results",
+						"name": "QueryPreProLogger",
 						"type": "SetVariable",
 						"dependsOn": [
 							{
-								"activity": "Invoke-preprologger-function",
+								"activity": "PreProLogger",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -426,7 +753,7 @@
 						"type": "Custom",
 						"dependsOn": [
 							{
-								"activity": "query-results",
+								"activity": "PreProLogger",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -482,6 +809,40 @@
 							"referenceName": "AzureBatch4",
 							"type": "LinkedServiceReference"
 						}
+					},
+					{
+						"name": "QuerySWLs",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "FindLocksSWLs",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "queryResult",
+							"value": "'ok'"
+						}
+					},
+					{
+						"name": "QuerySPLs",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "FindSPL",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "queryResult",
+							"value": "'ok'"
+						}
 					}
 				],
 				"policy": {
@@ -532,7 +893,9 @@
 				"annotations": [],
 				"lastPublishTime": "2021-08-24T05:45:33Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/svlconvLogrSvlToRaNmsChunkFiles')]",
@@ -663,7 +1026,9 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/svlconvToRaNmsChunkFiles')]",
@@ -745,9 +1110,14 @@
 						"defaultValue": "89155"
 					}
 				},
+				"folder": {
+					"name": "archive"
+				},
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/dfLoadRecordsCSV')]",
@@ -1472,45 +1842,704 @@
 				"lastPublishTime": "2021-08-24T05:45:33Z"
 			},
 			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]",
 				"[concat(variables('factoryId'), '/pipelines/ra-func-process-orch')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/triggerNewSvlFile')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
+			"name": "[concat(parameters('factoryName'), '/ingest-new-nms-files-to-radb_v2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
+				"activities": [
 					{
-						"pipelineReference": {
-							"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
-							"type": "PipelineReference"
+						"name": "Copy-header-to-radb",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "SetChunkId",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
 						},
-						"parameters": {
-							"TriggerFilePath": "[parameters('triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
-							"TriggerFolderPath": "[parameters('triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"additionalColumns": [
+									{
+										"name": "RaPipelineId",
+										"value": {
+											"value": "@pipeline().RunId",
+											"type": "Expression"
+										}
+									},
+									{
+										"name": "NmsFile",
+										"value": "$$FILEPATH"
+									},
+									{
+										"name": "NmsDocumentType",
+										"value": {
+											"value": "@concat('header')",
+											"type": "Expression"
+										}
+									},
+									{
+										"name": "ChunkId",
+										"value": {
+											"value": "@variables('chunkId')",
+											"type": "Expression"
+										}
+									}
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"wildcardFileName": {
+										"value": "L@{variables('chunkId')}_header.json",
+										"type": "Expression"
+									},
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "CosmosDbSqlApiSink",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "NMSMeasurementJSON",
+								"type": "DatasetReference",
+								"parameters": {
+									"chunkid": {
+										"value": "@variables('chunkId')",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "radb",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": {
+										"value": "@pipeline().parameters.radbContainer",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					},
+					{
+						"name": "Copy-summary-to-radb",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "SetChunkId",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"additionalColumns": [
+									{
+										"name": "RaPipelineId",
+										"value": {
+											"value": "@pipeline().RunId",
+											"type": "Expression"
+										}
+									},
+									{
+										"name": "NmsFile",
+										"value": "$$FILEPATH"
+									},
+									{
+										"name": "NmsDocumentType",
+										"value": {
+											"value": "@concat('summary')",
+											"type": "Expression"
+										}
+									}
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*_summary.json",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "CosmosDbSqlApiSink",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "NMSMeasurementJSON",
+								"type": "DatasetReference",
+								"parameters": {
+									"chunkid": {
+										"value": "@variables('chunkId')",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "radb",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": {
+										"value": "@pipeline().parameters.radbContainer",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					},
+					{
+						"name": "Copy-gps-csv-to-radb",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "SetChunkId",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"additionalColumns": [
+									{
+										"name": "RaPipelineId",
+										"value": {
+											"value": "@pipeline().RunId",
+											"type": "Expression"
+										}
+									},
+									{
+										"name": "NmsFile",
+										"value": "$$FILEPATH"
+									},
+									{
+										"name": "NmsDocumentType",
+										"value": {
+											"value": "@concat('gps')",
+											"type": "Expression"
+										}
+									}
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*_gps.csv",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "CosmosDbSqlApiSink",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "nmsMeasCSV2",
+								"type": "DatasetReference",
+								"parameters": {
+									"chunkid": {
+										"value": "@variables('chunkId')",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "radb",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": {
+										"value": "@pipeline().parameters.radbContainer",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					},
+					{
+						"name": "validate-incoming-chunk",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "SetIncomingFile",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "SetIncomingFolder",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": {
+								"value": "python ChunkId_cmd.py \"@{pipeline().parameters.triggerFilePath}\"",
+								"type": "Expression"
+							},
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "ra-function-input",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatch4",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "SetIncomingFile",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "triggerFileName",
+							"value": {
+								"value": "@pipeline().parameters.triggerFilePath",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "SetChunkId",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "validate-incoming-chunk",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "chunkId",
+							"value": {
+								"value": "@string(int(activity('validate-incoming-chunk').output.customOutput.ChunkId))",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "derive-nms-measurement-timestamp",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "Copy-gps-csv-to-radb",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "set-nms-records-start-time",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "setLoggerSN",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": {
+								"value": "python raNmsRecords_Derive_Timestamp.py @{pipeline().parameters.triggerFilePath}  @{variables('chunkId')} @{variables('NmsRecordsStartTime')}",
+								"type": "Expression"
+							},
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "ra-function-input",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatch4",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Copy-records-csv-to-radb",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "derive-nms-measurement-timestamp",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"additionalColumns": [
+									{
+										"name": "RaPipelineId",
+										"value": {
+											"value": "@pipeline().RunId",
+											"type": "Expression"
+										}
+									},
+									{
+										"name": "NmsFile",
+										"value": "$$FILEPATH"
+									},
+									{
+										"name": "NmsDocumentType",
+										"value": {
+											"value": "@concat('records')",
+											"type": "Expression"
+										}
+									},
+									{
+										"name": "ChunkId",
+										"value": {
+											"value": "@variables('chunkId')",
+											"type": "Expression"
+										}
+									},
+									{
+										"name": "SN",
+										"value": {
+											"value": "@variables('LoggerSN')",
+											"type": "Expression"
+										}
+									}
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "CosmosDbSqlApiSink",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "nmsRecordsCsv",
+								"type": "DatasetReference",
+								"parameters": {
+									"chunkid": {
+										"value": "@variables('chunkId')",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "radbRecords",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "LookupChunkHeaderInfo",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Copy-header-to-radb",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy-gps-csv-to-radb",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "CosmosDbSqlApiSource",
+								"query": {
+									"value": "SELECT \nc.unit_spec.unit_number, \nc.params_global_settings.measure_start_datetime FROM c \nwhere \n    c.RaPipelineId = '@{pipeline().RunId}'\n    and c.NmsDocumentType = 'header' \n    ",
+									"type": "Expression"
+								},
+								"preferredRegions": [],
+								"detectDatetime": false
+							},
+							"dataset": {
+								"referenceName": "radb",
+								"type": "DatasetReference",
+								"parameters": {
+									"containerName": "nms-items"
+								}
+							},
+							"firstRowOnly": true
+						}
+					},
+					{
+						"name": "exec-ra-func-process",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Copy-records-csv-to-radb",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy-summary-to-radb",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ra-func-process-orch",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"radbContainer": {
+									"value": "@pipeline().parameters.radbContainer",
+									"type": "Expression"
+								},
+								"blobContainerName": {
+									"value": "@pipeline().parameters.blobContainerName",
+									"type": "Expression"
+								},
+								"triggerFilePath": {
+									"value": "@pipeline().parameters.triggerFilePath",
+									"type": "Expression"
+								},
+								"ChunkID": {
+									"value": "@variables('chunkId')",
+									"type": "Expression"
+								},
+								"raPipelineId": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								},
+								"nmsHeaderStartTime": {
+									"value": "@{variables('NmsRecordsStartTime')}",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "set-nms-records-start-time",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "LookupChunkHeaderInfo",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "NmsRecordsStartTime",
+							"value": {
+								"value": "@{activity('LookupChunkHeaderInfo').output.firstRow.measure_start_datetime}",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "SetIncomingFolder",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "triggerFileFolderPath",
+							"value": {
+								"value": "@pipeline().parameters.triggerFilePath",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "setLoggerSN",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "LookupChunkHeaderInfo",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "LoggerSN",
+							"value": {
+								"value": "@{activity('LookupChunkHeaderInfo').output.firstRow.unit_number}",
+								"type": "Expression"
+							}
 						}
 					}
 				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65170/",
-					"blobPathEndsWith": ".SVL",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('triggerNewSvlFile_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"radbContainer": {
+						"type": "string",
+						"defaultValue": "nms-items"
+					},
+					"blobContainerName": {
+						"type": "string",
+						"defaultValue": "nms-files-input"
+					},
+					"triggerFilePath": {
+						"type": "string",
+						"defaultValue": "L88837_records.csv"
+					},
+					"triggerFolderName": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"RowNo": {
+						"type": "String",
+						"defaultValue": "0"
+					},
+					"triggerFileName": {
+						"type": "String"
+					},
+					"chunkId": {
+						"type": "String"
+					},
+					"queryResult": {
+						"type": "String"
+					},
+					"NmsRecordsStartTime": {
+						"type": "String"
+					},
+					"triggerFileFolderPath": {
+						"type": "String"
+					},
+					"LoggerSN": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "archive"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-08-24T05:45:33Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/svlconvLogrSvlToRaNmsChunkFiles')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]",
+				"[concat(variables('factoryId'), '/pipelines/ra-func-process-orch')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/triggerSVLFilesGlobal')]",
+			"name": "[concat(parameters('factoryName'), '/triggerLoggerSN_65123')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1523,17 +2552,153 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"TriggerFilePath": "[parameters('triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
-							"TriggerFolderPath": "[parameters('triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+							"TriggerFilePath": "[parameters('triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
+							"TriggerFolderPath": "[parameters('triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
 						}
 					}
 				],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/",
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65123/",
 					"blobPathEndsWith": "SVL",
 					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('triggerSVLFilesGlobal_properties_typeProperties_scope')]",
+					"scope": "[parameters('triggerLoggerSN_65123_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/svlconvLogrSvlToRaNmsChunkFiles')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerLoggerSN_65169')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"TriggerFilePath": "[parameters('triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
+							"TriggerFolderPath": "[parameters('triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65169/",
+					"blobPathEndsWith": "SVL",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('triggerLoggerSN_65169_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/svlconvLogrSvlToRaNmsChunkFiles')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerLoggerSN_65170')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"TriggerFilePath": "[parameters('triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
+							"TriggerFolderPath": "[parameters('triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65170/",
+					"blobPathEndsWith": "SVL",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('triggerLoggerSN_65170_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/svlconvLogrSvlToRaNmsChunkFiles')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerLoggerSN_65173')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"TriggerFilePath": "[parameters('triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
+							"TriggerFolderPath": "[parameters('triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65173/",
+					"blobPathEndsWith": "SVL",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('triggerLoggerSN_65173_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/svlconvLogrSvlToRaNmsChunkFiles')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerLoggerSN_65186')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "svlconvLogrSvlToRaNmsChunkFiles",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"TriggerFilePath": "[parameters('triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]",
+							"TriggerFolderPath": "[parameters('triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65186/",
+					"blobPathEndsWith": "SVL",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('triggerLoggerSN_65186_properties_typeProperties_scope')]",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]

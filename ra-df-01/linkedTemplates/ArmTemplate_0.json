@@ -27,9 +27,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessKey' of 'AzureBatch3'"
 		},
-		"AzureBatch5_accessKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessKey' of 'AzureBatch5'"
+		"triggerNewSvlFile_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"triggerSVLFilesGlobal_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
 		"AzureBatch1_properties_typeProperties_batchUri": {
 			"type": "string",
@@ -66,30 +70,6 @@
 		"AzureBatch3_properties_typeProperties_accountName": {
 			"type": "string",
 			"defaultValue": "rabatchacc01"
-		},
-		"AzureBatch4_properties_typeProperties_batchUri": {
-			"type": "string",
-			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
-		},
-		"AzureBatch4_properties_typeProperties_poolName": {
-			"type": "string",
-			"defaultValue": "pool-9-1"
-		},
-		"AzureBatch4_properties_typeProperties_accountName": {
-			"type": "string",
-			"defaultValue": "rasebatchacc05 "
-		},
-		"AzureBatch5_properties_typeProperties_batchUri": {
-			"type": "string",
-			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
-		},
-		"AzureBatch5_properties_typeProperties_poolName": {
-			"type": "string",
-			"defaultValue": "pool-9-2"
-		},
-		"AzureBatch5_properties_typeProperties_accountName": {
-			"type": "string",
-			"defaultValue": "rasebatchacc05 "
 		}
 	},
 	"variables": {
@@ -164,6 +144,48 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('rablobservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerNewSvlFile')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/files/SV_200A_65170/",
+					"blobPathEndsWith": ".SVL",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('triggerNewSvlFile_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerSVLFilesGlobal')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/nms-files-sync-aws/blobs/",
+					"blobPathEndsWith": "SVL",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('triggerSVLFilesGlobal_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
 				}
 			},
 			"dependsOn": []
@@ -1473,7 +1495,11 @@
 						"type": "String"
 					},
 					{
-						"name": " flag",
+						"name": "CorrectedTimestamp",
+						"type": "String"
+					},
+					{
+						"name": "flag",
 						"type": "String"
 					},
 					{
@@ -2079,52 +2105,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/rablobservice')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureBatch4')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBatch",
-				"typeProperties": {
-					"batchUri": "[parameters('AzureBatch4_properties_typeProperties_batchUri')]",
-					"poolName": "[parameters('AzureBatch4_properties_typeProperties_poolName')]",
-					"accountName": "[parameters('AzureBatch4_properties_typeProperties_accountName')]",
-					"linkedServiceName": {
-						"referenceName": "batchStorage",
-						"type": "LinkedServiceReference"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureBatch5')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBatch",
-				"typeProperties": {
-					"batchUri": "[parameters('AzureBatch5_properties_typeProperties_batchUri')]",
-					"poolName": "[parameters('AzureBatch5_properties_typeProperties_poolName')]",
-					"accountName": "[parameters('AzureBatch5_properties_typeProperties_accountName')]",
-					"linkedServiceName": {
-						"referenceName": "batchStorage",
-						"type": "LinkedServiceReference"
-					},
-					"accessKey": {
-						"type": "SecureString",
-						"value": "[parameters('AzureBatch5_accessKey')]"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]"
 			]
 		}
 	]

@@ -91,6 +91,66 @@
 			"type": "string",
 			"defaultValue": "rasebatchacc05 "
 		},
+		"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65123_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65169_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65170_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65173_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"type": "string",
+			"defaultValue": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65186_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
 		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
 			"type": "string",
 			"defaultValue": "nms-items"
@@ -111,25 +171,9 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
-		"triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
-			"type": "string",
-			"defaultValue": "@trigger().outputs.body.fileName"
-		},
-		"triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
-			"type": "string",
-			"defaultValue": "@trigger().outputs.body.folderPath"
-		},
 		"triggerNewSvlFile_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
-		},
-		"triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
-			"type": "string",
-			"defaultValue": "@trigger().outputs.body.fileName"
-		},
-		"triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
-			"type": "string",
-			"defaultValue": "@trigger().outputs.body.folderPath"
 		},
 		"triggerSVLFilesGlobal_properties_typeProperties_scope": {
 			"type": "string",
@@ -177,8 +221,11 @@
 					"AzureBatch3_accessKey": {
 						"value": "[parameters('AzureBatch3_accessKey')]"
 					},
-					"AzureBatch5_accessKey": {
-						"value": "[parameters('AzureBatch5_accessKey')]"
+					"triggerNewSvlFile_properties_typeProperties_scope": {
+						"value": "[parameters('triggerNewSvlFile_properties_typeProperties_scope')]"
+					},
+					"triggerSVLFilesGlobal_properties_typeProperties_scope": {
+						"value": "[parameters('triggerSVLFilesGlobal_properties_typeProperties_scope')]"
 					},
 					"AzureBatch1_properties_typeProperties_batchUri": {
 						"value": "[parameters('AzureBatch1_properties_typeProperties_batchUri')]"
@@ -206,24 +253,6 @@
 					},
 					"AzureBatch3_properties_typeProperties_accountName": {
 						"value": "[parameters('AzureBatch3_properties_typeProperties_accountName')]"
-					},
-					"AzureBatch4_properties_typeProperties_batchUri": {
-						"value": "[parameters('AzureBatch4_properties_typeProperties_batchUri')]"
-					},
-					"AzureBatch4_properties_typeProperties_poolName": {
-						"value": "[parameters('AzureBatch4_properties_typeProperties_poolName')]"
-					},
-					"AzureBatch4_properties_typeProperties_accountName": {
-						"value": "[parameters('AzureBatch4_properties_typeProperties_accountName')]"
-					},
-					"AzureBatch5_properties_typeProperties_batchUri": {
-						"value": "[parameters('AzureBatch5_properties_typeProperties_batchUri')]"
-					},
-					"AzureBatch5_properties_typeProperties_poolName": {
-						"value": "[parameters('AzureBatch5_properties_typeProperties_poolName')]"
-					},
-					"AzureBatch5_properties_typeProperties_accountName": {
-						"value": "[parameters('AzureBatch5_properties_typeProperties_accountName')]"
 					}
 				}
 			},
@@ -243,23 +272,71 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
-						"value": "[parameters('triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]"
+					"AzureBatch5_accessKey": {
+						"value": "[parameters('AzureBatch5_accessKey')]"
 					},
-					"triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
-						"value": "[parameters('triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+					"AzureBatch4_properties_typeProperties_batchUri": {
+						"value": "[parameters('AzureBatch4_properties_typeProperties_batchUri')]"
 					},
-					"triggerNewSvlFile_properties_typeProperties_scope": {
-						"value": "[parameters('triggerNewSvlFile_properties_typeProperties_scope')]"
+					"AzureBatch4_properties_typeProperties_poolName": {
+						"value": "[parameters('AzureBatch4_properties_typeProperties_poolName')]"
 					},
-					"triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
-						"value": "[parameters('triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]"
+					"AzureBatch4_properties_typeProperties_accountName": {
+						"value": "[parameters('AzureBatch4_properties_typeProperties_accountName')]"
 					},
-					"triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
-						"value": "[parameters('triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+					"AzureBatch5_properties_typeProperties_batchUri": {
+						"value": "[parameters('AzureBatch5_properties_typeProperties_batchUri')]"
 					},
-					"triggerSVLFilesGlobal_properties_typeProperties_scope": {
-						"value": "[parameters('triggerSVLFilesGlobal_properties_typeProperties_scope')]"
+					"AzureBatch5_properties_typeProperties_poolName": {
+						"value": "[parameters('AzureBatch5_properties_typeProperties_poolName')]"
+					},
+					"AzureBatch5_properties_typeProperties_accountName": {
+						"value": "[parameters('AzureBatch5_properties_typeProperties_accountName')]"
+					},
+					"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+						"value": "[parameters('triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]"
+					},
+					"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+						"value": "[parameters('triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+					},
+					"triggerLoggerSN_65123_properties_typeProperties_scope": {
+						"value": "[parameters('triggerLoggerSN_65123_properties_typeProperties_scope')]"
+					},
+					"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+						"value": "[parameters('triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]"
+					},
+					"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+						"value": "[parameters('triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+					},
+					"triggerLoggerSN_65169_properties_typeProperties_scope": {
+						"value": "[parameters('triggerLoggerSN_65169_properties_typeProperties_scope')]"
+					},
+					"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+						"value": "[parameters('triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]"
+					},
+					"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+						"value": "[parameters('triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+					},
+					"triggerLoggerSN_65170_properties_typeProperties_scope": {
+						"value": "[parameters('triggerLoggerSN_65170_properties_typeProperties_scope')]"
+					},
+					"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+						"value": "[parameters('triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]"
+					},
+					"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+						"value": "[parameters('triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+					},
+					"triggerLoggerSN_65173_properties_typeProperties_scope": {
+						"value": "[parameters('triggerLoggerSN_65173_properties_typeProperties_scope')]"
+					},
+					"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+						"value": "[parameters('triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath')]"
+					},
+					"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+						"value": "[parameters('triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath')]"
+					},
+					"triggerLoggerSN_65186_properties_typeProperties_scope": {
+						"value": "[parameters('triggerLoggerSN_65186_properties_typeProperties_scope')]"
 					},
 					"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
 						"value": "[parameters('triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_radbContainer')]"

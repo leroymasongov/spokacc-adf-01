@@ -68,6 +68,51 @@
 		"AzureBatch5_properties_typeProperties_accountName": {
 			"value": "rasebatchacc05 "
 		},
+		"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"value": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"value": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65123_properties_typeProperties_scope": {
+			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"value": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65169_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"value": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65169_properties_typeProperties_scope": {
+			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"value": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65170_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"value": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65170_properties_typeProperties_scope": {
+			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"value": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65173_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"value": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65173_properties_typeProperties_scope": {
+			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
+		"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
+			"value": "@{pipeline().parameters.triggerFilePath}"
+		},
+		"triggerLoggerSN_65186_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
+			"value": "@{pipeline().parameters.triggerFolderPath}"
+		},
+		"triggerLoggerSN_65186_properties_typeProperties_scope": {
+			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
+		},
 		"triggerNewSourceFile_properties_ingest-new-nms-files-to-radb_parameters_radbContainer": {
 			"value": "nms-items"
 		},
@@ -83,20 +128,8 @@
 		"triggerNewSourceFile_properties_typeProperties_scope": {
 			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
-		"triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
-			"value": "@trigger().outputs.body.fileName"
-		},
-		"triggerNewSvlFile_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
-			"value": "@trigger().outputs.body.folderPath"
-		},
 		"triggerNewSvlFile_properties_typeProperties_scope": {
 			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
-		},
-		"triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFilePath": {
-			"value": "@trigger().outputs.body.fileName"
-		},
-		"triggerSVLFilesGlobal_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_TriggerFolderPath": {
-			"value": "@trigger().outputs.body.folderPath"
 		},
 		"triggerSVLFilesGlobal_properties_typeProperties_scope": {
 			"value": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
