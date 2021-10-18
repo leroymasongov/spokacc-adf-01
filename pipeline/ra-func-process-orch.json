@@ -30,7 +30,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureBatch4",
+					"referenceName": "AzureBatchDs",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -78,7 +78,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureBatch4",
+					"referenceName": "AzureBatchDs",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -109,7 +109,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureBatch4",
+					"referenceName": "AzureBatchDs",
 					"type": "LinkedServiceReference"
 				}
 			},
