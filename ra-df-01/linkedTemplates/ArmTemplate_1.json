@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessKey' of 'AzureBatch5'"
 		},
+		"AzureBatchDs_accessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessKey' of 'AzureBatchDs'"
+		},
 		"AzureBatch4_properties_typeProperties_batchUri": {
 			"type": "string",
 			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
@@ -34,6 +38,18 @@
 		"AzureBatch5_properties_typeProperties_accountName": {
 			"type": "string",
 			"defaultValue": "rasebatchacc05 "
+		},
+		"AzureBatchDs_properties_typeProperties_batchUri": {
+			"type": "string",
+			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
+		},
+		"AzureBatchDs_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "pool-ds"
+		},
+		"AzureBatchDs_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "rasebatchacc05"
 		},
 		"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath": {
 			"type": "string",
@@ -157,6 +173,29 @@
 					"accessKey": {
 						"type": "SecureString",
 						"value": "[parameters('AzureBatch5_accessKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBatchDs')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBatch",
+				"typeProperties": {
+					"batchUri": "[parameters('AzureBatchDs_properties_typeProperties_batchUri')]",
+					"poolName": "[parameters('AzureBatchDs_properties_typeProperties_poolName')]",
+					"accountName": "[parameters('AzureBatchDs_properties_typeProperties_accountName')]",
+					"linkedServiceName": {
+						"referenceName": "batchStorage",
+						"type": "LinkedServiceReference"
+					},
+					"accessKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureBatchDs_accessKey')]"
 					}
 				}
 			},

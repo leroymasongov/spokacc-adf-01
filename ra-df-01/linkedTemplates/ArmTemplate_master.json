@@ -31,6 +31,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'rablobservice'"
 		},
+		"AzureBatchDs_accessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessKey' of 'AzureBatchDs'"
+		},
 		"AzureBatch1_properties_typeProperties_batchUri": {
 			"type": "string",
 			"defaultValue": "https://rabatchacc01.australiacentral.batch.azure.com"
@@ -179,6 +183,18 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/73fcf868-2d25-43c5-a736-162a94432e65/resourceGroups/ra-rg-central-01/providers/Microsoft.Storage/storageAccounts/rastoracc02"
 		},
+		"AzureBatchDs_properties_typeProperties_batchUri": {
+			"type": "string",
+			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
+		},
+		"AzureBatchDs_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "pool-ds"
+		},
+		"AzureBatchDs_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "rasebatchacc05"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -275,6 +291,9 @@
 					"AzureBatch5_accessKey": {
 						"value": "[parameters('AzureBatch5_accessKey')]"
 					},
+					"AzureBatchDs_accessKey": {
+						"value": "[parameters('AzureBatchDs_accessKey')]"
+					},
 					"AzureBatch4_properties_typeProperties_batchUri": {
 						"value": "[parameters('AzureBatch4_properties_typeProperties_batchUri')]"
 					},
@@ -292,6 +311,15 @@
 					},
 					"AzureBatch5_properties_typeProperties_accountName": {
 						"value": "[parameters('AzureBatch5_properties_typeProperties_accountName')]"
+					},
+					"AzureBatchDs_properties_typeProperties_batchUri": {
+						"value": "[parameters('AzureBatchDs_properties_typeProperties_batchUri')]"
+					},
+					"AzureBatchDs_properties_typeProperties_poolName": {
+						"value": "[parameters('AzureBatchDs_properties_typeProperties_poolName')]"
+					},
+					"AzureBatchDs_properties_typeProperties_accountName": {
+						"value": "[parameters('AzureBatchDs_properties_typeProperties_accountName')]"
 					},
 					"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath": {
 						"value": "[parameters('triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath')]"
