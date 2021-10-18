@@ -2409,7 +2409,7 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "AzureBatch4",
+							"referenceName": "AzureBatchDs",
 							"type": "LinkedServiceReference"
 						}
 					},
@@ -2499,7 +2499,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatchDs')]"
 			]
 		},
 		{
