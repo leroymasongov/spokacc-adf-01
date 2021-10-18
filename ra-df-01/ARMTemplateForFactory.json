@@ -648,7 +648,7 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "AzureBatch4",
+							"referenceName": "AzureBatchDs",
 							"type": "LinkedServiceReference"
 						}
 					},
@@ -732,7 +732,7 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "AzureBatch4",
+							"referenceName": "AzureBatchDs",
 							"type": "LinkedServiceReference"
 						}
 					},
@@ -1031,7 +1031,7 @@
 				"[concat(variables('factoryId'), '/datasets/radb')]",
 				"[concat(variables('factoryId'), '/datasets/nmsMeasCSV2')]",
 				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatchDs')]",
 				"[concat(variables('factoryId'), '/datasets/nmsRecordsCsv')]",
 				"[concat(variables('factoryId'), '/datasets/radbRecords')]",
 				"[concat(variables('factoryId'), '/pipelines/ra-func-process-orch')]"
@@ -2197,7 +2197,7 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "AzureBatch4",
+							"referenceName": "AzureBatchDs",
 							"type": "LinkedServiceReference"
 						}
 					},
@@ -2245,7 +2245,7 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "AzureBatch4",
+							"referenceName": "AzureBatchDs",
 							"type": "LinkedServiceReference"
 						}
 					},
@@ -2276,7 +2276,7 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "AzureBatch4",
+							"referenceName": "AzureBatchDs",
 							"type": "LinkedServiceReference"
 						}
 					},
@@ -2365,7 +2365,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureBatch4')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatchDs')]"
 			]
 		},
 		{
