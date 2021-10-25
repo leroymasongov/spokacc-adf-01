@@ -23,7 +23,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "powershell \"Expand-Archive svlconv.zip -DestinationPath  . ; ls; .\\cmdSvlConv.ps1 @{variables('FileFullPath')}; ls\"",
+						"value": "/bin/sh -c python cmd_svlconv.py L837.SVL",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
