@@ -75,7 +75,7 @@
 			"value": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
 		},
 		"AzureBatchDs_properties_typeProperties_poolName": {
-			"value": "pool-11"
+			"value": "pool-ds2"
 		},
 		"AzureBatchDs_properties_typeProperties_accountName": {
 			"value": "rasebatchacc05"
