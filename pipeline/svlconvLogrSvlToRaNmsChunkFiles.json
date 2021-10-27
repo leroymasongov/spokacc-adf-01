@@ -23,7 +23,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "/bin/sh -c python cmd_svlconv.py L837.SVL",
+						"value": "/bin/sh -c python ./svlconv/cmd_svlconv.py L837.SVL",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
