@@ -23,7 +23,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "/bin/sh -c python ./SvlConv/cmd_svlconv.py L837.SVL",
+						"value": "/bin/bash/ -c \"unzip SVLConv.zip && cd svlconv && python svl2docs_pipeline.py L888.SVL\"",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
