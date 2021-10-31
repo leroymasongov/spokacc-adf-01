@@ -25,10 +25,6 @@
 						"linkedServices": [],
 						"datasets": []
 					}
-				},
-				"linkedServiceName": {
-					"referenceName": "AzureBatch4",
-					"type": "LinkedServiceReference"
 				}
 			},
 			{
@@ -54,10 +50,6 @@
 						"linkedServices": [],
 						"datasets": []
 					}
-				},
-				"linkedServiceName": {
-					"referenceName": "AzureBatch4",
-					"type": "LinkedServiceReference"
 				}
 			}
 		],
