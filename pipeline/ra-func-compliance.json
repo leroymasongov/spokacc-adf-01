@@ -84,6 +84,10 @@
 											"linkedServices": [],
 											"datasets": []
 										}
+									},
+									"linkedServiceName": {
+										"referenceName": "AzureBatchDs",
+										"type": "LinkedServiceReference"
 									}
 								},
 								{
@@ -111,6 +115,10 @@
 											"linkedServices": [],
 											"datasets": []
 										}
+									},
+									"linkedServiceName": {
+										"referenceName": "AzureBatchDs",
+										"type": "LinkedServiceReference"
 									}
 								},
 								{
