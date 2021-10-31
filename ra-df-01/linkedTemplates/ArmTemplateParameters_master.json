@@ -5,15 +5,6 @@
 		"factoryName": {
 			"value": "ra-df-01"
 		},
-		"AzureBatch2_accessKey": {
-			"value": ""
-		},
-		"AzureBatch3_accessKey": {
-			"value": ""
-		},
-		"AzureBatch5_accessKey": {
-			"value": ""
-		},
 		"AzureBatchDs_accessKey": {
 			"value": ""
 		},
@@ -26,56 +17,11 @@
 		"rablobservice_connectionString": {
 			"value": ""
 		},
-		"AzureBatch1_properties_typeProperties_batchUri": {
-			"value": "https://rabatchacc01.australiacentral.batch.azure.com"
-		},
-		"AzureBatch1_properties_typeProperties_poolName": {
-			"value": "python-datasci-01"
-		},
-		"AzureBatch1_properties_typeProperties_accountName": {
-			"value": "rabatchacc01 "
-		},
-		"AzureBatch2_properties_typeProperties_batchUri": {
-			"value": "https://rabatchacc01.australiacentral.batch.azure.com"
-		},
-		"AzureBatch2_properties_typeProperties_poolName": {
-			"value": "pool2"
-		},
-		"AzureBatch2_properties_typeProperties_accountName": {
-			"value": "rabatchacc01"
-		},
-		"AzureBatch3_properties_typeProperties_batchUri": {
-			"value": "https://rabatchacc01.australiacentral.batch.azure.com"
-		},
-		"AzureBatch3_properties_typeProperties_poolName": {
-			"value": "ra-func-02"
-		},
-		"AzureBatch3_properties_typeProperties_accountName": {
-			"value": "rabatchacc01"
-		},
-		"AzureBatch4_properties_typeProperties_batchUri": {
-			"value": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
-		},
-		"AzureBatch4_properties_typeProperties_poolName": {
-			"value": "pool-9-1"
-		},
-		"AzureBatch4_properties_typeProperties_accountName": {
-			"value": "rasebatchacc05 "
-		},
-		"AzureBatch5_properties_typeProperties_batchUri": {
-			"value": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
-		},
-		"AzureBatch5_properties_typeProperties_poolName": {
-			"value": "pool-9-2"
-		},
-		"AzureBatch5_properties_typeProperties_accountName": {
-			"value": "rasebatchacc05 "
-		},
 		"AzureBatchDs_properties_typeProperties_batchUri": {
 			"value": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
 		},
 		"AzureBatchDs_properties_typeProperties_poolName": {
-			"value": "pool-ds2"
+			"value": "pool-ds3"
 		},
 		"AzureBatchDs_properties_typeProperties_accountName": {
 			"value": "rasebatchacc05"

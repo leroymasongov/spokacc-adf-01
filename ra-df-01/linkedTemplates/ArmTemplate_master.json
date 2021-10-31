@@ -7,18 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "ra-df-01"
 		},
-		"AzureBatch2_accessKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessKey' of 'AzureBatch2'"
-		},
-		"AzureBatch3_accessKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessKey' of 'AzureBatch3'"
-		},
-		"AzureBatch5_accessKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessKey' of 'AzureBatch5'"
-		},
 		"AzureBatchDs_accessKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accessKey' of 'AzureBatchDs'"
@@ -35,73 +23,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'rablobservice'"
 		},
-		"AzureBatch1_properties_typeProperties_batchUri": {
-			"type": "string",
-			"defaultValue": "https://rabatchacc01.australiacentral.batch.azure.com"
-		},
-		"AzureBatch1_properties_typeProperties_poolName": {
-			"type": "string",
-			"defaultValue": "python-datasci-01"
-		},
-		"AzureBatch1_properties_typeProperties_accountName": {
-			"type": "string",
-			"defaultValue": "rabatchacc01 "
-		},
-		"AzureBatch2_properties_typeProperties_batchUri": {
-			"type": "string",
-			"defaultValue": "https://rabatchacc01.australiacentral.batch.azure.com"
-		},
-		"AzureBatch2_properties_typeProperties_poolName": {
-			"type": "string",
-			"defaultValue": "pool2"
-		},
-		"AzureBatch2_properties_typeProperties_accountName": {
-			"type": "string",
-			"defaultValue": "rabatchacc01"
-		},
-		"AzureBatch3_properties_typeProperties_batchUri": {
-			"type": "string",
-			"defaultValue": "https://rabatchacc01.australiacentral.batch.azure.com"
-		},
-		"AzureBatch3_properties_typeProperties_poolName": {
-			"type": "string",
-			"defaultValue": "ra-func-02"
-		},
-		"AzureBatch3_properties_typeProperties_accountName": {
-			"type": "string",
-			"defaultValue": "rabatchacc01"
-		},
-		"AzureBatch4_properties_typeProperties_batchUri": {
-			"type": "string",
-			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
-		},
-		"AzureBatch4_properties_typeProperties_poolName": {
-			"type": "string",
-			"defaultValue": "pool-9-1"
-		},
-		"AzureBatch4_properties_typeProperties_accountName": {
-			"type": "string",
-			"defaultValue": "rasebatchacc05 "
-		},
-		"AzureBatch5_properties_typeProperties_batchUri": {
-			"type": "string",
-			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
-		},
-		"AzureBatch5_properties_typeProperties_poolName": {
-			"type": "string",
-			"defaultValue": "pool-9-2"
-		},
-		"AzureBatch5_properties_typeProperties_accountName": {
-			"type": "string",
-			"defaultValue": "rasebatchacc05 "
-		},
 		"AzureBatchDs_properties_typeProperties_batchUri": {
 			"type": "string",
 			"defaultValue": "https://rasebatchacc05.australiasoutheast.batch.azure.com"
 		},
 		"AzureBatchDs_properties_typeProperties_poolName": {
 			"type": "string",
-			"defaultValue": "pool-ds2"
+			"defaultValue": "pool-ds3"
 		},
 		"AzureBatchDs_properties_typeProperties_accountName": {
 			"type": "string",
@@ -231,11 +159,8 @@
 					"rablobservice_connectionString": {
 						"value": "[parameters('rablobservice_connectionString')]"
 					},
-					"AzureBatch2_accessKey": {
-						"value": "[parameters('AzureBatch2_accessKey')]"
-					},
-					"AzureBatch3_accessKey": {
-						"value": "[parameters('AzureBatch3_accessKey')]"
+					"AzureBatchDs_accessKey": {
+						"value": "[parameters('AzureBatchDs_accessKey')]"
 					},
 					"triggerNewSvlFile_properties_typeProperties_scope": {
 						"value": "[parameters('triggerNewSvlFile_properties_typeProperties_scope')]"
@@ -243,32 +168,14 @@
 					"triggerSVLFilesGlobal_properties_typeProperties_scope": {
 						"value": "[parameters('triggerSVLFilesGlobal_properties_typeProperties_scope')]"
 					},
-					"AzureBatch1_properties_typeProperties_batchUri": {
-						"value": "[parameters('AzureBatch1_properties_typeProperties_batchUri')]"
+					"AzureBatchDs_properties_typeProperties_batchUri": {
+						"value": "[parameters('AzureBatchDs_properties_typeProperties_batchUri')]"
 					},
-					"AzureBatch1_properties_typeProperties_poolName": {
-						"value": "[parameters('AzureBatch1_properties_typeProperties_poolName')]"
+					"AzureBatchDs_properties_typeProperties_poolName": {
+						"value": "[parameters('AzureBatchDs_properties_typeProperties_poolName')]"
 					},
-					"AzureBatch1_properties_typeProperties_accountName": {
-						"value": "[parameters('AzureBatch1_properties_typeProperties_accountName')]"
-					},
-					"AzureBatch2_properties_typeProperties_batchUri": {
-						"value": "[parameters('AzureBatch2_properties_typeProperties_batchUri')]"
-					},
-					"AzureBatch2_properties_typeProperties_poolName": {
-						"value": "[parameters('AzureBatch2_properties_typeProperties_poolName')]"
-					},
-					"AzureBatch2_properties_typeProperties_accountName": {
-						"value": "[parameters('AzureBatch2_properties_typeProperties_accountName')]"
-					},
-					"AzureBatch3_properties_typeProperties_batchUri": {
-						"value": "[parameters('AzureBatch3_properties_typeProperties_batchUri')]"
-					},
-					"AzureBatch3_properties_typeProperties_poolName": {
-						"value": "[parameters('AzureBatch3_properties_typeProperties_poolName')]"
-					},
-					"AzureBatch3_properties_typeProperties_accountName": {
-						"value": "[parameters('AzureBatch3_properties_typeProperties_accountName')]"
+					"AzureBatchDs_properties_typeProperties_accountName": {
+						"value": "[parameters('AzureBatchDs_properties_typeProperties_accountName')]"
 					}
 				}
 			},
@@ -287,39 +194,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"AzureBatch5_accessKey": {
-						"value": "[parameters('AzureBatch5_accessKey')]"
-					},
-					"AzureBatchDs_accessKey": {
-						"value": "[parameters('AzureBatchDs_accessKey')]"
-					},
-					"AzureBatch4_properties_typeProperties_batchUri": {
-						"value": "[parameters('AzureBatch4_properties_typeProperties_batchUri')]"
-					},
-					"AzureBatch4_properties_typeProperties_poolName": {
-						"value": "[parameters('AzureBatch4_properties_typeProperties_poolName')]"
-					},
-					"AzureBatch4_properties_typeProperties_accountName": {
-						"value": "[parameters('AzureBatch4_properties_typeProperties_accountName')]"
-					},
-					"AzureBatch5_properties_typeProperties_batchUri": {
-						"value": "[parameters('AzureBatch5_properties_typeProperties_batchUri')]"
-					},
-					"AzureBatch5_properties_typeProperties_poolName": {
-						"value": "[parameters('AzureBatch5_properties_typeProperties_poolName')]"
-					},
-					"AzureBatch5_properties_typeProperties_accountName": {
-						"value": "[parameters('AzureBatch5_properties_typeProperties_accountName')]"
-					},
-					"AzureBatchDs_properties_typeProperties_batchUri": {
-						"value": "[parameters('AzureBatchDs_properties_typeProperties_batchUri')]"
-					},
-					"AzureBatchDs_properties_typeProperties_poolName": {
-						"value": "[parameters('AzureBatchDs_properties_typeProperties_poolName')]"
-					},
-					"AzureBatchDs_properties_typeProperties_accountName": {
-						"value": "[parameters('AzureBatchDs_properties_typeProperties_accountName')]"
 					},
 					"triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath": {
 						"value": "[parameters('triggerLoggerSN_65123_properties_svlconvLogrSvlToRaNmsChunkFiles_parameters_triggerFilePath')]"
