@@ -29,7 +29,7 @@
 		},
 		"AzureBatchDs_properties_typeProperties_poolName": {
 			"type": "string",
-			"defaultValue": "pool-ds3"
+			"defaultValue": "pool-ds6"
 		},
 		"AzureBatchDs_properties_typeProperties_accountName": {
 			"type": "string",
@@ -1581,7 +1581,7 @@
 						}
 					},
 					{
-						"name": "Custom1",
+						"name": "Custom1_copy1",
 						"type": "Custom",
 						"dependsOn": [
 							{
@@ -1601,7 +1601,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "/bin/bash/ -c unzip SVLConv.zip && cd svlconv && python svl2docs_pipeline.py @{variables('TriggerFileName')}",
+								"value": "ls",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
@@ -1652,8 +1652,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBatchDs')]",
-				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]"
+				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatchDs')]"
 			]
 		},
 		{
