@@ -1529,45 +1529,6 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "svl-conv-single-file",
-						"type": "Custom",
-						"dependsOn": [
-							{
-								"activity": "SetFullFilePath",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"command": {
-								"value": "/bin/bash/ -c unzip SVLConv.zip && cd svlconv && python svl2docs_pipeline.py @{variables('TriggerFileName')}",
-								"type": "Expression"
-							},
-							"resourceLinkedService": {
-								"referenceName": "batchStorage",
-								"type": "LinkedServiceReference"
-							},
-							"folderPath": "svlconv-function-input",
-							"referenceObjects": {
-								"linkedServices": [],
-								"datasets": []
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureBatchDs",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
 						"name": "SetTriggerFileName",
 						"type": "SetVariable",
 						"dependsOn": [],
@@ -1618,6 +1579,45 @@
 								"type": "Expression"
 							}
 						}
+					},
+					{
+						"name": "Custom1",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "SetFullFilePath",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": {
+								"value": "/bin/bash/ -c unzip SVLConv.zip && cd svlconv && python svl2docs_pipeline.py @{variables('TriggerFileName')}",
+								"type": "Expression"
+							},
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "svlconv-function-input",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatchDs",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"policy": {
@@ -1652,8 +1652,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureBatchDs')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureBatchDs')]",
+				"[concat(variables('factoryId'), '/linkedServices/batchStorage')]"
 			]
 		},
 		{
