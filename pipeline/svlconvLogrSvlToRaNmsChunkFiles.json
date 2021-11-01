@@ -55,7 +55,7 @@
 				}
 			},
 			{
-				"name": "Custom1",
+				"name": "Custom1_copy1",
 				"type": "Custom",
 				"dependsOn": [
 					{
@@ -75,7 +75,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "/bin/bash/ -c unzip SVLConv.zip && cd svlconv && python svl2docs_pipeline.py @{variables('TriggerFileName')}",
+						"value": "ls",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
