@@ -536,7 +536,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "/bin/sh/ -c '\nunzip SVLConv.zip\ncd svlconv\npython svl2docs_pipeline.py L89289.SVL\n'",
+								"value": "/bin/sh/ -c '\nunzip SVLConv.zip\ncd svlconv\npython svl2docs_pipeline.py @{variables('TriggerFileName')}\ncat *.log\n'",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
@@ -643,7 +643,7 @@
 				"parameters": {
 					"triggerFilePath": {
 						"type": "string",
-						"defaultValue": "L89289.SVL"
+						"defaultValue": "L89239.SVL"
 					},
 					"triggerFolderPath": {
 						"type": "string",
