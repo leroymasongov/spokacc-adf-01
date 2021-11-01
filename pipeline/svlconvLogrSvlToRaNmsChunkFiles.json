@@ -55,35 +55,6 @@
 				}
 			},
 			{
-				"name": "single cmd line 1",
-				"type": "Custom",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"command": "unzip SVLConv.zip",
-					"resourceLinkedService": {
-						"referenceName": "batchStorage",
-						"type": "LinkedServiceReference"
-					},
-					"folderPath": "svlconv-function-input",
-					"referenceObjects": {
-						"linkedServices": [],
-						"datasets": []
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "AzureBatchDs",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "multi cmd line_copy1_copy1",
 				"type": "Custom",
 				"dependsOn": [
@@ -103,7 +74,46 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "/bin/sh -c '\nls\nunzip SVLConv.zip\necho ***************************\nls\n'",
+					"command": "/bin/sh -c '\nls\nunzip SVLConv.zip\nls\ncd SVLConv\nls *.py\nls\n'\n",
+					"resourceLinkedService": {
+						"referenceName": "batchStorage",
+						"type": "LinkedServiceReference"
+					},
+					"folderPath": "svlconv-function-input",
+					"referenceObjects": {
+						"linkedServices": [],
+						"datasets": []
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureBatchDs",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "multi cmd line_copy1_copy1_copy1",
+				"type": "Custom",
+				"dependsOn": [
+					{
+						"activity": "SetFullFilePath",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"command": {
+						"value": "/bin/sh -c '\nunzip SVLConv.zip\nls SVLConv/svlconv\nls SVLConv\npython SVLConv/svl2docs_pipeline.py @{variables('TriggerFileName')}\n'",
+						"type": "Expression"
+					},
 					"resourceLinkedService": {
 						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
