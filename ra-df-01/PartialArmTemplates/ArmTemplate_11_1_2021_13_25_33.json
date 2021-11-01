@@ -1,0 +1,133 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ra-df-01"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/svlconvLogrSvlToRaNmsChunkFiles')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "SetTriggerFileName",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "TriggerFileName",
+							"value": {
+								"value": "@{pipeline().parameters.triggerFilePath}",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "SetTriggerFolderPath",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "TriggerFolderPath",
+							"value": {
+								"value": "@{pipeline().parameters.TriggerFolderPath}",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "SetFullFilePath",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "SetTriggerFileName",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "SetTriggerFolderPath",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "FileFullPath",
+							"value": {
+								"value": "@concat(variables('TriggerFolderPath'),'/',variables('TriggerFileName'))",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "multi cmd line 1",
+						"type": "Custom",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": "unzip SVLConv.zip",
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "svlconv-function-input",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatchDs",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"parameters": {
+					"triggerFilePath": {
+						"type": "string",
+						"defaultValue": "L89289.SVL"
+					},
+					"triggerFolderPath": {
+						"type": "string",
+						"defaultValue": "nms-files-sync-aws/files/SV_200A_65170"
+					}
+				},
+				"variables": {
+					"TriggerFileName": {
+						"type": "String"
+					},
+					"ChunkId": {
+						"type": "String",
+						"defaultValue": "89155"
+					},
+					"TriggerFolderPath": {
+						"type": "String"
+					},
+					"FileFullPath": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		}
+	]
+}
