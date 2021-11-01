@@ -536,7 +536,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "/bin/sh/ -c '\nunzip SVLConv.zip\ncd svlconv\npython svl2docs_pipeline.py @{variables('TriggerFileName')}\ncat *.log\n'",
+								"value": "/bin/sh -c '\necho \"    \"\necho \" before unzip \"\nunzip SvlConv.zip\necho \"    \"\necho \" unzip zip \"\nls\necho \"    \"\necho \" running python \"\npython svl2docs_pipeline.py @{variables('TriggerFileName')}\necho \"    \"\necho \"  end of ADF Batch custom activity command  \"\n'",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
@@ -609,7 +609,14 @@
 					{
 						"name": "cmd test",
 						"type": "Custom",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "SetFullFilePath",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -619,12 +626,12 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"command": "python --version",
+							"command": "/bin/sh -c '\necho \"before unzip\"\nls\necho \"unzipping......\"\nunzip SvlConv.zip \necho \"after unzip\"\nls\n'",
 							"resourceLinkedService": {
 								"referenceName": "batchStorage",
 								"type": "LinkedServiceReference"
 							},
-							"folderPath": "svlconv-function-input",
+							"folderPath": "svlconv-2",
 							"referenceObjects": {
 								"linkedServices": [],
 								"datasets": []
