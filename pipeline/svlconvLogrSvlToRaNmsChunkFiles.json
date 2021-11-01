@@ -22,7 +22,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "/bin/sh -c '\nunzip SvlConv.zip\nls\n'",
+					"command": {
+						"value": "/bin/sh -c '\necho \"    \"\necho \" before unzip \"\nunzip SvlConv.zip\necho \"    \"\necho \" unzip zip \"\nls\necho \"    \"\necho \" running python \"\npython svl2docs_pipeline.py @{variables('TriggerFileName')}\necho \"    \"\necho \"  end of ADF Batch custom activity command  \"\n'",
+						"type": "Expression"
+					},
 					"resourceLinkedService": {
 						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
@@ -110,7 +113,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "/bin/sh -c '\nunzip SvlConv.zip\nls\n'",
+					"command": "/bin/sh -c '\necho \"before unzip\"\nls\necho \"unzipping......\"\nunzip SvlConv.zip \necho \"after unzip\"\nls\n'",
 					"resourceLinkedService": {
 						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
