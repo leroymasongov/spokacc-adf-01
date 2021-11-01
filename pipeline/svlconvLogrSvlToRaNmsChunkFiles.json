@@ -55,7 +55,7 @@
 				}
 			},
 			{
-				"name": "multi cmd line_copy1_copy1",
+				"name": "multi cmd cd SvlConv",
 				"type": "Custom",
 				"dependsOn": [
 					{
@@ -91,7 +91,7 @@
 				}
 			},
 			{
-				"name": "multi cmd line_copy1_copy1_copy1",
+				"name": "multi cmd lsvlconv",
 				"type": "Custom",
 				"dependsOn": [
 					{
@@ -111,7 +111,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "/bin/sh -c '\nunzip SVLConv.zip\nls SVLConv/svlconv\nls SVLConv\npython SVLConv/svl2docs_pipeline.py @{variables('TriggerFileName')}\n'",
+						"value": "/bin/sh -c '\nunzip SVLConv.zip\ncd SVLConv\npython svl2docs_pipeline.py @{variables('TriggerFileName')}\n'",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
