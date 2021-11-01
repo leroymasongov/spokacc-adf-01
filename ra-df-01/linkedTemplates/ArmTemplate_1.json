@@ -624,7 +624,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "/bin/sh -c '\nunzip SVLConv.zip\ncd SVLConv\npython svl2docs_pipeline.py @{variables('TriggerFileName')}\n'",
+								"value": "/bin/sh -c '\nunzip SVLConv.zip\ncd SVLConv\npython ./svl2docs_pipeline.py @{variables('TriggerFileName')}\n'",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
