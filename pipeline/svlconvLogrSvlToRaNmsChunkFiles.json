@@ -106,7 +106,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "cmd /c \"echo hello world\"",
+					"command": "test ls",
 					"resourceLinkedService": {
 						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
