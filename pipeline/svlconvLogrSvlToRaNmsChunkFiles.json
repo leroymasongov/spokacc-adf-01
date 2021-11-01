@@ -67,7 +67,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "unzip SVLConv.zip;  ls",
+					"command": "unzip SVLConv.zip",
 					"resourceLinkedService": {
 						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
