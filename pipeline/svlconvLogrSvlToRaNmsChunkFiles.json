@@ -3,6 +3,45 @@
 	"properties": {
 		"activities": [
 			{
+				"name": "svl-conv-single-file",
+				"type": "Custom",
+				"dependsOn": [
+					{
+						"activity": "SetFullFilePath",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"command": {
+						"value": "/bin/sh/ -c '\nunzip SVLConv.zip\ncd svlconv\npython svl2docs_pipeline.py L89289.SVL\n'",
+						"type": "Expression"
+					},
+					"resourceLinkedService": {
+						"referenceName": "batchStorage",
+						"type": "LinkedServiceReference"
+					},
+					"folderPath": "svlconv-2",
+					"referenceObjects": {
+						"linkedServices": [],
+						"datasets": []
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureBatchDs",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
 				"name": "SetTriggerFileName",
 				"type": "SetVariable",
 				"dependsOn": [],
@@ -55,16 +94,9 @@
 				}
 			},
 			{
-				"name": "multi cmd cd SvlConv",
+				"name": "cmd test",
 				"type": "Custom",
-				"dependsOn": [
-					{
-						"activity": "SetFullFilePath",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -74,46 +106,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "/bin/sh -c '\nls\nunzip SVLConv.zip\nls\ncd SVLConv\nls *.py\nls\n'\n",
-					"resourceLinkedService": {
-						"referenceName": "batchStorage",
-						"type": "LinkedServiceReference"
-					},
-					"folderPath": "svlconv-function-input",
-					"referenceObjects": {
-						"linkedServices": [],
-						"datasets": []
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "AzureBatchDs",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "multi cmd lsvlconv",
-				"type": "Custom",
-				"dependsOn": [
-					{
-						"activity": "SetFullFilePath",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"command": {
-						"value": "/bin/sh -c '\nunzip SVLConv.zip\ncd SVLConv\npython ./svl2docs_pipeline.py @{variables('TriggerFileName')}\n'",
-						"type": "Expression"
-					},
+					"command": "python --version",
 					"resourceLinkedService": {
 						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
