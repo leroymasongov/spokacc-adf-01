@@ -55,70 +55,6 @@
 				}
 			},
 			{
-				"name": "trest ls",
-				"type": "Custom",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"command": {
-						"value": "ls",
-						"type": "Expression"
-					},
-					"resourceLinkedService": {
-						"referenceName": "batchStorage",
-						"type": "LinkedServiceReference"
-					},
-					"folderPath": "svlconv-function-input",
-					"referenceObjects": {
-						"linkedServices": [],
-						"datasets": []
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "AzureBatchDs",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "unzip svlconv",
-				"type": "Custom",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"command": {
-						"value": "unzip SVLConv.zip ",
-						"type": "Expression"
-					},
-					"resourceLinkedService": {
-						"referenceName": "batchStorage",
-						"type": "LinkedServiceReference"
-					},
-					"folderPath": "svlconv-function-input",
-					"referenceObjects": {
-						"linkedServices": [],
-						"datasets": []
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "AzureBatchDs",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "multi cmd line",
 				"type": "Custom",
 				"dependsOn": [],
@@ -131,7 +67,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "unzip SVLConv.zip && ls",
+					"command": "unzip SVLConv.zip;  ls",
 					"resourceLinkedService": {
 						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
