@@ -149,7 +149,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "/bin/sh -c '\npython --version\n'",
+					"command": "/bin/sh -c '\npython3 --version\n'",
 					"resourceLinkedService": {
 						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
