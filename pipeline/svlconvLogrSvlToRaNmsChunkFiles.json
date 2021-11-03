@@ -23,7 +23,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "@/bin/sh -c '\necho \"    \"\necho \" before unzip \"\nunzip SvlConv.zip > zip.txt\necho \"    \"\necho \" unzip zip \"\nls\necho \"    \"\necho \"install pip and packages\"\nsudo apt install python3-pip  -y\nsudo apt-get install python3.10 -y\necho \"  \"\necho \" running python \"\npip install numpy azure-cosmos azure-storage-blob\npython --version\npython ./svl2docs_pipeline.py L89295.SVL\necho \"    \"\necho \"  end of ADF Batch custom activity command  \"\n'",
+						"value": "/bin/sh -c '\necho \"    \"\necho \" before unzip \"\nunzip SvlConv.zip > zip.txt\necho \"    \"\necho \" unzip zip \"\nls\necho \"    \"\necho \"install pip and packages\"\necho \"install pip and packages\"\nsudo apt update\necho \"=========================================\"\nsudo apt-get install python3.10 -y\necho \"=========================================\"\nsudo apt-get install python3-pip -y\necho \"=========================================\"\npip3 install numpy azure-cosmos azure-storage-blob\necho \"=========================================\"\npython --version\npython ./svl2docs_pipeline.py L89295.SVL\necho \"    \"\necho \"  end of ADF Batch custom activity command  \"\n'",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
