@@ -74,7 +74,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"command": "/bin/sh -c '\necho \"before unzip\"\nls\necho \"unzipping......\"\nunzip SvlConv.zip > zip.txt\necho \"after unzip\"\nls\n'",
+					"command": "/bin/sh -c '\necho \"before unzip\"\nls\necho \"unzipping......\"\nunzip SvlConv.zip > zip.txt\necho \"after unzip\"\nls\necho \"Python 3 version\"\npython3 --version\n'",
 					"resourceLinkedService": {
 						"referenceName": "batchStorage",
 						"type": "LinkedServiceReference"
