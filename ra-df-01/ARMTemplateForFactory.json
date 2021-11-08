@@ -1529,7 +1529,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "svl-conv-single-file",
+						"name": "python3 svl-conv-single-file",
 						"type": "Custom",
 						"dependsOn": [
 							{
@@ -1549,7 +1549,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "/bin/sh -c '\necho \"    \"\necho \" before unzip \"\nunzip SvlConv.zip\necho \"    \"\necho \" unzip zip \"\nls\necho \"    \"\necho \" running python \"\npython svl2docs_pipeline.py @{variables('TriggerFileName')}\necho \"    \"\necho \"  end of ADF Batch custom activity command  \"\n'",
+								"value": "/bin/sh -c 'sudo apt-get -s update; sudo apt-get install python3.10 -y; sudo apt-get install python3-pip -y; pip3 install numpy azure-cosmos azure-storage-blob;python3 --version;unzip -q SvlConv.zip; ls;python3 --version; python3 svl2docs_pipeline.py L89313.SVL'",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
@@ -1620,7 +1620,7 @@
 						}
 					},
 					{
-						"name": "cmd test",
+						"name": "cmd test silent",
 						"type": "Custom",
 						"dependsOn": [
 							{
@@ -1639,7 +1639,82 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"command": "/bin/sh -c '\necho \"before unzip\"\nls\necho \"unzipping......\"\nunzip SvlConv.zip \necho \"after unzip\"\nls\n'",
+							"command": "/bin/sh -c '\necho \"before unzip\"\nls\necho \"unzipping......\"\nunzip SvlConv.zip > zip.txt\necho \"after unzip\"\nls\n'",
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "svlconv-2",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatchDs",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "cmd python3 ver",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "SetFullFilePath",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": "/bin/sh -c '\npython3 --version\n'",
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "svlconv-2",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatchDs",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "trigger file arg svl-conv-single-file_copy1",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "SetFullFilePath",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": {
+								"value": "/bin/sh -c 'sudo apt-get -s update; sudo apt-get install python3.10 -y; sudo apt-get install python3-pip -y; pip3 install numpy azure-cosmos azure-storage-blob;python3 --version;unzip -q SvlConv.zip; ls;python3 --version; python3 svl2docs_pipeline.py @{variables('TriggerFileName')}'",
+								"type": "Expression"
+							},
 							"resourceLinkedService": {
 								"referenceName": "batchStorage",
 								"type": "LinkedServiceReference"
@@ -1663,7 +1738,7 @@
 				"parameters": {
 					"triggerFilePath": {
 						"type": "string",
-						"defaultValue": "L89239.SVL"
+						"defaultValue": "L89313.SVL"
 					},
 					"triggerFolderPath": {
 						"type": "string",
