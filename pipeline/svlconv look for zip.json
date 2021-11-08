@@ -1,0 +1,121 @@
+{
+	"name": "svlconv look for zip",
+	"properties": {
+		"activities": [
+			{
+				"name": "SetTriggerFileName",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TriggerFileName",
+					"value": {
+						"value": "@{pipeline().parameters.triggerFilePath}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "SetTriggerFolderPath",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TriggerFolderPath",
+					"value": {
+						"value": "@{pipeline().parameters.TriggerFolderPath}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "SetFullFilePath",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "SetTriggerFileName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SetTriggerFolderPath",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "FileFullPath",
+					"value": {
+						"value": "@concat(variables('TriggerFolderPath'),'/',variables('TriggerFileName'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "cmd test ls look for zip",
+				"type": "Custom",
+				"dependsOn": [
+					{
+						"activity": "SetFullFilePath",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"command": "/bin/sh -c '\necho \"before unzip\"\nls\necho \"unzipping......\"\nunzip SvlConv.zip > zip.txt\necho \"after unzip\"\nls\n'",
+					"resourceLinkedService": {
+						"referenceName": "batchStorage",
+						"type": "LinkedServiceReference"
+					},
+					"folderPath": "svlconv-2",
+					"referenceObjects": {
+						"linkedServices": [],
+						"datasets": []
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureBatchDs",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"triggerFilePath": {
+				"type": "string",
+				"defaultValue": "L89313.SVL"
+			},
+			"triggerFolderPath": {
+				"type": "string",
+				"defaultValue": "nms-files-sync-aws/files/SV_200A_65170"
+			}
+		},
+		"variables": {
+			"TriggerFileName": {
+				"type": "String"
+			},
+			"ChunkId": {
+				"type": "String",
+				"defaultValue": "89155"
+			},
+			"TriggerFolderPath": {
+				"type": "String"
+			},
+			"FileFullPath": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
