@@ -23,7 +23,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "/bin/sh -c 'sudo apt-get -s update; sudo apt-get install python3.10 -y; sudo apt-get install python3-pip -y; pip3 install numpy azure-cosmos azure-storage-blob;python3 --version;unzip SvlConv.zip -q; ls;python3 --version; python3 svl2docs_pipeline.py L89313.SVL'",
+						"value": "/bin/sh -c 'sudo apt-get -s update; sudo apt-get install python3.10 -y; sudo apt-get install python3-pip -y; pip3 install numpy azure-cosmos azure-storage-blob;python3 --version;unzip -q SvlConv.zip; ls;python3 --version; python3 svl2docs_pipeline.py L89313.SVL'",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
@@ -164,12 +164,51 @@
 					"referenceName": "AzureBatchDs",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "trigger file arg svl-conv-single-file_copy1",
+				"type": "Custom",
+				"dependsOn": [
+					{
+						"activity": "SetFullFilePath",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"command": {
+						"value": "/bin/sh -c 'sudo apt-get -s update; sudo apt-get install python3.10 -y; sudo apt-get install python3-pip -y; pip3 install numpy azure-cosmos azure-storage-blob;python3 --version;unzip -q SvlConv.zip; ls;python3 --version; python3 svl2docs_pipeline.py @{variables('TriggerFileName')}'",
+						"type": "Expression"
+					},
+					"resourceLinkedService": {
+						"referenceName": "batchStorage",
+						"type": "LinkedServiceReference"
+					},
+					"folderPath": "svlconv-2",
+					"referenceObjects": {
+						"linkedServices": [],
+						"datasets": []
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureBatchDs",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
 			"triggerFilePath": {
 				"type": "string",
-				"defaultValue": "L89239.SVL"
+				"defaultValue": "L89313.SVL"
 			},
 			"triggerFolderPath": {
 				"type": "string",
