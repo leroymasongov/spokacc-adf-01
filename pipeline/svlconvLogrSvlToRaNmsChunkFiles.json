@@ -150,7 +150,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "/bin/sh -c 'echo \"ls .\";ls;python3 --version; python3 svl2docs_pipeline.py @{variables('TriggerFileName')}'",
+						"value": "/bin/sh -c 'echo \"unzipping...\";unzip -q SvlConv.zip;ls;python3 --version; python3 svl2docs_pipeline.py @{variables('TriggerFileName')}'",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
