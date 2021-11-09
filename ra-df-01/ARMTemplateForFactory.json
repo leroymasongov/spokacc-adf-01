@@ -1770,7 +1770,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"command": "/bin/sh -c '\necho \"before unzip\"\nls\necho \"unzipping......\"\nunzip SvlConv.zip > zip.txt\necho \"after unzip\"\nls\necho \"Python 3 version\"\nPython3 --version\n'",
+							"command": "/bin/sh -c '\necho \"before unzip\"\nls\necho \"unzipping......\"\nunzip SvlConv.zip > zip.txt\necho \"after unzip\"\nls\necho \"Python 3 version\"\npython3 --version\n'",
 							"resourceLinkedService": {
 								"referenceName": "batchStorage",
 								"type": "LinkedServiceReference"
@@ -1807,7 +1807,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "/bin/sh -c 'echo \"ls .\";ls;python3 --version; python3 svl2docs_pipeline.py @{variables('TriggerFileName')}'",
+								"value": "/bin/sh -c 'echo \"unzipping...\";unzip -q SvlConv.zip;ls;python3 --version; python3 svl2docs_pipeline.py @{variables('TriggerFileName')}'",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
@@ -1845,7 +1845,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"command": "/bin/sh -c '\necho \"before unzip\"\nls\necho \"unzipping......\"\nunzip SvlConv.zip > zip.txt\necho \"after unzip\"\nls\necho \"Python 3 version\"\nPython3 --version\n'",
+							"command": "/bin/sh -c '\necho \"before unzip\"\nls\necho \"unzipping......\"\nunzip SvlConv.zip > zip.txt\necho \"after unzip\"\nls\necho \"Python 3 version\"\npython3 --version\n'",
 							"resourceLinkedService": {
 								"referenceName": "batchStorage",
 								"type": "LinkedServiceReference"
