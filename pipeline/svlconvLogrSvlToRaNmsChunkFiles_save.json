@@ -230,6 +230,9 @@
 				"type": "String"
 			}
 		},
+		"folder": {
+			"name": "archive"
+		},
 		"annotations": []
 	}
 }
