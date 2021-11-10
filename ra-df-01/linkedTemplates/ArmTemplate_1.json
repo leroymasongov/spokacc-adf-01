@@ -633,6 +633,9 @@
 						"type": "String"
 					}
 				},
+				"folder": {
+					"name": "archive"
+				},
 				"annotations": []
 			},
 			"dependsOn": []
@@ -765,131 +768,6 @@
 					}
 				},
 				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/svlconvToRaNmsChunkFiles')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "svl-conv",
-						"type": "Custom",
-						"dependsOn": [
-							{
-								"activity": "SetTriggerFilePath",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"command": {
-								"value": "powershell \"Expand-Archive svlconv.zip -DestinationPath .; ls; .\\cmdSvlConv.ps1; ls\"",
-								"type": "Expression"
-							},
-							"resourceLinkedService": {
-								"referenceName": "batchStorage",
-								"type": "LinkedServiceReference"
-							},
-							"folderPath": "svlconv-function-input",
-							"referenceObjects": {
-								"linkedServices": [],
-								"datasets": []
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureBatchDs",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "SetTriggerFilePath",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "vTriggerFilePAth",
-							"value": {
-								"value": "@{pipeline().parameters.triggerFilePath}",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"TriggerFilePath": {
-						"type": "string"
-					},
-					"TriggerFolderPath": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"vTriggerFilePAth": {
-						"type": "String"
-					},
-					"ChunkId": {
-						"type": "String",
-						"defaultValue": "89155"
-					}
-				},
-				"folder": {
-					"name": "archive"
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/dfLoadRecordsCSV')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "nmsMeasCSV2",
-								"type": "DatasetReference"
-							},
-							"name": "sourceNmsFiles"
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "radbRecordsForDF",
-								"type": "DatasetReference"
-							},
-							"name": "sinkRadb"
-						}
-					],
-					"transformations": [
-						{
-							"name": "AddDerivedCols"
-						},
-						{
-							"name": "SetRowNumber"
-						}
-					],
-					"script": "parameters{\n\tRaPipelineIdParam as string ('not-set')\n}\nsource(output(\n\t\tflag as string,\n\t\tmeasurements_0 as string,\n\t\tmeasurements_1 as string,\n\t\tmeasurements_2 as string,\n\t\tmeasurements_3 as string,\n\t\tmeasurements_4 as string,\n\t\tmeasurements_5 as string,\n\t\tmeasurements_6 as string,\n\t\tmeasurements_7 as string,\n\t\tmeasurements_8 as string,\n\t\tmeasurements_9 as string,\n\t\tmeasurements_10 as string,\n\t\tmeasurements_11 as string,\n\t\tmeasurements_12 as string,\n\t\tmeasurements_13 as string,\n\t\tmeasurements_14 as string,\n\t\tmeasurements_15 as string,\n\t\tmeasurements_16 as string,\n\t\tmeasurements_17 as string,\n\t\toctaves_0 as string,\n\t\toctaves_1 as string,\n\t\toctaves_2 as string,\n\t\toctaves_3 as string,\n\t\toctaves_4 as string,\n\t\toctaves_5 as string,\n\t\toctaves_6 as string,\n\t\toctaves_7 as string,\n\t\toctaves_8 as string,\n\t\toctaves_9 as string,\n\t\toctaves_10 as string,\n\t\toctaves_11 as string,\n\t\toctaves_12 as string,\n\t\toctaves_13 as string,\n\t\toctaves_14 as string,\n\t\toctaves_15 as string,\n\t\toctaves_16 as string,\n\t\toctaves_17 as string,\n\t\toctaves_18 as string,\n\t\toctaves_19 as string,\n\t\toctaves_20 as string,\n\t\toctaves_21 as string,\n\t\toctaves_22 as string,\n\t\toctaves_23 as string,\n\t\toctaves_24 as string,\n\t\toctaves_25 as string,\n\t\toctaves_26 as string,\n\t\toctaves_27 as string,\n\t\toctaves_28 as string,\n\t\toctaves_29 as string,\n\t\toctaves_30 as string,\n\t\toctaves_31 as string,\n\t\toctaves_32 as string,\n\t\toctaves_33 as string,\n\t\te_compass_correction as string,\n\t\tdirection_xy as string,\n\t\tenergy_xy as string,\n\t\tdirection_z as string,\n\t\tenergy_z as string,\n\t\tenergy_dist_xy_0 as string,\n\t\tenergy_dist_xy_1 as string,\n\t\tenergy_dist_xy_2 as string,\n\t\tenergy_dist_xy_3 as string,\n\t\tenergy_dist_xy_4 as string,\n\t\tenergy_dist_xy_5 as string,\n\t\tenergy_dist_xy_6 as string,\n\t\tenergy_dist_xy_7 as string,\n\t\tenergy_dist_xy_8 as string,\n\t\tenergy_dist_xy_9 as string,\n\t\tenergy_dist_xy_10 as string,\n\t\tenergy_dist_xy_11 as string,\n\t\tenergy_dist_xy_12 as string,\n\t\tenergy_dist_xy_13 as string,\n\t\tenergy_dist_xy_14 as string,\n\t\tenergy_dist_xy_15 as string,\n\t\tenergy_dist_xy_16 as string,\n\t\tenergy_dist_xy_17 as string,\n\t\tenergy_dist_xy_18 as string,\n\t\tenergy_dist_xy_19 as string,\n\t\tenergy_dist_xy_20 as string,\n\t\tenergy_dist_xy_21 as string,\n\t\tenergy_dist_xy_22 as string,\n\t\tenergy_dist_xy_23 as string,\n\t\tenergy_dist_xy_24 as string,\n\t\tenergy_dist_xy_25 as string,\n\t\tenergy_dist_xy_26 as string,\n\t\tenergy_dist_xy_27 as string,\n\t\tenergy_dist_xy_28 as string,\n\t\tenergy_dist_xy_29 as string,\n\t\tenergy_dist_xy_30 as string,\n\t\tenergy_dist_xy_31 as string,\n\t\tenergy_dist_z_0 as string,\n\t\tenergy_dist_z_1 as string,\n\t\tenergy_dist_z_2 as string,\n\t\tenergy_dist_z_3 as string,\n\t\tenergy_dist_z_4 as string,\n\t\tenergy_dist_z_5 as string,\n\t\tenergy_dist_z_6 as string,\n\t\tenergy_dist_z_7 as string,\n\t\tenergy_dist_z_8 as string,\n\t\tenergy_dist_z_9 as string,\n\t\tenergy_dist_z_10 as string,\n\t\tenergy_dist_z_11 as string,\n\t\tenergy_dist_z_12 as string,\n\t\tenergy_dist_z_13 as string,\n\t\tenergy_dist_z_14 as string,\n\t\tenergy_dist_z_15 as string,\n\t\tenergy_dist_z_16 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\trowUrlColumn: 'NmsFile',\n\twildcardPaths:['*_records.csv']) ~> sourceNmsFiles\nsourceNmsFiles derive(RowNumber = 1,\n\t\tRaPipelineId = $RaPipelineIdParam,\n\t\tNmsDocumentType = 'records') ~> AddDerivedCols\nAddDerivedCols keyGenerate(output(RowNumber as long),\n\tstartAt: 1L) ~> SetRowNumber\nSetRowNumber sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'document',\n\tpartitionKey: ['/RaPipelineId'],\n\tthroughput: (0),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sinkRadb"
-				}
 			},
 			"dependsOn": []
 		},
@@ -1131,7 +1009,135 @@
 						"type": "String"
 					}
 				},
+				"folder": {
+					"name": "archive"
+				},
 				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/svlconvToRaNmsChunkFiles')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "svl-conv",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "SetTriggerFilePath",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": {
+								"value": "powershell \"Expand-Archive svlconv.zip -DestinationPath .; ls; .\\cmdSvlConv.ps1; ls\"",
+								"type": "Expression"
+							},
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "svlconv-function-input",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatchDs",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "SetTriggerFilePath",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "vTriggerFilePAth",
+							"value": {
+								"value": "@{pipeline().parameters.triggerFilePath}",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"TriggerFilePath": {
+						"type": "string"
+					},
+					"TriggerFolderPath": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"vTriggerFilePAth": {
+						"type": "String"
+					},
+					"ChunkId": {
+						"type": "String",
+						"defaultValue": "89155"
+					}
+				},
+				"folder": {
+					"name": "archive"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dfLoadRecordsCSV')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "nmsMeasCSV2",
+								"type": "DatasetReference"
+							},
+							"name": "sourceNmsFiles"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "radbRecordsForDF",
+								"type": "DatasetReference"
+							},
+							"name": "sinkRadb"
+						}
+					],
+					"transformations": [
+						{
+							"name": "AddDerivedCols"
+						},
+						{
+							"name": "SetRowNumber"
+						}
+					],
+					"script": "parameters{\n\tRaPipelineIdParam as string ('not-set')\n}\nsource(output(\n\t\tflag as string,\n\t\tmeasurements_0 as string,\n\t\tmeasurements_1 as string,\n\t\tmeasurements_2 as string,\n\t\tmeasurements_3 as string,\n\t\tmeasurements_4 as string,\n\t\tmeasurements_5 as string,\n\t\tmeasurements_6 as string,\n\t\tmeasurements_7 as string,\n\t\tmeasurements_8 as string,\n\t\tmeasurements_9 as string,\n\t\tmeasurements_10 as string,\n\t\tmeasurements_11 as string,\n\t\tmeasurements_12 as string,\n\t\tmeasurements_13 as string,\n\t\tmeasurements_14 as string,\n\t\tmeasurements_15 as string,\n\t\tmeasurements_16 as string,\n\t\tmeasurements_17 as string,\n\t\toctaves_0 as string,\n\t\toctaves_1 as string,\n\t\toctaves_2 as string,\n\t\toctaves_3 as string,\n\t\toctaves_4 as string,\n\t\toctaves_5 as string,\n\t\toctaves_6 as string,\n\t\toctaves_7 as string,\n\t\toctaves_8 as string,\n\t\toctaves_9 as string,\n\t\toctaves_10 as string,\n\t\toctaves_11 as string,\n\t\toctaves_12 as string,\n\t\toctaves_13 as string,\n\t\toctaves_14 as string,\n\t\toctaves_15 as string,\n\t\toctaves_16 as string,\n\t\toctaves_17 as string,\n\t\toctaves_18 as string,\n\t\toctaves_19 as string,\n\t\toctaves_20 as string,\n\t\toctaves_21 as string,\n\t\toctaves_22 as string,\n\t\toctaves_23 as string,\n\t\toctaves_24 as string,\n\t\toctaves_25 as string,\n\t\toctaves_26 as string,\n\t\toctaves_27 as string,\n\t\toctaves_28 as string,\n\t\toctaves_29 as string,\n\t\toctaves_30 as string,\n\t\toctaves_31 as string,\n\t\toctaves_32 as string,\n\t\toctaves_33 as string,\n\t\te_compass_correction as string,\n\t\tdirection_xy as string,\n\t\tenergy_xy as string,\n\t\tdirection_z as string,\n\t\tenergy_z as string,\n\t\tenergy_dist_xy_0 as string,\n\t\tenergy_dist_xy_1 as string,\n\t\tenergy_dist_xy_2 as string,\n\t\tenergy_dist_xy_3 as string,\n\t\tenergy_dist_xy_4 as string,\n\t\tenergy_dist_xy_5 as string,\n\t\tenergy_dist_xy_6 as string,\n\t\tenergy_dist_xy_7 as string,\n\t\tenergy_dist_xy_8 as string,\n\t\tenergy_dist_xy_9 as string,\n\t\tenergy_dist_xy_10 as string,\n\t\tenergy_dist_xy_11 as string,\n\t\tenergy_dist_xy_12 as string,\n\t\tenergy_dist_xy_13 as string,\n\t\tenergy_dist_xy_14 as string,\n\t\tenergy_dist_xy_15 as string,\n\t\tenergy_dist_xy_16 as string,\n\t\tenergy_dist_xy_17 as string,\n\t\tenergy_dist_xy_18 as string,\n\t\tenergy_dist_xy_19 as string,\n\t\tenergy_dist_xy_20 as string,\n\t\tenergy_dist_xy_21 as string,\n\t\tenergy_dist_xy_22 as string,\n\t\tenergy_dist_xy_23 as string,\n\t\tenergy_dist_xy_24 as string,\n\t\tenergy_dist_xy_25 as string,\n\t\tenergy_dist_xy_26 as string,\n\t\tenergy_dist_xy_27 as string,\n\t\tenergy_dist_xy_28 as string,\n\t\tenergy_dist_xy_29 as string,\n\t\tenergy_dist_xy_30 as string,\n\t\tenergy_dist_xy_31 as string,\n\t\tenergy_dist_z_0 as string,\n\t\tenergy_dist_z_1 as string,\n\t\tenergy_dist_z_2 as string,\n\t\tenergy_dist_z_3 as string,\n\t\tenergy_dist_z_4 as string,\n\t\tenergy_dist_z_5 as string,\n\t\tenergy_dist_z_6 as string,\n\t\tenergy_dist_z_7 as string,\n\t\tenergy_dist_z_8 as string,\n\t\tenergy_dist_z_9 as string,\n\t\tenergy_dist_z_10 as string,\n\t\tenergy_dist_z_11 as string,\n\t\tenergy_dist_z_12 as string,\n\t\tenergy_dist_z_13 as string,\n\t\tenergy_dist_z_14 as string,\n\t\tenergy_dist_z_15 as string,\n\t\tenergy_dist_z_16 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\trowUrlColumn: 'NmsFile',\n\twildcardPaths:['*_records.csv']) ~> sourceNmsFiles\nsourceNmsFiles derive(RowNumber = 1,\n\t\tRaPipelineId = $RaPipelineIdParam,\n\t\tNmsDocumentType = 'records') ~> AddDerivedCols\nAddDerivedCols keyGenerate(output(RowNumber as long),\n\tstartAt: 1L) ~> SetRowNumber\nSetRowNumber sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'document',\n\tpartitionKey: ['/RaPipelineId'],\n\tthroughput: (0),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sinkRadb"
+				}
 			},
 			"dependsOn": []
 		},
