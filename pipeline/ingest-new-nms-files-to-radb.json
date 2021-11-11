@@ -372,7 +372,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "python raNmsRecords_Derive_Timestamp.py @{pipeline().parameters.triggerFilePath}  @{variables('chunkId')} @{variables('NmsRecordsStartTime')}",
+						"value": "python3 raNmsRecords_Derive_Timestamp.py @{pipeline().parameters.triggerFilePath}  @{variables('chunkId')} @{variables('NmsRecordsStartTime')}",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
