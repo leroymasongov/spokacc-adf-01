@@ -55,7 +55,7 @@
 				}
 			},
 			{
-				"name": "trigger file arg svl-conv-single-file_copy1",
+				"name": "SIT svl-conv-single-file",
 				"type": "Custom",
 				"dependsOn": [
 					{
@@ -75,7 +75,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "/bin/sh -c 'echo \"unzipping...\";unzip -q SvlConv.zip;ls;python3 --version; python3 svl2docs_pipeline.py @{variables('TriggerFileName')}'",
+						"value": "/bin/sh -c '\necho \"ls .\"\nls\npython3 --version\npython3 SvlConv.zip @{variables('TriggerFileName')} -300\n'",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
