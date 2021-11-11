@@ -510,6 +510,176 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/superseded_svlconvLogrSvlToRaNmsChunkFiles_copy1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "SetTriggerFileName",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "TriggerFileName",
+							"value": {
+								"value": "@{pipeline().parameters.triggerFilePath}",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "SetTriggerFolderPath",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "TriggerFolderPath",
+							"value": {
+								"value": "@{pipeline().parameters.TriggerFolderPath}",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "SetFullFilePath",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "SetTriggerFileName",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "SetTriggerFolderPath",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "FileFullPath",
+							"value": {
+								"value": "@concat(variables('TriggerFolderPath'),'/',variables('TriggerFileName'))",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "trigger file arg svl-conv-single-file_copy1",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "SetFullFilePath",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": {
+								"value": "/bin/sh -c 'echo \"unzipping...\";unzip -q SvlConv.zip;ls;python3 --version; python3 svl2docs_pipeline.py @{variables('TriggerFileName')}'",
+								"type": "Expression"
+							},
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "svlconv-2",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatchDs",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "SIT svl-conv-single-file",
+						"type": "Custom",
+						"dependsOn": [
+							{
+								"activity": "SetFullFilePath",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"command": {
+								"value": "/bin/sh -c '\necho \"ls .\"\nls\npython3 --version\npython3 SvlConv.zip @{variables('TriggerFileName')} -300\n'",
+								"type": "Expression"
+							},
+							"resourceLinkedService": {
+								"referenceName": "batchStorage",
+								"type": "LinkedServiceReference"
+							},
+							"folderPath": "svlconv-2",
+							"referenceObjects": {
+								"linkedServices": [],
+								"datasets": []
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureBatchDs",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"triggerFilePath": {
+						"type": "string",
+						"defaultValue": "L89313.SVL"
+					},
+					"triggerFolderPath": {
+						"type": "string",
+						"defaultValue": "nms-files-sync-aws/files/SV_200A_65170"
+					}
+				},
+				"variables": {
+					"TriggerFileName": {
+						"type": "String"
+					},
+					"ChunkId": {
+						"type": "String",
+						"defaultValue": "89155"
+					},
+					"TriggerFolderPath": {
+						"type": "String"
+					},
+					"FileFullPath": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/svlconv look for zip')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -699,7 +869,7 @@
 						}
 					},
 					{
-						"name": "trigger file arg svl-conv-single-file_copy1",
+						"name": "SIT svl-conv-single-file",
 						"type": "Custom",
 						"dependsOn": [
 							{
@@ -719,7 +889,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "/bin/sh -c 'echo \"unzipping...\";unzip -q SvlConv.zip;ls;python3 --version; python3 svl2docs_pipeline.py @{variables('TriggerFileName')}'",
+								"value": "/bin/sh -c '\necho \"ls .\"\nls\npython3 --version\npython3 SvlConv.zip @{variables('TriggerFileName')} -300\n'",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
