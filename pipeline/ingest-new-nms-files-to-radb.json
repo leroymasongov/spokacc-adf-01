@@ -288,7 +288,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "python ChunkId_cmd.py \"@{pipeline().parameters.triggerFilePath}\"",
+						"value": "python3 ChunkId_cmd.py \"@{pipeline().parameters.triggerFilePath}\"",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
