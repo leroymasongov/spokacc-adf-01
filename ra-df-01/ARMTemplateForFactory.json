@@ -1337,7 +1337,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"command": {
-								"value": "powershell \"ls .; python cmd_PreProLogger.py @{pipeline().parameters.raPipelineId} @{pipeline().parameters.ChunkID} @{pipeline().parameters.nmsHeaderStartTime} \"",
+								"value": "/bin/sh -c '\nls .\npython3 cmd_PreProLogger.py @{pipeline().parameters.raPipelineId} @{pipeline().parameters.ChunkID} @{pipeline().parameters.nmsHeaderStartTime}\n'",
 								"type": "Expression"
 							},
 							"resourceLinkedService": {
@@ -1392,7 +1392,10 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"command": "powershell \"ls\"",
+							"command": {
+								"value": "/bin/sh -c '\nls .\n'",
+								"type": "Expression"
+							},
 							"referenceObjects": {
 								"linkedServices": [],
 								"datasets": []
@@ -1423,7 +1426,10 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"command": "powershell \"ls\"",
+							"command": {
+								"value": "/bin/sh -c '\nls .\n'",
+								"type": "Expression"
+							},
 							"referenceObjects": {
 								"linkedServices": [],
 								"datasets": []
