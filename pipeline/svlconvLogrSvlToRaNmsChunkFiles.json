@@ -75,7 +75,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "/bin/sh -c '\necho \"ls .\"\nls\npython3 --version\npython3 SvlConv.zip @{variables('TriggerFileName')} -300\n'",
+						"value": "/bin/sh -c '\necho \"ls .\"\nls\npython3 --version\npython3 SvlConv.zip @{variables('TriggerFileName')} -300\nrm -r ./*\n'",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
