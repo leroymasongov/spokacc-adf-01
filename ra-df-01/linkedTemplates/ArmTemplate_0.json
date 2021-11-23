@@ -37,7 +37,7 @@
 		},
 		"AzureBatchDs_properties_typeProperties_poolName": {
 			"type": "string",
-			"defaultValue": "pool-ds6"
+			"defaultValue": "pool-ds6-2"
 		},
 		"AzureBatchDs_properties_typeProperties_accountName": {
 			"type": "string",
