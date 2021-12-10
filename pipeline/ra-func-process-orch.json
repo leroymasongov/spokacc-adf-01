@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"command": {
-						"value": "/bin/sh -c '\nls .\npython3 cmd_PreProLogger.py @{pipeline().parameters.raPipelineId} @{pipeline().parameters.ChunkID} @{pipeline().parameters.nmsHeaderStartTime}\n'",
+						"value": "/bin/sh -c '\nls .\npython3 cmd_PreProLogger.py @{pipeline().parameters.raPipelineId} @{pipeline().parameters.ChunkID} @{pipeline().parameters.nmsHeaderStartTime}\nrm -r ./*\n'",
 						"type": "Expression"
 					},
 					"resourceLinkedService": {
