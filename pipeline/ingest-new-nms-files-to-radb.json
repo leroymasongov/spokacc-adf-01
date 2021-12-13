@@ -526,58 +526,6 @@
 				}
 			},
 			{
-				"name": "exec-ra-func-process",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Copy-records-csv-to-radb",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Copy-summary-to-radb",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "ra-func-process-orch",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"radbContainer": {
-							"value": "@pipeline().parameters.radbContainer",
-							"type": "Expression"
-						},
-						"blobContainerName": {
-							"value": "@pipeline().parameters.blobContainerName",
-							"type": "Expression"
-						},
-						"triggerFilePath": {
-							"value": "@pipeline().parameters.triggerFilePath",
-							"type": "Expression"
-						},
-						"ChunkID": {
-							"value": "@variables('chunkId')",
-							"type": "Expression"
-						},
-						"raPipelineId": {
-							"value": "@pipeline().RunId",
-							"type": "Expression"
-						},
-						"nmsHeaderStartTime": {
-							"value": "@{variables('NmsRecordsStartTime')}",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
 				"name": "set-nms-records-start-time",
 				"type": "SetVariable",
 				"dependsOn": [
@@ -627,6 +575,45 @@
 					"value": {
 						"value": "@{activity('LookupChunkHeaderInfo').output.firstRow.unit_number}",
 						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "exec-ra-func-process",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ra-func-process-orch",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"radbContainer": {
+							"value": "@pipeline().parameters.radbContainer",
+							"type": "Expression"
+						},
+						"blobContainerName": {
+							"value": "@pipeline().parameters.blobContainerName",
+							"type": "Expression"
+						},
+						"triggerFilePath": {
+							"value": "@pipeline().parameters.triggerFilePath",
+							"type": "Expression"
+						},
+						"ChunkID": {
+							"value": "@variables('chunkId')",
+							"type": "Expression"
+						},
+						"raPipelineId": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						},
+						"nmsHeaderStartTime": {
+							"value": "@{variables('NmsRecordsStartTime')}",
+							"type": "Expression"
+						}
 					}
 				}
 			}
